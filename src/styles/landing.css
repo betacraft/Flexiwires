@@ -4502,28 +4502,31 @@
       .hero-card--savings,
       .hero-card--rate { display: none !important; }
 
-      html[data-theme="mytheme"] .hero .container.hero__inner { padding-bottom: 0 !important; }
+      html[data-theme="mytheme"] .hero { padding-bottom: 0 !important; }
+      html[data-theme="mytheme"] .hero .container.hero__inner { padding-bottom: 0 !important; gap: 16px !important; }
       html[data-theme="mytheme"] .hero__visual,
       .hero__visual {
         width: auto !important;
         max-width: none !important;
-        margin: 16px -18px 0 !important;   /* break out of container's 18px pad */
+        margin: 8px 0 0 !important;
         padding: 0 !important;
         min-height: 0 !important;
-        overflow: visible !important;
+        overflow: hidden !important;
       }
       html[data-theme="mytheme"] .hero-phone-wrap,
       .hero-phone-wrap {
         position: relative !important;
-        width: 100% !important; max-width: 100% !important;
         right: auto !important; bottom: auto !important;
-        margin: 0 !important; transform: none !important;
+        transform: none !important;
+        /* Bigger phone+rock, re-centered, flush to the card bottom */
+        width: 124% !important; max-width: 124% !important;
+        margin: 0 0 0 -12% !important;
       }
       html[data-theme="mytheme"] .hero-phone__img,
       .hero-phone__img,
       .hero-phone-wrap img {
         width: 100% !important; height: auto !important; display: block !important;
-        margin-bottom: -1px !important;    /* rock touches the rounded bottom */
+        margin-bottom: -2px !important;    /* rock touches the rounded bottom */
       }
 
       /* (2) WHY THIS EXISTS: clean single-column alignment */
