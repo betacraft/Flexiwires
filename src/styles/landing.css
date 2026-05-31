@@ -1951,8 +1951,8 @@
         font-weight: 500;
       }
       .footer__watermark {
-        font-family: var(--font-display);
-        font-weight: 500;
+        font-family: var(--font-sans);
+        font-weight: 700;
         font-size: clamp(120px, 26vw, 360px);
         line-height: 0.85;
         letter-spacing: -0.06em;
