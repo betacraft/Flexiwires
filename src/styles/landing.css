@@ -4725,3 +4725,18 @@
         html[data-theme="mytheme"] .hero-card--rate { transform: scale(.7) !important; }
       }
       /* ===== END MOBILE RESPONSIVE ===== */
+
+/* ===== EYEBROW COLOR CONSISTENCY (added) =====
+ * Make the section supporting-text (eyebrow) uniform grey like the rest.
+ * Previously .eyebrow--accent rendered green on a few sections (e.g. the
+ * testimonial "From the FlexiWires team" and the CTA "Start moving money"),
+ * which looked inconsistent vs the default grey eyebrows. The hero's
+ * "LIVE · 12 PARTNER RAILS" keeps its own higher-specificity colour on the
+ * dark card, so this only neutralises the on-cream section eyebrows. */
+.eyebrow.eyebrow--accent {
+  color: var(--muted-foreground);
+}
+/* keep any decorative dot subtle/neutral too on those section eyebrows */
+.eyebrow.eyebrow--accent.eyebrow--dot::before {
+  background: var(--muted-foreground);
+}
