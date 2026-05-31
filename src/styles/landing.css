@@ -4494,6 +4494,7 @@
       .why__title { font-size: clamp(24px, 7.5vw, 32px) !important; }
     }
     
+    @media (max-width: 768px) {
       /* ===== BATCH FIXES START ===== */
       /* (1) HERO mobile: remove the two floating glass cards; make the phone+rock
        *     big and flush to the bottom edge of the dark hero card. */
@@ -4569,6 +4570,7 @@
         flex: 0 0 18px !important;
       }
       /* ===== BATCH FIXES END ===== */
+    }
 
     /* ===== END MOBILE RESPONSIVE ===== */
 
