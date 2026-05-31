@@ -4749,3 +4749,9 @@
 .eyebrow.eyebrow--accent.eyebrow--dot::before {
   background: var(--muted-foreground);
 }
+
+/* Footer legal "FlexiWires Inc." strong text must not be black on the dark footer */
+html[data-theme="mytheme"] .footer__legal,
+html[data-theme="mytheme"] .footer__legal strong {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
