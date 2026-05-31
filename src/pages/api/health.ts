@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 
-export const prerender = false;
+// Static (GitHub Pages, DEPLOY_TARGET=none) has no server runtime, so prerender
+// this route into a snapshot there; keep it dynamic for SSR adapters.
+export const prerender = process.env.DEPLOY_TARGET === 'none';
 
 export const GET: APIRoute = ({ locals }) => {
   return new Response(

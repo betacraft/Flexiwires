@@ -36,7 +36,9 @@ const adapter = (() => {
 })();
 
 export default defineConfig({
-  site: SITE.url,
+  site: adapterTarget === 'none' ? 'https://betacraft.github.io' : SITE.url,
+  // GitHub Pages project site is served under /Flexiwires/ (static build only).
+  base: adapterTarget === 'none' ? '/Flexiwires' : undefined,
   trailingSlash: 'never',
 
   // Static by default; switch to 'server' or 'hybrid' per route via `export const prerender`.

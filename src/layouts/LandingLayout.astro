@@ -1,0 +1,641 @@
+---
+// FlexiWires — My Theme landing page shell.
+// Ported verbatim from _brand/landing-mytheme-preview.html (design source of truth).
+import '../styles/landing.css';
+---
+<!doctype html>
+<html lang="en" data-theme="mytheme" data-lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>FlexiWires — Money, routed.</title>
+    <meta
+      name="description"
+      content="Compare every cross-border wire rail on one screen. Pick the best rate. Send in seconds."
+    />
+    <meta name="theme-color" content="#FAF8F4" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+    <script is:inline src="https://cdn.jsdelivr.net/npm/lenis@1.3.10/dist/lenis.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+    <script is:inline>
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ============================================================
+      // Language toggle (CSS-driven visibility, no flash)
+      // ============================================================
+      (() => {
+        const buttons = document.querySelectorAll('[data-lang-switch]');
+        buttons.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const lang = btn.dataset.langSwitch;
+            document.documentElement.dataset.lang = lang;
+            document.documentElement.lang = lang;
+            buttons.forEach((b) =>
+              b.classList.toggle('is-active', b.dataset.langSwitch === lang),
+            );
+            if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+          });
+        });
+      })();
+
+      // ============================================================
+      // Header shadow on scroll
+      // ============================================================
+      const header = document.getElementById('site-header');
+      const onHeaderScroll = (y) => header && header.classList.toggle('is-scrolled', y > 8);
+
+      // ============================================================
+      // Lenis smooth scrolling (the buttery-smooth backbone)
+      // ============================================================
+      let lenis = null;
+      if (!reducedMotion && typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+          duration: 1.1,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+          smoothTouch: false,
+          touchMultiplier: 2,
+        });
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        lenis.on('scroll', ({ scroll }) => onHeaderScroll(scroll));
+      } else {
+        window.addEventListener('scroll', () => onHeaderScroll(window.scrollY), { passive: true });
+      }
+
+      // ============================================================
+      // Scroll progress bar at top of viewport
+      // ============================================================
+      const progressEl = document.getElementById('scroll-progress');
+      if (progressEl) {
+        const updateProgress = () => {
+          const doc = document.documentElement;
+          const total = doc.scrollHeight - window.innerHeight;
+          const pct = total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0;
+          progressEl.style.width = (pct * 100).toFixed(2) + '%';
+        };
+        if (lenis) lenis.on('scroll', updateProgress);
+        else window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+      }
+
+      // ============================================================
+      // GSAP + ScrollTrigger — fancy stuff
+      // ============================================================
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Bind Lenis ↔ ScrollTrigger (so scroll-driven animations match smooth scroll)
+        if (lenis) {
+          lenis.on('scroll', ScrollTrigger.update);
+          gsap.ticker.add((time) => lenis.raf(time * 1000));
+          gsap.ticker.lagSmoothing(0);
+        }
+
+        document.documentElement.classList.add('gsap-ready');
+
+        // Mark headlines for word-split animation
+        // (split EN visible text only — ES is hidden via CSS at runtime)
+        const splitHeadlines = document.querySelectorAll('.h-display, .h-section');
+        splitHeadlines.forEach((el) => {
+          // Wrap each visible <span lang> child's words in inline-blocks
+          el.querySelectorAll('span[lang]').forEach((langSpan) => {
+            const html = langSpan.innerHTML;
+            // split outside of <em> tags so the italic stays intact as one unit
+            // approach: temporarily protect <em> blocks
+            const parts = html.split(/(<em>.*?<\/em>)/g).filter(Boolean);
+            const wrapped = parts
+              .map((part) => {
+                if (part.startsWith('<em>')) {
+                  return '<span class="split-line">' + part + '</span>';
+                }
+                return part
+                  .split(/(\s+)/)
+                  .map((w) =>
+                    w.trim() ? '<span class="split-line">' + w + '</span>' : w,
+                  )
+                  .join('');
+              })
+              .join('');
+            langSpan.innerHTML = wrapped;
+          });
+        });
+
+        // === Hero · entrance ===
+        const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        heroTL
+          .from('.hero .eyebrow', { opacity: 0, y: 12, duration: 0.6 })
+          .fromTo(
+            '.hero__title .split-line',
+            { opacity: 0, y: 32, filter: 'blur(8px)' },
+            {
+              opacity: 1,
+              y: 0,
+              filter: 'blur(0px)',
+              stagger: 0.06,
+              duration: 0.85,
+            },
+            '-=0.3',
+          )
+          .from('.hero__lede', { opacity: 0, y: 16, duration: 0.6 }, '-=0.4')
+          .from(
+            '.hero__ctas > *',
+            { opacity: 0, y: 12, stagger: 0.08, duration: 0.5 },
+            '-=0.3',
+          )
+          .from('.hero__trust', { opacity: 0, y: 8, duration: 0.5 }, '-=0.3')
+          .from(
+            '.rate-panel',
+            { opacity: 0, x: 40, scale: 0.96, duration: 0.9, ease: 'power3.out' },
+            '<0.2',
+          )
+          .from(
+            '.rate-panel .rate-row',
+            { opacity: 0, y: 8, stagger: 0.07, duration: 0.4 },
+            '-=0.5',
+          );
+
+        // === Hero prism parallax ===
+        gsap.to('.hero__prism', {
+          yPercent: 40,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 0.6,
+          },
+        });
+
+        // === Section reveal (replaces IntersectionObserver) ===
+        gsap.utils.toArray('.reveal').forEach((section) => {
+          gsap.fromTo(
+            section,
+            { opacity: 0, y: 32 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.9,
+              ease: 'power3.out',
+              scrollTrigger: { trigger: section, start: 'top 85%' },
+            },
+          );
+        });
+
+        // === Section H2 word-split on scroll ===
+        gsap.utils.toArray('.h-section').forEach((heading) => {
+          // Skip headings already animated by hero timeline
+          if (heading.closest('.hero')) return;
+          const lines = heading.querySelectorAll('.split-line');
+          if (!lines.length) return;
+          gsap.fromTo(
+            lines,
+            { opacity: 0, y: 24, filter: 'blur(6px)' },
+            {
+              opacity: 1,
+              y: 0,
+              filter: 'blur(0px)',
+              stagger: 0.05,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: { trigger: heading, start: 'top 85%' },
+            },
+          );
+        });
+
+        // === Comparison-card rows stagger ===
+        gsap.utils.toArray('.comparison-card').forEach((card) => {
+          gsap.from(card.querySelectorAll('.comparison-row'), {
+            opacity: 0,
+            x: 16,
+            stagger: 0.08,
+            duration: 0.5,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: card, start: 'top 80%' },
+          });
+        });
+
+        // === How-step cards ===
+        gsap.from('.how-step', {
+          opacity: 0,
+          y: 24,
+          stagger: 0.12,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.how__steps', start: 'top 80%' },
+        });
+
+        // === Feature cards ===
+        gsap.from('.feature', {
+          opacity: 0,
+          y: 16,
+          stagger: 0.08,
+          duration: 0.6,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.features__grid', start: 'top 80%' },
+        });
+
+        // === Stats count-up ===
+        const countUp = (el) => {
+          const target = parseFloat(el.dataset.count);
+          const decimals = parseInt(el.dataset.decimals || '0', 10);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          const obj = { v: 0 };
+          gsap.to(obj, {
+            v: target,
+            duration: 1.6,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+            onUpdate: () => {
+              const formatted = obj.v.toFixed(decimals);
+              el.textContent = prefix + formatted + suffix;
+            },
+          });
+        };
+        document.querySelectorAll('[data-count]').forEach(countUp);
+
+// === Hero cards count-up (above the fold, fires on load with delay) ===
+        const heroCountUp = (el) => {
+          const target = parseFloat(el.dataset.heroCount);
+          const decimals = parseInt(el.dataset.decimals || '0', 10);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          const obj = { v: 0 };
+          gsap.to(obj, {
+            v: target,
+            duration: 1.4,
+            delay: 1.2,
+            ease: 'power2.out',
+            onUpdate: () => {
+              const formatted = obj.v.toFixed(decimals);
+              el.textContent = prefix + formatted + suffix;
+            },
+          });
+        };
+        document.querySelectorAll('[data-hero-count]').forEach(heroCountUp);
+        // === Pricing-cards reveal ===
+        gsap.from('.price-card', {
+          opacity: 0,
+          y: 20,
+          stagger: 0.1,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.pricing__grid', start: 'top 80%' },
+        });
+
+        // === Phone-photo: parallax tilt as it scrolls into view ===
+        const phonePhoto = document.querySelector('.phone-photo');
+        if (phonePhoto) {
+          gsap.from(phonePhoto, {
+            opacity: 0,
+            y: 50,
+            rotation: -4,
+            duration: 1.1,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.mobile', start: 'top 75%' },
+          });
+          gsap.fromTo(
+            phonePhoto,
+            { y: 30 },
+            {
+              y: -30,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: '.mobile',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.6,
+              },
+            },
+          );
+          // Phone-photo overlay slide-in
+          gsap.from('.phone-photo__overlay', {
+            opacity: 0,
+            x: 30,
+            duration: 0.9,
+            delay: 0.3,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.mobile', start: 'top 70%' },
+          });
+          gsap.from('.phone-photo__badge', {
+            opacity: 0,
+            x: -30,
+            duration: 0.9,
+            delay: 0.5,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: '.mobile', start: 'top 70%' },
+          });
+        }
+
+        // === Testimonial: italic quote reveal ===
+        gsap.from('.testimonial__quote', {
+          opacity: 0,
+          y: 24,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: '.testimonial', start: 'top 70%' },
+        });
+
+        // === CTA banner prism parallax ===
+        gsap.to('.cta-banner__prism', {
+          xPercent: 30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.cta-banner',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.8,
+          },
+        });
+      }
+
+      // ============================================================
+      // Magnetic CTA buttons
+      // ============================================================
+      if (!reducedMotion) {
+        document.querySelectorAll('.btn--magnet').forEach((btn) => {
+          let rect;
+          const onEnter = () => {
+            rect = btn.getBoundingClientRect();
+          };
+          const onMove = (e) => {
+            if (!rect) rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.setProperty('--x', x * 0.18 + 'px');
+            btn.style.setProperty('--y', y * 0.18 + 'px');
+          };
+          const onLeave = () => {
+            btn.style.setProperty('--x', '0px');
+            btn.style.setProperty('--y', '0px');
+            rect = null;
+          };
+          btn.addEventListener('mouseenter', onEnter);
+          btn.addEventListener('mousemove', onMove);
+          btn.addEventListener('mouseleave', onLeave);
+        });
+      }
+
+      // ============================================================
+      // Smooth-scroll anchor links (Lenis-aware)
+      // ============================================================
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const href = a.getAttribute('href');
+          if (!href || href === '#') return;
+          const target = document.querySelector(href);
+          if (!target) return;
+          e.preventDefault();
+          if (lenis) {
+            lenis.scrollTo(target, { offset: -64, duration: 1.2 });
+          } else {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    </script>
+
+    <!-- PREVIEW THEME TOGGLE · remove before shipping -->
+    <div class="theme-preview" aria-label="Theme preview" data-internal-preview>
+      <span class="theme-preview__label">Preview</span>
+      <div class="theme-preview__group" role="tablist">
+        <button data-theme-set="lumen" class="is-active" aria-label="Switch to Lumen theme">
+          <span class="dot"></span>Lumen
+        </button>
+        <button data-theme-set="obsidian" aria-label="Switch to Obsidian theme">
+          <span class="dot"></span>Obsidian
+        </button>
+        <button data-theme-set="voltage" aria-label="Switch to Latin Voltage theme">
+          <span class="dot"></span>Voltage
+        </button>
+        <button data-theme-set="mytheme" aria-label="Switch to My Theme (Archivist)">
+          <span class="dot"></span>My Theme
+        </button>
+      </div>
+    </div>
+
+    <script is:inline>
+      // PREVIEW THEME TOGGLE · remove before shipping
+      (() => {
+        const KEY = 'flexi-preview-theme';
+        const btns = document.querySelectorAll('[data-theme-set]');
+        const apply = (theme) => {
+          if (theme === 'lumen') {
+            delete document.documentElement.dataset.theme;
+          } else {
+            document.documentElement.dataset.theme = theme;
+          }
+          btns.forEach((b) =>
+            b.classList.toggle('is-active', b.dataset.themeSet === theme)
+          );
+          try { localStorage.setItem(KEY, theme); } catch {}
+          if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        };
+        btns.forEach((b) =>
+          b.addEventListener('click', () => apply(b.dataset.themeSet))
+        );
+        // Restore on load
+        try {
+          const saved = localStorage.getItem(KEY);
+          if (saved === 'obsidian' || saved === 'voltage' || saved === 'mytheme') apply(saved);
+        } catch {}
+      })();
+
+
+      // Interactive rate widget
+      (() => {
+        const corridor = document.getElementById('rw-corridor');
+        const amount = document.getElementById('rw-amount');
+        const rows = document.getElementById('rw-rows');
+        const save = document.getElementById('rw-save');
+        if (!corridor || !amount || !rows) return;
+        const railNames = ['Bank wire · default', 'SWIFT · partner', 'USDC · stablecoin', 'Regional · Rail Alpha'];
+        const etas = ['2h', '4h', '12m', '90m'];
+        const isES = () => document.documentElement.dataset.lang === 'es';
+        const fmt = (n, d = 2) => Number(n).toLocaleString(isES() ? 'es-MX' : 'en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+        const render = () => {
+          const opt = corridor.selectedOptions[0];
+          const rates = opt.dataset.rates.split(',').map(Number);
+          const usd = parseFloat(amount.value) || 0;
+          // Sort rates so best (highest received) is last → reorder for display: best first
+          const rows_data = rates.map((rate, i) => ({
+            rail: railNames[i], rate, eta: etas[i], net: rate * usd,
+          })).sort((a, b) => b.net - a.net);
+          const bestNet = rows_data[0].net;
+          const worstNet = rows_data[rows_data.length - 1].net;
+          const ccy = opt.value;
+          const symbol = { MXN: 'MX$', BRL: 'R$', COP: 'COP$', ARS: 'AR$', CLP: 'CL$', PEN: 'S/' }[ccy] || '';
+          rows.innerHTML = rows_data.map((r, i) => `
+            <div class="rate-widget__row${i === 0 ? ' rate-widget__row--best' : ''}">
+              <span class="rate-widget__rail">${r.rail}</span>
+              <span class="rate-widget__rate">${fmt(r.rate, ccy === 'COP' || ccy === 'ARS' || ccy === 'CLP' ? 2 : 4)}</span>
+              <span class="rate-widget__net">${symbol}${fmt(r.net, 0)}</span>
+              <span class="rate-widget__eta">· ${r.eta}</span>
+            </div>
+          `).join('');
+          const delta = bestNet - worstNet;
+          const pct = worstNet ? ((delta / worstNet) * 100) : 0;
+          save.textContent = `+${symbol}${fmt(delta, 0)} · ${pct.toFixed(2)}%`;
+        };
+        corridor.addEventListener('change', render);
+        amount.addEventListener('input', render);
+        document.querySelectorAll('[data-lang-switch]').forEach(b => b.addEventListener('click', render));
+        render();
+      })();
+
+
+      // PREVIEW · nav-variant toggle
+      (() => {
+        const KEY = 'flexi-preview-nav';
+        const btns = document.querySelectorAll('[data-nav-variant-set]');
+        const apply = (v) => {
+          if (v === 'a') {
+            delete document.documentElement.dataset.navVariant;
+          } else {
+            document.documentElement.dataset.navVariant = v;
+          }
+          btns.forEach((b) =>
+            b.classList.toggle('is-active', b.dataset.navVariantSet === v),
+          );
+          try { localStorage.setItem(KEY, v); } catch {}
+          if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        };
+        btns.forEach((b) =>
+          b.addEventListener('click', () => apply(b.dataset.navVariantSet)),
+        );
+        try {
+          const saved = localStorage.getItem(KEY);
+          if (['a','b','c','d'].includes(saved)) apply(saved);
+        } catch {}
+      })();
+    </script>
+
+    <!-- ShaderGradient mount for My Theme · React via esm.sh, no build step -->
+    <script is:inline type="module">
+      const props = {
+        animate: 'on',
+        type: 'sphere',
+        shader: 'defaults',
+        color1: '#adc400',
+        color2: '#286c00',
+        color3: '#5f0000',
+        bgColor1: '#000000',
+        bgColor2: '#000000',
+        brightness: 0.8,
+        cAzimuthAngle: 270,
+        cDistance: 0.5,
+        cPolarAngle: 180,
+        cameraZoom: 15.1,
+        envPreset: 'city',
+        fov: 45,
+        frameRate: 10,
+        grain: 'on',
+        lightType: 'env',
+        pixelDensity: 1,
+        positionX: -0.1,
+        positionY: 0,
+        positionZ: 0,
+        range: 'disabled',
+        rangeEnd: 40,
+        rangeStart: 0,
+        reflection: 0.4,
+        rotationX: 0,
+        rotationY: 130,
+        rotationZ: 70,
+        uAmplitude: 3.2,
+        uDensity: 0.8,
+        uFrequency: 5.5,
+        uSpeed: 0.3,
+        uStrength: 0.3,
+        uTime: 0,
+        wireframe: false,
+        toggleAxis: false,
+      };
+
+      let modulesPromise = null;
+      let mountedRoot = null;
+
+      const loadModules = () => {
+        if (modulesPromise) return modulesPromise;
+        modulesPromise = (async () => {
+          const [reactMod, reactDomMod, sgMod] = await Promise.all([
+            import('https://esm.sh/react@19.0.0'),
+            import('https://esm.sh/react-dom@19.0.0/client'),
+            import('https://esm.sh/@shadergradient/react@2.0.16?deps=react@19.0.0,react-dom@19.0.0&bundle'),
+          ]);
+          const React = reactMod.default ?? reactMod;
+          const { createRoot } = reactDomMod;
+          const { ShaderGradientCanvas, ShaderGradient } = sgMod;
+          return { React, createRoot, ShaderGradientCanvas, ShaderGradient };
+        })();
+        return modulesPromise;
+      };
+
+      const mountShader = async () => {
+        const el = document.querySelector('.mytheme-shader-mount');
+        if (!el || mountedRoot) return;
+        try {
+          const { React, createRoot, ShaderGradientCanvas, ShaderGradient } = await loadModules();
+          if (document.documentElement.dataset.theme !== 'mytheme') return; // theme switched while loading
+          const root = createRoot(el);
+          root.render(
+            React.createElement(
+              ShaderGradientCanvas,
+              {
+                style: {
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  pointerEvents: 'none',
+                },
+              },
+              React.createElement(ShaderGradient, props),
+            ),
+          );
+          mountedRoot = root;
+        } catch (err) {
+          console.warn('[mytheme shader] mount failed', err);
+        }
+      };
+
+      const unmountShader = () => {
+        if (mountedRoot) {
+          try { mountedRoot.unmount(); } catch {}
+          mountedRoot = null;
+        }
+      };
+
+      const sync = () => {
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (document.documentElement.dataset.theme === 'mytheme' && !reduced) {
+          mountShader();
+        } else {
+          unmountShader();
+        }
+      };
+
+      sync();
+      new MutationObserver(sync).observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme'],
+      });
+    </script>
+  </body>
+</html>
