@@ -2503,11 +2503,39 @@
         background: #2bd650;
         transform: translateY(-1px);
       }
+
+      /* ===== HERO NAV · EN/ES language toggle (right side, beside CTA) ===== */
+      html[data-theme="mytheme"] .mytheme-hero-nav__actions {
+        justify-self: end;
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+      }
+      html[data-theme="mytheme"] .mytheme-hero-nav__actions .mytheme-hero-nav__cta {
+        justify-self: auto;
+      }
+      /* Re-show the toggle inside the hero nav (the global header one stays hidden)
+       * and theme it for the dark hero card. */
+      html[data-theme="mytheme"] .mytheme-hero-nav .lang-toggle.lang-toggle--hero {
+        display: inline-flex !important;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+      }
+      html[data-theme="mytheme"] .lang-toggle--hero button {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      html[data-theme="mytheme"] .lang-toggle--hero button.is-active {
+        background: #3fe864;
+        color: #0a0a0a;
+      }
+
       @media (max-width: 880px) {
         html[data-theme="mytheme"] .mytheme-hero-nav {
           grid-template-columns: 1fr auto;
           padding: 16px 24px;
         }
+        html[data-theme="mytheme"] .mytheme-hero-nav__actions { gap: 10px; }
+        html[data-theme="mytheme"] .lang-toggle--hero button { padding: 3px 7px; font-size: 10px; }
         html[data-theme="mytheme"] .mytheme-hero-nav__links {
           display: none;
         }
