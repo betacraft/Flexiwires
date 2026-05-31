@@ -4465,6 +4465,80 @@
       .rate-row { padding: 10px 10px !important; font-size: 12.5px !important; }
       .why__title { font-size: clamp(24px, 7.5vw, 32px) !important; }
     }
+    
+      /* ===== BATCH FIXES START ===== */
+      /* (1) HERO mobile: remove the two floating glass cards; make the phone+rock
+       *     big and flush to the bottom edge of the dark hero card. */
+      html[data-theme="mytheme"] .hero-card--savings,
+      html[data-theme="mytheme"] .hero-card--rate,
+      .hero-card--savings,
+      .hero-card--rate { display: none !important; }
+
+      html[data-theme="mytheme"] .hero .container.hero__inner { padding-bottom: 0 !important; }
+      html[data-theme="mytheme"] .hero__visual,
+      .hero__visual {
+        width: auto !important;
+        max-width: none !important;
+        margin: 16px -18px 0 !important;   /* break out of container's 18px pad */
+        padding: 0 !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+      }
+      html[data-theme="mytheme"] .hero-phone-wrap,
+      .hero-phone-wrap {
+        position: relative !important;
+        width: 100% !important; max-width: 100% !important;
+        right: auto !important; bottom: auto !important;
+        margin: 0 !important; transform: none !important;
+      }
+      html[data-theme="mytheme"] .hero-phone__img,
+      .hero-phone__img,
+      .hero-phone-wrap img {
+        width: 100% !important; height: auto !important; display: block !important;
+        margin-bottom: -1px !important;    /* rock touches the rounded bottom */
+      }
+
+      /* (2) WHY THIS EXISTS: clean single-column alignment */
+      .problem__inner { grid-template-columns: 1fr !important; gap: 28px !important; }
+
+      /* (3) MONEY TABLE: keep a real table with visible borders; scroll sideways
+       *     instead of flattening it (flattening hid the grid lines). */
+      .corridor-grid { overflow-x: auto !important; -webkit-overflow-scrolling: touch; display: block !important; }
+      .corridor-grid table { min-width: 560px !important; width: 100% !important; display: table !important; }
+      .corridor-grid thead { display: table-header-group !important; }
+      .corridor-grid tbody { display: table-row-group !important; }
+      .corridor-grid tr { display: table-row !important; }
+      .corridor-grid th, .corridor-grid td {
+        display: table-cell !important;
+        border-bottom: 1px solid var(--border) !important;
+        border-right: 1px solid var(--border) !important;
+      }
+      .corridor-grid th:last-child, .corridor-grid td:last-child { border-right: 0 !important; }
+
+      /* (4) STATS: uniform single column — a divider under every cell, no boxes. */
+      .stats__grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+      }
+      .stat {
+        border-right: 0 !important;
+        border-bottom: 1px solid var(--border) !important;
+        padding: 26px 4px !important;
+        text-align: left !important;
+        width: 100% !important; max-width: 100% !important;
+      }
+      .stat:last-child { border-bottom: 0 !important; }
+
+      /* (5) MOBILE-FIRST checkmarks were huge and broke the rows — pin them small. */
+      .mobile__feature { align-items: flex-start !important; }
+      .mobile__feature svg {
+        width: 18px !important; height: 18px !important;
+        min-width: 18px !important; max-width: 18px !important;
+        flex: 0 0 18px !important;
+      }
+      /* ===== BATCH FIXES END ===== */
+
     /* ===== END MOBILE RESPONSIVE ===== */
 
 
