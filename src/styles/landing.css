@@ -4650,8 +4650,14 @@
         color: #3fe864 !important;
       }
       /* Brand pill + logo legible on dark */
+      /* Footer logo = exact hero logo: bare (no pill), same 36px size */
       html[data-theme="mytheme"] .footer__brand-mark-pill {
-        background: rgba(255, 255, 255, 0.08) !important;
+        background: transparent !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+      }
+      html[data-theme="mytheme"] .footer__brand-mark {
+        height: 36px !important;
       }
       /* Dividers / bottom bar → translucent white instead of dark border */
       html[data-theme="mytheme"] .footer__bottom,
