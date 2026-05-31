@@ -1,0 +1,18 @@
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  sharp: true
+  workerd: true
+minimumReleaseAgeExclude:
+  - '@biomejs/biome@2.4.16'
+  - '@biomejs/cli-darwin-arm64@2.4.16'
+  - '@biomejs/cli-darwin-x64@2.4.16'
+  - '@biomejs/cli-linux-arm64-musl@2.4.16'
+  - '@biomejs/cli-linux-arm64@2.4.16'
+  - '@biomejs/cli-linux-x64-musl@2.4.16'
+  - '@biomejs/cli-linux-x64@2.4.16'
+  - '@biomejs/cli-win32-arm64@2.4.16'
+  - '@biomejs/cli-win32-x64@2.4.16'
+  - '@sanity/client@7.22.1'
+  - lucide-react@1.17.0
+  - '@lucide/astro@1.17.0'

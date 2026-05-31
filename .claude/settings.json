@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sips -Z 760 /tmp/agent-landing3.png --out /tmp/agent-landing-small.png)",
+      "Bash(sips -s format jpeg -Z 720 -s formatOptions 70 /tmp/agent-landing3.png --out /tmp/agent-landing.jpg)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --virtual-time-budget=5000 --dump-dom \"http://127.0.0.1:8000/_brand/landing.html\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8000/_brand/landing.html)",
+      "Bash(echo \"127.0.0.1 -> $\\(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8000/_brand/landing.html\\)\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://localhost:8000/_brand/landing.html)",
+      "Bash(echo \"localhost -> $\\(curl -s -o /dev/null -w '%{http_code}' http://localhost:8000/_brand/landing.html\\)\")",
+      "Bash(echo \"EXIT_LS=$?\")",
+      "Bash(python3 -)"
+    ]
+  }
+}

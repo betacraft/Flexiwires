@@ -1,0 +1,14 @@
+---
+import Footer from '@/components/layout/Footer.astro';
+import Header from '@/components/layout/Header.astro';
+import type { SeoInput } from '@/lib/seo/meta';
+import BaseLayout from './BaseLayout.astro';
+
+type Props = SeoInput;
+---
+
+<BaseLayout {...Astro.props}>
+  <Header slot="header" />
+  <slot />
+  <Footer slot="footer" />
+</BaseLayout>

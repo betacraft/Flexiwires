@@ -1,0 +1,23 @@
+# Cloudflare Workers config — used alongside the @astrojs/cloudflare adapter.
+# The adapter generates its own internal wrangler config under dist/; this file holds
+# user-managed bindings (KV / D1 / R2 / secrets) that should be added to production.
+name = "flexiwires"
+compatibility_date = "2026-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+DEPLOY_TARGET = "cloudflare"
+
+# Add bindings here when needed:
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "..."
+
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "flexiwires"
+# database_id = "..."
+
+# [[r2_buckets]]
+# binding = "MEDIA"
+# bucket_name = "flexiwires-media"

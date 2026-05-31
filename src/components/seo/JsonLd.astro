@@ -1,0 +1,14 @@
+---
+// Renders schema.org JSON-LD. Pass any valid schema.org object.
+// Examples: { "@type": "Product" }, { "@type": "Organization" }, { "@type": "BreadcrumbList" }.
+interface Props {
+  schema: Record<string, unknown> | readonly Record<string, unknown>[];
+}
+
+const { schema } = Astro.props;
+const payload = Array.isArray(schema)
+  ? schema.map((s) => ({ '@context': 'https://schema.org', ...s }))
+  : { '@context': 'https://schema.org', ...schema };
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(payload)} />

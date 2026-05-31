@@ -1,0 +1,66 @@
+---
+/**
+ * Lightweight, CSS-only fade-in on scroll. No JS payload until the element exists.
+ * Use this as the default reveal — reach for Motion (React island) only when you need
+ * gestures, layout animations, or orchestrated timelines.
+ */
+import { cn } from '@/lib/utils/cn';
+
+interface Props {
+  delay?: number;
+  /** Pixels to translate from. 0 = pure fade. */
+  y?: number;
+  class?: string;
+}
+
+const { delay = 0, y = 16, class: className } = Astro.props;
+const style = `--fade-delay:${delay}ms;--fade-y:${y}px`;
+---
+
+<div class={cn('fade-in', className)} style={style} data-fade-in>
+  <slot />
+</div>
+
+<style>
+  .fade-in {
+    opacity: 0;
+    transform: translateY(var(--fade-y, 16px));
+    transition:
+      opacity var(--duration-slow) var(--ease-out-expo) var(--fade-delay, 0ms),
+      transform var(--duration-slow) var(--ease-out-expo) var(--fade-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  .fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  function init() {
+    const els = document.querySelectorAll<HTMLElement>('[data-fade-in]:not(.is-visible)');
+    if (els.length === 0) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+    );
+    for (const el of els) io.observe(el);
+  }
+
+  init();
+  document.addEventListener('astro:after-swap', init);
+</script>

@@ -1,0 +1,71 @@
+---
+import '@/styles/globals.css';
+import { Font } from 'astro:assets';
+import { ClientRouter } from 'astro:transitions';
+import Seo from '@/components/seo/Seo.astro';
+import { SITE } from '@/consts/site';
+import type { SeoInput } from '@/lib/seo/meta';
+
+interface Props extends SeoInput {
+  /** Disable client-side view transitions (e.g. for pages that need full reloads). */
+  noTransitions?: boolean;
+  /** Render the layout chrome (header/footer slots) — true by default. */
+  showChrome?: boolean;
+}
+
+const { noTransitions = false, showChrome: _showChrome = true, ...seo } = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE.defaultLocale} data-theme="light" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta name="theme-color" content={SITE.themeColor.light} media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content={SITE.themeColor.dark} media="(prefers-color-scheme: dark)" />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono" />
+
+    <Seo {...seo} />
+
+    {!noTransitions && <ClientRouter fallback="swap" />}
+
+    {/* Theme bootstrap — runs before paint to avoid FOUC. */}
+    <script is:inline>
+      (() => {
+        try {
+          const stored = localStorage.getItem('theme');
+          const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          const theme = stored ?? system;
+          document.documentElement.dataset.theme = theme;
+        } catch {
+          /* localStorage blocked — fall through to default */
+        }
+      })();
+    </script>
+  </head>
+
+  <body class="bg-background text-foreground min-h-dvh antialiased">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <slot name="header" />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <slot name="footer" />
+
+    <slot name="scripts" />
+  </body>
+</html>
