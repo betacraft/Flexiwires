@@ -4530,6 +4530,52 @@
       }
       /* ===== END HIDE-THEMES ===== */
 
+      /* ===== DARK FOOTER (added) · matches the hero dark card (#111214) ===== */
+      html[data-theme="mytheme"] .footer {
+        background: var(--mytheme-hero-bg) !important;
+        color: rgba(255, 255, 255, 0.82) !important;
+        border-top: 0 !important;
+      }
+      /* Optional inset look to echo the rounded hero card */
+      html[data-theme="mytheme"] .footer {
+        margin: 0 var(--mytheme-hero-gutter) var(--mytheme-hero-gutter) !important;
+        border-radius: var(--mytheme-hero-radius) !important;
+        overflow: hidden;
+      }
+      html[data-theme="mytheme"] .footer__heading,
+      html[data-theme="mytheme"] .footer__brand-name {
+        color: #ffffff !important;
+      }
+      html[data-theme="mytheme"] .footer__tagline,
+      html[data-theme="mytheme"] .footer__copyright,
+      html[data-theme="mytheme"] .footer__legal,
+      html[data-theme="mytheme"] .footer__col,
+      html[data-theme="mytheme"] .footer__links {
+        color: rgba(255, 255, 255, 0.6) !important;
+      }
+      html[data-theme="mytheme"] .footer__links a,
+      html[data-theme="mytheme"] .footer__col a,
+      html[data-theme="mytheme"] .footer a {
+        color: rgba(255, 255, 255, 0.72) !important;
+        transition: color 0.15s ease;
+      }
+      html[data-theme="mytheme"] .footer__links a:hover,
+      html[data-theme="mytheme"] .footer__col a:hover,
+      html[data-theme="mytheme"] .footer a:hover {
+        color: #3fe864 !important;
+      }
+      /* Brand pill + logo legible on dark */
+      html[data-theme="mytheme"] .footer__brand-mark-pill {
+        background: rgba(255, 255, 255, 0.08) !important;
+      }
+      /* Dividers / bottom bar → translucent white instead of dark border */
+      html[data-theme="mytheme"] .footer__bottom,
+      html[data-theme="mytheme"] .footer__cols,
+      html[data-theme="mytheme"] .footer__top {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+      }
+      /* ===== END DARK FOOTER ===== */
+
       /* ===== MOBILE RESPONSIVE (added) ===== */
       @media (max-width: 768px) {
         html, body { max-width: 100%; overflow-x: hidden; }
