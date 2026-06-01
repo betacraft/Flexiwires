@@ -3063,7 +3063,7 @@
       }
 
       html[data-theme="mytheme"] .mytheme-trust__eyebrow {
-        color: #3fe864;
+        color: var(--muted-foreground);
         justify-content: center;
         display: inline-flex;
         margin-bottom: 16px;
