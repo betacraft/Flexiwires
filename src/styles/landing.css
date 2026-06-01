@@ -4893,9 +4893,8 @@ html[data-theme="mytheme"] .footer__legal strong {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;            /* Frame 1 is the full panel artwork */
+  object-fit: contain;          /* show the whole Frame 1 artwork, no zoom/crop */
   object-position: center;
-  transform: scale(1.14);       /* enlarge the artwork within the panel (~20px smaller) */
 }
 @media (max-width: 880px) {
   .appcta__panel { grid-template-columns: 1fr; min-height: 0; }
