@@ -4699,6 +4699,17 @@
       html[data-theme="mytheme"] .footer__top {
         border-color: var(--border) !important;
       }
+      /* Watermark "flexiwires": scale to span the footer width, flush to bottom */
+      html[data-theme="mytheme"] .footer {
+        padding-bottom: 0 !important;
+        overflow: hidden;
+      }
+      html[data-theme="mytheme"] .footer__watermark {
+        font-size: clamp(44px, 13.2vw, 188px) !important;
+        margin-top: 28px !important;
+        margin-bottom: -0.22em !important;   /* let the glyph bottoms touch the edge */
+        line-height: 0.8 !important;
+      }
       /* ===== END LIGHT FOOTER ===== */
 
       /* ===== MOBILE RESPONSIVE (added) ===== */
