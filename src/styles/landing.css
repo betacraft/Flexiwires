@@ -2593,7 +2593,6 @@
       html[data-theme="mytheme"] .section,
       html[data-theme="mytheme"] .logos,
       html[data-theme="mytheme"] .trust-band,
-      html[data-theme="mytheme"] .corridor-grid,
       html[data-theme="mytheme"] .marquee,
       html[data-theme="mytheme"] .testimonial,
       html[data-theme="mytheme"] .case-profile,
@@ -3695,6 +3694,40 @@
       .corridor-grid .no {
         color: var(--muted-foreground);
         opacity: 0.4;
+      }
+      .corridor-grid tbody tr {
+        transition: background 0.15s ease;
+      }
+      .corridor-grid tbody tr:hover {
+        background: var(--surface-1);
+      }
+      .corridor-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin: 16px 2px 0;
+        font-family: var(--font-sans);
+        font-size: 12px;
+        color: var(--muted-foreground);
+      }
+      .corridor-legend__item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .corridor-legend__dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex: none;
+      }
+      .corridor-legend__dash {
+        font-family: var(--font-mono);
+        opacity: 0.5;
+        width: 9px;
+        text-align: center;
+        flex: none;
       }
 
       .theme-preview__group button[data-theme-set="voltage"] .dot {
