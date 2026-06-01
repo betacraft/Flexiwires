@@ -3083,7 +3083,8 @@
         font-size: 17px;
         line-height: 1.55;
         color: #4a4a4a;
-        margin: 0;
+        margin: 0 auto;
+        max-width: 620px;
       }
 
       html[data-theme="mytheme"] .mytheme-trust__grid {
@@ -3185,6 +3186,8 @@
         font-weight: 600;
         color: #ffffff;
         letter-spacing: 0.02em;
+        /* Solid black avatar circles (override the inline gradient backgrounds) */
+        background: #0a0a0a !important;
       }
 
       html[data-theme="mytheme"] .mytheme-trust__who {
