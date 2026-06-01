@@ -2789,10 +2789,10 @@
         color: #ffffff;
       }
       html[data-theme="mytheme"] .hero__title {
-        font-size: clamp(40px, 5vw, 56px);
-        line-height: 1.05;
-        letter-spacing: -0.02em;
-        margin: 0 0 20px;
+        font-size: clamp(54px, 7vw, 88px);
+        line-height: 0.98;
+        letter-spacing: -0.04em;
+        margin: 0 0 22px;
       }
       html[data-theme="mytheme"] .hero__lede {
         color: rgba(255, 255, 255, 0.7);
@@ -3069,10 +3069,10 @@
       }
 
       html[data-theme="mytheme"] .mytheme-trust__heading h2.h-section {
-        font-family: var(--font-display);
-        font-size: clamp(36px, 4vw, 56px);
-        line-height: 1.05;
-        letter-spacing: -0.02em;
+        font-family: var(--font-sans);
+        font-size: clamp(32px, 4.5vw, 56px);
+        line-height: 1;
+        letter-spacing: -0.035em;
         color: #111214;
         margin: 0 0 18px;
       }
