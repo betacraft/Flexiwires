@@ -1759,7 +1759,7 @@
         border-color: var(--accent);
         border-width: 1.5px;
         position: relative;
-        background: linear-gradient(180deg, rgba(43, 77, 255, 0.03), var(--surface-1) 30%);
+        background: linear-gradient(180deg, rgba(63, 232, 100, 0.06), var(--surface-1) 32%);
       }
       .price-card__tier {
         font-family: var(--font-mono);
@@ -2465,12 +2465,12 @@
        * dark inset rounded hero card with phone anchored bottom-right.
        * ============================================================ */
       html[data-theme="mytheme"] {
-        --background: #faf8f4;
+        --background: #ffffff;
         --foreground: #0a0a0a;
         --muted-foreground: #6b6b6b;
-        --surface-1: #ffffff;
-        --surface-2: #f5f3ef;
-        --border: #e8e4dc;
+        --surface-1: #f4f5f7;
+        --surface-2: #eceef1;
+        --border: #e6e8ec;
         --accent: #3fe864;
         --accent-foreground: #0a0a0a;
         --mytheme-hero-bg: #111214;
@@ -3045,7 +3045,7 @@
       html[data-theme="mytheme"] .mytheme-trust {
         display: block;
         padding: 96px 0;
-        background: #faf8f4;
+        background: #ffffff;
         position: relative;
         overflow: hidden;
       }
@@ -5040,3 +5040,35 @@ html[data-theme="mytheme"] .trust-pill strong {
   .floatnav__brand img { height: 22px; }
 }
 /* ===== END FLOATING STICKY NAV ===== */
+
+/* ===== LUNERA-STYLE LIGHT CARDS =====
+   White page background, soft light-grey cards with a subtle white->grey
+   vertical gradient + gentle diffuse shadow (airy, minimal). Applies only to
+   self-contained bordered cards; does NOT touch card size, fonts, or the
+   dark hero phone visual. */
+html[data-theme="mytheme"] .how-step,
+html[data-theme="mytheme"] .comparison-card,
+html[data-theme="mytheme"] .price-card,
+html[data-theme="mytheme"] .persona,
+html[data-theme="mytheme"] .case-profile,
+html[data-theme="mytheme"] .trust-pill,
+html[data-theme="mytheme"] .mytheme-trust__card {
+  background: linear-gradient(180deg, #fcfcfd 0%, #f0f2f5 100%);
+  border: 1px solid #e6e8ec;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 30px -18px rgba(16, 24, 40, 0.14);
+}
+html[data-theme="mytheme"] .how-step:hover,
+html[data-theme="mytheme"] .comparison-card:hover,
+html[data-theme="mytheme"] .price-card:hover,
+html[data-theme="mytheme"] .persona:hover,
+html[data-theme="mytheme"] .case-profile:hover,
+html[data-theme="mytheme"] .mytheme-trust__card:hover {
+  box-shadow: 0 2px 4px rgba(16, 24, 40, 0.05), 0 20px 40px -20px rgba(16, 24, 40, 0.20);
+  border-color: #dcdfe5;
+}
+/* Feature grid cells: pick up the same soft grey gradient (they already share
+   var(--surface-1)); keep their existing radius/layout untouched. */
+html[data-theme="mytheme"] .feature {
+  background: linear-gradient(180deg, #fcfcfd 0%, #f0f2f5 100%);
+}
+/* ===== END LUNERA-STYLE LIGHT CARDS ===== */

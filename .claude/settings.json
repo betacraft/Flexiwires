@@ -11,7 +11,8 @@
       "Bash(echo \"EXIT_LS=$?\")",
       "Bash(python3 -)",
       "Bash(rm -f .git/index.lock .git/HEAD.lock .git/refs/heads/main.lock)",
-      "Bash(echo \"commit_exit=$?\")"
+      "Bash(echo \"commit_exit=$?\")",
+      "WebFetch(domain:lunera.framer.ai)"
     ]
   }
 }
