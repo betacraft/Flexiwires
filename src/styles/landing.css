@@ -4707,7 +4707,7 @@
       html[data-theme="mytheme"] .footer__watermark {
         font-size: clamp(44px, 13.2vw, 188px) !important;
         margin-top: 28px !important;
-        margin-bottom: -0.22em !important;   /* let the glyph bottoms touch the edge */
+        margin-bottom: calc(-0.22em + 10px) !important;   /* nudged up 10px from flush */
         line-height: 0.8 !important;
       }
       /* ===== END LIGHT FOOTER ===== */
