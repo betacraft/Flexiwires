@@ -1,5 +1,5 @@
 ---
-// FlexiWires — My Theme landing page shell.
+// FlexiWires - My Theme landing page shell.
 // Ported verbatim from _brand/landing-mytheme-preview.html (design source of truth).
 import '../styles/landing.css';
 ---
@@ -8,7 +8,7 @@ import '../styles/landing.css';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>FlexiWires — Money, routed.</title>
+    <title>FlexiWires - Money, routed.</title>
     <meta
       name="description"
       content="Compare every cross-border wire rail on one screen. Pick the best rate. Send in seconds."
@@ -94,7 +94,7 @@ import '../styles/landing.css';
       }
 
       // ============================================================
-      // GSAP + ScrollTrigger — fancy stuff
+      // GSAP + ScrollTrigger - fancy stuff
       // ============================================================
       if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -109,7 +109,7 @@ import '../styles/landing.css';
         document.documentElement.classList.add('gsap-ready');
 
         // Mark headlines for word-split animation
-        // (split EN visible text only — ES is hidden via CSS at runtime)
+        // (split EN visible text only - ES is hidden via CSS at runtime)
         const splitHeadlines = document.querySelectorAll('.h-display, .h-section');
         splitHeadlines.forEach((el) => {
           // Wrap each visible <span lang> child's words in inline-blocks
