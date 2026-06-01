@@ -351,6 +351,56 @@ import '../styles/landing.css';
           });
         }
 
+        // === Mobile app phone: staged entrance, ambient float, live rate tick ===
+        const fwPhone = document.querySelector('.fw-phone');
+        if (fwPhone) {
+          gsap.set(['.fw-phone__note', '.fw-phone__panel'], { transformOrigin: '50% 50%' });
+
+          const phoneTL = gsap.timeline({
+            scrollTrigger: { trigger: '.mobile', start: 'top 72%', once: true },
+          });
+          phoneTL
+            .from('.fw-phone__device', { autoAlpha: 0, y: 44, duration: 0.9, ease: 'power3.out' })
+            .from('.fw-phone__rail', { autoAlpha: 0, x: 20, stagger: 0.1, duration: 0.5, ease: 'power3.out' }, '-=0.45')
+            .from('.fw-phone__lock', { autoAlpha: 0, y: 18, duration: 0.5, ease: 'power3.out' }, '-=0.1')
+            .from('.fw-phone__cta', { autoAlpha: 0, y: 14, duration: 0.45, ease: 'power3.out' }, '-=0.25')
+            .from('.fw-phone__note', { autoAlpha: 0, y: -18, x: -14, scale: 0.85, duration: 0.6, ease: 'back.out(1.7)' }, '-=0.15')
+            .from('.fw-phone__panel', { autoAlpha: 0, y: 26, x: 16, scale: 0.85, duration: 0.6, ease: 'back.out(1.7)' }, '-=0.4');
+
+          if (!reducedMotion) {
+            // gentle continuous bob on the two floating glass cards, started after entrance
+            phoneTL.add(() => {
+              gsap.to('.fw-phone__note', { y: '-=6', duration: 2.6, ease: 'sine.inOut', repeat: -1, yoyo: true });
+              gsap.to('.fw-phone__panel', { y: '+=7', duration: 3.0, ease: 'sine.inOut', repeat: -1, yoyo: true });
+            });
+
+            // live rate ticking — runs only while the section is on-screen
+            const bestRate = fwPhone.querySelector('.fw-phone__rail--best .fw-phone__rail-rate');
+            const panelBig = fwPhone.querySelector('.fw-phone__panel-big');
+            let tickId = null;
+            const tick = () => {
+              const v = (17.4521 + (Math.random() * 6 - 3) / 10000).toFixed(4);
+              if (bestRate) {
+                bestRate.textContent = v;
+                gsap.fromTo(bestRate, { color: '#1c8f3e' }, { color: '#0a0a0a', duration: 0.8, ease: 'power1.out' });
+              }
+              if (panelBig) panelBig.textContent = v;
+            };
+            ScrollTrigger.create({
+              trigger: '.mobile',
+              start: 'top 80%',
+              end: 'bottom 20%',
+              onToggle: (self) => {
+                if (self.isActive && !tickId) tickId = window.setInterval(tick, 1800);
+                else if (!self.isActive && tickId) {
+                  window.clearInterval(tickId);
+                  tickId = null;
+                }
+              },
+            });
+          }
+        }
+
         // === Testimonial: italic quote reveal ===
         gsap.from('.testimonial__quote', {
           opacity: 0,

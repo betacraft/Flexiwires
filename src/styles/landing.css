@@ -4022,6 +4022,14 @@
         background: linear-gradient(180deg, rgba(63, 232, 100, 0.18), rgba(63, 232, 100, 0.08));
         border-color: var(--fw-green);
         box-shadow: 0 4px 14px -6px rgba(63, 232, 100, 0.55);
+        animation: fwBestGlow 2.8s ease-in-out infinite;
+      }
+      @keyframes fwBestGlow {
+        0%, 100% { box-shadow: 0 4px 14px -6px rgba(63, 232, 100, 0.55); }
+        50% { box-shadow: 0 4px 22px -4px rgba(63, 232, 100, 0.9); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .fw-phone__rail--best { animation: none; }
       }
       .fw-phone__rail-name {
         display: inline-flex;
@@ -5118,11 +5126,13 @@ html[data-theme="mytheme"] .personas { padding: 80px 0; }
 html[data-theme="mytheme"] .how {
   background: #0c0c0e;
   border-radius: 28px;
-  margin: 8px 20px;
+  width: calc(100% - 48px);
+  max-width: 1200px;
+  margin: 8px auto;
   padding: 84px 0;
 }
 @media (max-width: 720px) {
-  html[data-theme="mytheme"] .how { margin: 8px 12px; padding: 56px 0; border-radius: 22px; }
+  html[data-theme="mytheme"] .how { width: calc(100% - 24px); padding: 56px 0; border-radius: 22px; }
 }
 html[data-theme="mytheme"] .how .eyebrow { color: #3fe864; }
 html[data-theme="mytheme"] .how .h-section { color: #ffffff; }
