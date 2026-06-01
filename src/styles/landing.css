@@ -4905,6 +4905,7 @@ html[data-theme="mytheme"] .footer__legal strong {
   display: block;
   object-fit: contain;          /* show the whole Frame 1 artwork, no zoom/crop */
   object-position: center bottom; /* anchor the hand flush to the bottom edge */
+  transform: translateX(-20px);   /* nudge 20px off the right corner toward center */
 }
 @media (max-width: 880px) {
   .appcta__panel { grid-template-columns: 1fr; min-height: 0; }

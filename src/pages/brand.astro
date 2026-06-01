@@ -1,9 +1,8 @@
 ---
 // FlexiWires - Design System (v2)
-// Colors sampled from the product (the phone app UI): Indigo + Lime + Lavender on a
-// cool mist canvas. Typography inherited from the landing page (Inter / Instrument
-// Serif / JetBrains Mono). Docs-style layout with sticky sidebar + scrollspy.
-// Built to scale into the full product + marketing site. Em-dash free.
+// Single signature green (the landing's accent) on a cool neutral ramp. No blue.
+// Typography inherited from the landing (Inter / Instrument Serif / JetBrains Mono).
+// Docs-style layout with sticky sidebar + scrollspy. Em-dash free.
 const updated = 'June 2026';
 
 const nav = [
@@ -20,33 +19,26 @@ const nav = [
   { id: 'principles', label: 'Principles' },
 ];
 
-const primary = [
-  { name: 'Indigo', hex: '#312ED1', token: '--primary', use: 'Primary actions, links, focus rings, chart strokes' },
-  { name: 'Indigo Deep', hex: '#211F9E', token: '--primary-press', use: 'Pressed / active button state' },
-  { name: 'Indigo Tint', hex: '#EDECFB', token: '--primary-tint', use: 'Selected rows, soft fills, badge backgrounds' },
-];
-const accent = [
-  { name: 'Lime', hex: '#C6F86F', token: '--accent', use: 'Positive deltas, live dot, money-saved, highlights' },
-  { name: 'Lime Soft', hex: '#E6FBC0', token: '--accent-soft', use: 'Success backgrounds, subtle positive fills' },
-];
-const lavender = [
-  { name: 'Lavender', hex: '#ABA9D5', token: '--lavender', use: 'Secondary data series, avatars, chart fills' },
+const green = [
+  { name: 'Signature Green', hex: '#3FE864', token: '--accent', use: 'Primary actions, status dots, live indicator, highlights' },
+  { name: 'Green Hover', hex: '#2BD650', token: '--accent-hover', use: 'Hover / pressed on green surfaces' },
+  { name: 'Green Tint', hex: '#E7FBEC', token: '--accent-tint', use: 'Selected rows, soft success fills, badges' },
+  { name: 'Green Deep', hex: '#1C8F3E', token: '--accent-deep', use: 'Green as TEXT on light (readable), small accents' },
 ];
 const neutrals = [
-  { name: 'Ink', hex: '#0A0A0A', token: '--ink', use: 'Primary text, headings, icons' },
-  { name: 'Slate', hex: '#646266', token: '--text-2', use: 'Secondary text, sub-labels, descriptions' },
-  { name: 'Mist', hex: '#908E93', token: '--muted', use: 'Captions, disabled, inactive nav' },
-  { name: 'Canvas', hex: '#EEEFF5', token: '--canvas', use: 'App + page background. Cool undertone' },
-  { name: 'White', hex: '#FFFFFF', token: '--surface', use: 'Cards, sheets, inputs, modals' },
-  { name: 'Border', hex: '#E2E2EC', token: '--border', use: 'Dividers, card + input borders' },
+  { name: 'Ink', hex: '#0A0A0A', token: '--foreground', use: 'Primary text, headings, label on green' },
+  { name: 'Slate', hex: '#6B6B6B', token: '--muted-foreground', use: 'Secondary text, sub-labels, eyebrows' },
+  { name: 'Border', hex: '#E6E8EC', token: '--border', use: 'Dividers, card + input borders' },
+  { name: 'Surface', hex: '#F4F5F7', token: '--surface-1', use: 'Cards, soft bands' },
+  { name: 'Mist', hex: '#ECEEF1', token: '--surface-2', use: 'Deeper bands, table headers' },
+  { name: 'White', hex: '#FFFFFF', token: '--background', use: 'Page background, sheets, inputs' },
 ];
 const contrast = [
   { fg: 'Ink', bg: 'White', fghex: '#0A0A0A', bghex: '#FFFFFF', ratio: '19.9:1', level: 'AAA' },
-  { fg: 'White', bg: 'Indigo', fghex: '#FFFFFF', bghex: '#312ED1', ratio: '8.6:1', level: 'AAA' },
-  { fg: 'Ink', bg: 'Lime', fghex: '#0A0A0A', bghex: '#C6F86F', ratio: '16.1:1', level: 'AAA' },
-  { fg: 'Indigo', bg: 'White', fghex: '#312ED1', bghex: '#FFFFFF', ratio: '8.6:1', level: 'AAA' },
-  { fg: 'Slate', bg: 'White', fghex: '#646266', bghex: '#FFFFFF', ratio: '6.0:1', level: 'AA' },
-  { fg: 'Slate', bg: 'Canvas', fghex: '#646266', bghex: '#EEEFF5', ratio: '5.4:1', level: 'AA' },
+  { fg: 'Ink', bg: 'Green', fghex: '#0A0A0A', bghex: '#3FE864', ratio: '15.3:1', level: 'AAA' },
+  { fg: 'Ink', bg: 'Surface', fghex: '#0A0A0A', bghex: '#F4F5F7', ratio: '18.2:1', level: 'AAA' },
+  { fg: 'White', bg: 'Ink', fghex: '#FFFFFF', bghex: '#0A0A0A', ratio: '19.9:1', level: 'AAA' },
+  { fg: 'Slate', bg: 'White', fghex: '#6B6B6B', bghex: '#FFFFFF', ratio: '5.0:1', level: 'AA' },
 ];
 const radii = [
   { name: 'xs', val: '4px', use: 'Tags, dots' },
@@ -84,16 +76,15 @@ const isLight = (h) => {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FlexiWires - Design System</title>
-    <meta name="description" content="FlexiWires design system: color sampled from the product UI, landing-page typography, spacing, elevation, iconography, components, status and motion." />
+    <meta name="description" content="FlexiWires design system: one signature green on a cool neutral ramp, landing-page typography, spacing, elevation, iconography, components, status and motion." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --ink:#0a0a0a; --text-2:#3c3c44; --muted:#6e6e77;
-        --canvas:#eef0f6; --surface:#fff; --border:#e2e2ec;
-        --primary:#312ed1; --primary-press:#211f9e; --primary-tint:#edecfb;
-        --accent:#c6f86f; --accent-soft:#e6fbc0; --lavender:#aba9d5;
+        --ink:#0a0a0a; --text-2:#3c3c44; --muted:#6b6b6b;
+        --canvas:#f3f4f7; --surface:#fff; --border:#e6e8ec; --surface-2:#eceef1;
+        --accent:#3fe864; --accent-hover:#2bd650; --accent-tint:#e7fbec; --accent-deep:#1c8f3e;
         --sans:'Inter',system-ui,sans-serif; --serif:'Instrument Serif',Georgia,serif; --mono:'JetBrains Mono',ui-monospace,monospace;
         --sidebar:268px;
       }
@@ -112,17 +103,17 @@ const isLight = (h) => {
       .nav { display:flex; flex-direction:column; gap:1px; overflow-y:auto; }
       .nav a { font-size:13.5px; color:var(--muted); padding:7px 12px; border-radius:8px; transition:all .15s; display:flex; align-items:center; gap:10px; }
       .nav a .dot { width:5px; height:5px; border-radius:50%; background:transparent; transition:background .15s; flex-shrink:0; }
-      .nav a:hover { color:var(--ink); background:rgba(49,46,209,0.05); }
-      .nav a.active { color:var(--primary); font-weight:600; background:var(--primary-tint); }
-      .nav a.active .dot { background:var(--primary); }
+      .nav a:hover { color:var(--ink); background:rgba(63,232,100,0.08); }
+      .nav a.active { color:var(--ink); font-weight:600; background:var(--accent-tint); }
+      .nav a.active .dot { background:var(--accent); }
       .sidebar__foot { margin-top:auto; font-size:11px; color:var(--muted); padding-top:22px; }
       .sidebar__foot a { color:var(--ink); border-bottom:1px solid var(--border); }
 
       .content { min-width:0; }
       .doc { max-width:880px; padding:0 48px; }
 
-      .top { background:#0c0c16; color:#fff; padding:74px 48px 60px; position:relative; overflow:hidden; }
-      .top::after { content:''; position:absolute; right:-120px; top:-120px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, rgba(49,46,209,0.55), transparent 70%); }
+      .top { background:#0c0c0e; color:#fff; padding:74px 48px 60px; position:relative; overflow:hidden; }
+      .top::after { content:''; position:absolute; right:-120px; top:-120px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, rgba(63,232,100,0.30), transparent 70%); }
       .top .kicker { font-family:var(--mono); font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); position:relative; }
       .top h1 { font-weight:600; font-size:clamp(2.4rem,4.5vw,3.6rem); letter-spacing:-0.03em; line-height:1.04; margin:16px 0 14px; max-width:20ch; position:relative; }
       .top h1 em { font-family:var(--serif); font-style:italic; color:var(--accent); }
@@ -132,11 +123,11 @@ const isLight = (h) => {
       section.doc-sec { padding:60px 0; border-bottom:1px solid var(--border); scroll-margin-top:24px; }
       .lbl { font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
       h2 { font-family:var(--serif); font-size:clamp(30px,3.6vw,46px); line-height:1.08; letter-spacing:-0.01em; margin-bottom:10px; }
-      h2 em { font-style:italic; color:var(--primary); }
+      h2 em { font-style:italic; color:var(--accent-deep); }
       .intro { color:var(--text-2); max-width:64ch; font-size:16px; margin-bottom:28px; }
       .group-label { font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin:28px 0 12px; }
 
-      .why { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--primary); border-radius:12px; padding:18px 20px; margin-top:18px; }
+      .why { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:12px; padding:18px 20px; margin-top:18px; }
       .why .why-lbl { font-family:var(--mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
       .why p { font-size:14px; line-height:1.6; color:var(--text-2); }
       .why p + p { margin-top:8px; }
@@ -148,7 +139,7 @@ const isLight = (h) => {
       .sw__b { padding:12px 14px; }
       .sw__n { font-weight:600; font-size:13px; }
       .sw__h { font-family:var(--mono); font-size:11px; margin-top:3px; text-transform:uppercase; color:var(--text-2); }
-      .sw__t { font-family:var(--mono); font-size:10px; color:var(--primary); margin-top:6px; }
+      .sw__t { font-family:var(--mono); font-size:10px; color:var(--accent-deep); margin-top:6px; }
       .sw__u { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.45; }
 
       .cpairs { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
@@ -156,11 +147,11 @@ const isLight = (h) => {
       .cpair__demo { padding:20px 16px; font-weight:600; font-size:15px; }
       .cpair__meta { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--surface); font-size:12px; }
       .cpair__meta .ratio { font-family:var(--mono); }
-      .badge-aa { font-family:var(--mono); font-size:10px; letter-spacing:0.1em; padding:3px 8px; border-radius:999px; background:var(--accent-soft); color:#2f5d00; }
+      .badge-aa { font-family:var(--mono); font-size:10px; letter-spacing:0.1em; padding:3px 8px; border-radius:999px; background:var(--accent-tint); color:var(--accent-deep); }
 
       .specimen { border:1px solid var(--border); border-radius:14px; padding:24px; background:var(--surface); margin-bottom:8px; }
       .specimen .big { font-size:clamp(28px,3.6vw,42px); line-height:1.06; letter-spacing:-0.01em; }
-      .specimen .big.serif { font-family:var(--serif); font-style:italic; color:var(--primary); }
+      .specimen .big.serif { font-family:var(--serif); font-style:italic; color:var(--accent-deep); }
       .specimen .big.mono { font-family:var(--mono); font-size:clamp(20px,2.8vw,30px); letter-spacing:0; }
       .specimen .m { font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:14px; }
       table.scale { width:100%; border-collapse:collapse; font-size:13.5px; margin-top:18px; }
@@ -170,11 +161,11 @@ const isLight = (h) => {
 
       .spacing { display:flex; flex-direction:column; gap:8px; }
       .sp { display:flex; align-items:center; gap:16px; }
-      .sp__bar { height:18px; background:var(--primary); border-radius:3px; }
+      .sp__bar { height:18px; background:var(--accent); border-radius:3px; }
       .sp__lbl { font-family:var(--mono); font-size:12px; color:var(--text-2); width:120px; }
 
       .radii { display:flex; gap:18px; flex-wrap:wrap; margin-top:8px; }
-      .radii .r { width:84px; height:84px; background:#0c0c16; border:1px solid var(--border); }
+      .radii .r { width:84px; height:84px; background:#0c0c0e; border:1px solid var(--border); }
       .radii .cap { font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:8px; }
       .radii .cap b { color:var(--ink); }
 
@@ -194,14 +185,12 @@ const isLight = (h) => {
 
       .row { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-bottom:18px; }
       .btn { display:inline-flex; align-items:center; gap:8px; font-family:var(--sans); font-weight:600; font-size:14px; padding:12px 22px; border-radius:10px; border:0; cursor:pointer; transition:all .16s; }
-      .btn--primary { background:var(--primary); color:#fff; }
-      .btn--primary:hover { background:var(--primary-press); transform:translateY(-1px); }
-      .btn--accent { background:var(--accent); color:var(--ink); }
-      .btn--accent:hover { filter:brightness(0.96); transform:translateY(-1px); }
+      .btn--primary { background:var(--accent); color:var(--ink); }
+      .btn--primary:hover { background:var(--accent-hover); transform:translateY(-1px); }
       .btn--ghost { background:var(--surface); color:var(--ink); border:1px solid var(--border); }
-      .btn--ghost:hover { border-color:var(--primary); color:var(--primary); }
-      .btn--focus { background:var(--primary); color:#fff; box-shadow:0 0 0 3px rgba(49,46,209,0.28); }
-      .btn--disabled { background:#d9d9e2; color:#9a9aa4; cursor:not-allowed; }
+      .btn--ghost:hover { border-color:var(--accent); }
+      .btn--focus { background:var(--accent); color:var(--ink); box-shadow:0 0 0 3px rgba(63,232,100,0.35); }
+      .btn--disabled { background:#dfe1e6; color:#9a9aa4; cursor:not-allowed; }
       .stt { font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:6px; }
 
       .field { max-width:300px; }
@@ -210,17 +199,17 @@ const isLight = (h) => {
       .field .ctl svg { width:14px; height:14px; stroke:var(--ink); stroke-width:2.2; fill:none; stroke-linecap:round; stroke-linejoin:round; }
 
       .chip { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; letter-spacing:0.12em; text-transform:uppercase; padding:9px 16px; border-radius:999px; background:var(--surface); border:1px solid var(--border); color:var(--ink); }
-      .chip .dot { width:6px; height:6px; border-radius:50%; background:var(--primary); }
+      .chip .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); }
 
       .statusrow { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
       .pill { display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600; padding:6px 12px; border-radius:999px; }
       .pill .d { width:7px; height:7px; border-radius:50%; }
-      .pill--live { background:#0c0c16; color:#fff; }
-      .pill--live .d { background:var(--accent); box-shadow:0 0 0 3px rgba(198,248,111,0.25); }
-      .pill--best { background:var(--primary-tint); color:var(--primary); }
-      .pill--best .d { background:var(--primary); }
-      .pill--ok { background:var(--accent-soft); color:#2f5d00; }
-      .pill--ok .d { background:#7bbf2a; }
+      .pill--live { background:#0c0c0e; color:#fff; }
+      .pill--live .d { background:var(--accent); box-shadow:0 0 0 3px rgba(63,232,100,0.25); }
+      .pill--best { background:var(--accent-tint); color:var(--accent-deep); }
+      .pill--best .d { background:var(--accent-deep); }
+      .pill--ok { background:var(--accent-tint); color:var(--accent-deep); }
+      .pill--ok .d { background:var(--accent); }
       .pill--warn { background:#fff3d6; color:#7a5200; }
       .pill--warn .d { background:#e0a106; }
 
@@ -266,7 +255,7 @@ const isLight = (h) => {
         <div class="top">
           <div class="kicker">FlexiWires</div>
           <h1>The <em>design system</em></h1>
-          <p>One source of truth for how FlexiWires looks, reads and behaves. Color is sampled straight from the product UI, type is shared with the landing page, and every token is built to scale into the full website. Each rule carries its reasoning.</p>
+          <p>One source of truth for how FlexiWires looks, reads and behaves. One signature green, shared with the landing page, and a cool neutral ramp underneath it. Type is shared with the landing too. Every token is built to scale into the full website, and each rule carries its reasoning.</p>
           <div class="ver">Version 2.0 · Updated {updated}</div>
         </div>
 
@@ -274,48 +263,28 @@ const isLight = (h) => {
           <section class="doc-sec" id="overview">
             <div class="lbl">01 · Overview</div>
             <h2>Engineered, calm, <em>confident</em></h2>
-            <p class="intro">FlexiWires compares every cross-border rail on one screen. The system is precise and quiet, with two decisive colors: an indigo that drives action and a lime that marks the win. These three traits drive every decision below.</p>
+            <p class="intro">FlexiWires compares every cross-border rail on one screen. The system is precise and quiet, with one decisive color: a signature green that marks both the next action and the win. These three traits drive every decision below.</p>
             <div class="cards3">
               <div class="card"><h4>Engineered</h4><p>Monospace data, exact figures, tight grids. Built by people who move money.</p></div>
-              <div class="card"><h4>Calm</h4><p>A cool mist canvas and generous space. Color is rationed so it always means something.</p></div>
-              <div class="card"><h4>Confident</h4><p>Indigo for the next action, lime for the result. Two signals, never noise.</p></div>
+              <div class="card"><h4>Calm</h4><p>A cool neutral canvas and generous space. Green is rationed so it always means something.</p></div>
+              <div class="card"><h4>Confident</h4><p>One green for action and outcome. Where it appears, something matters.</p></div>
             </div>
             <div class="why">
-              <div class="why-lbl">Where this comes from</div>
-              <p>The palette is <b>sampled directly from the product</b>, the app screens shown on the phone, so marketing and product read as one product, not two brands. Typography is <b>inherited from the landing page</b> (Inter, Instrument Serif, JetBrains Mono) for the same reason.</p>
+              <div class="why-lbl">One color, shared</div>
+              <p>The system uses the <b>same signature green and the same type</b> as the live landing page, so marketing and product read as one product. Green is the only chromatic color; everything else is a cool neutral. There is no second brand color.</p>
             </div>
           </section>
 
           <section class="doc-sec" id="color">
             <div class="lbl">02 · Color</div>
-            <h2>Sampled from the <em>product</em></h2>
-            <p class="intro">Indigo leads, lime confirms, lavender carries secondary data, and a cool neutral ramp holds it all on a mist canvas. Indigo and lime are rationed to action and outcome so each stays meaningful.</p>
+            <h2>One signature <em>green</em></h2>
+            <p class="intro">Green leads and a cool neutral ramp holds it on a near-white canvas. Green is rationed to action, status and the positive outcome, so every green pixel stays meaningful. It is always a fill or a small accent paired with dark text, never a text color on white.</p>
 
-            <div class="group-label">Primary · Indigo</div>
+            <div class="group-label">Signature · Green</div>
             <div class="swatches">
-              {primary.map((c) => (
+              {green.map((c) => (
                 <div class="sw">
-                  <div class="sw__c" style={`background:${c.hex}; ${isLight(c.hex) ? 'box-shadow:inset 0 0 0 1px #e2e2ec;' : ''}`}></div>
-                  <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__t">{c.token}</div><div class="sw__u">{c.use}</div></div>
-                </div>
-              ))}
-            </div>
-
-            <div class="group-label">Accent · Lime</div>
-            <div class="swatches">
-              {accent.map((c) => (
-                <div class="sw">
-                  <div class="sw__c" style={`background:${c.hex}; box-shadow:inset 0 0 0 1px #e2e2ec;`}></div>
-                  <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__t">{c.token}</div><div class="sw__u">{c.use}</div></div>
-                </div>
-              ))}
-            </div>
-
-            <div class="group-label">Lavender · secondary data</div>
-            <div class="swatches">
-              {lavender.map((c) => (
-                <div class="sw">
-                  <div class="sw__c" style={`background:${c.hex}; box-shadow:inset 0 0 0 1px #e2e2ec;`}></div>
+                  <div class="sw__c" style={`background:${c.hex}; ${isLight(c.hex) ? 'box-shadow:inset 0 0 0 1px #e6e8ec;' : ''}`}></div>
                   <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__t">{c.token}</div><div class="sw__u">{c.use}</div></div>
                 </div>
               ))}
@@ -325,35 +294,34 @@ const isLight = (h) => {
             <div class="swatches">
               {neutrals.map((c) => (
                 <div class="sw">
-                  <div class="sw__c" style={`background:${c.hex}; ${isLight(c.hex) ? 'box-shadow:inset 0 0 0 1px #e2e2ec;' : ''}`}></div>
+                  <div class="sw__c" style={`background:${c.hex}; ${isLight(c.hex) ? 'box-shadow:inset 0 0 0 1px #e6e8ec;' : ''}`}></div>
                   <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__t">{c.token}</div><div class="sw__u">{c.use}</div></div>
                 </div>
               ))}
             </div>
 
             <div class="why">
-              <div class="why-lbl">Why this palette</div>
-              <p><b>Indigo (#312ED1)</b> is the product's action color, primary buttons, links, focus and chart strokes. It is deep enough to carry white text at AAA, so it works as a fill anywhere.</p>
-              <p><b>Lime (#C6F86F)</b> is the outcome color, the live dot, positive deltas, money saved. It is light, so it only ever pairs with dark text and never carries white. <b>Lavender</b> stays a quiet second data series so charts never need a third loud color.</p>
-              <p>The <b>cool neutral ramp</b> on a mist canvas keeps the UI calm and lets indigo and lime do all the talking.</p>
+              <div class="why-lbl">Why one green</div>
+              <p><b>Signature green (#3FE864)</b> reads as go, success and money saved, exactly the feeling at send. Rationing it to CTAs, status dots and the live indicator keeps it meaningful, and black-on-green stays AAA legible.</p>
+              <p>Green is <b>light</b>, so it only ever carries dark text and never appears as text on a white background. When green needs to be a text or thin-line accent on light, use <b>Green Deep (#1C8F3E)</b>, which is verified for contrast. The <b>cool neutral ramp</b> on a near-white canvas keeps the UI calm and lets green do all the talking.</p>
             </div>
           </section>
 
           <section class="doc-sec" id="contrast">
             <div class="lbl">03 · Accessibility</div>
             <h2>Contrast, <em>validated</em></h2>
-            <p class="intro">Every text and surface pairing is checked against WCAG. Indigo carries white, lime and the neutrals carry ink. These are the approved combinations.</p>
+            <p class="intro">Every text and surface pairing is checked against WCAG. Green carries dark text; the neutrals carry ink. These are the approved combinations.</p>
             <div class="cpairs">
               {contrast.map((p) => (
                 <div class="cpair">
-                  <div class="cpair__demo" style={`background:${p.bghex}; color:${p.fghex}; ${isLight(p.bghex) ? 'box-shadow:inset 0 0 0 1px #e2e2ec;' : ''}`}>{p.fg} on {p.bg}</div>
+                  <div class="cpair__demo" style={`background:${p.bghex}; color:${p.fghex}; ${isLight(p.bghex) ? 'box-shadow:inset 0 0 0 1px #e6e8ec;' : ''}`}>{p.fg} on {p.bg}</div>
                   <div class="cpair__meta"><span class="ratio">{p.ratio}</span><span class="badge-aa">{p.level}</span></div>
                 </div>
               ))}
             </div>
             <div class="why">
               <div class="why-lbl">The rule</div>
-              <p>Body text needs <b>4.5:1</b> (AA); large text and UI <b>3:1</b>. <b>Never put white on lime</b> or ink on indigo, both fail. Lime and indigo are background-or-accent colors, paired only with the text color that has been verified above.</p>
+              <p>Body text needs <b>4.5:1</b> (AA); large text and UI <b>3:1</b>. <b>Never put white text on green or green text on white</b>, both fail. Green is a fill paired with ink; for green-toned text or icons on light, switch to Green Deep.</p>
             </div>
           </section>
 
@@ -441,25 +409,24 @@ const isLight = (h) => {
               ))}
             </div>
             <span class="tag">No fills</span><span class="tag">currentColor</span><span class="tag">Lucide</span>
-            <div class="why"><div class="why-lbl">Why outline icons</div><p>Outline icons match the engineered, lightweight type and stay neutral so they never compete with data. Color on an icon means status only, lime for positive, indigo for selected.</p></div>
+            <div class="why"><div class="why-lbl">Why outline icons</div><p>Outline icons match the engineered, lightweight type and stay neutral so they never compete with data. Color on an icon means status only, green for positive or selected.</p></div>
           </section>
 
           <section class="doc-sec" id="components">
             <div class="lbl">08 · Components</div>
             <h2>Buttons, chips, <em>inputs</em></h2>
-            <p class="intro">Indigo is the primary action; lime is reserved for the affirmative outcome action; ghost is the quiet secondary. Inputs always signal that they are editable.</p>
+            <p class="intro">Green is the primary action and is used at most once per screen; ghost is the quiet secondary. Inputs always signal that they are editable.</p>
 
             <div class="group-label">Button variants</div>
             <div class="row">
               <button class="btn btn--primary">Start a transfer</button>
-              <button class="btn btn--accent">Confirm send</button>
               <button class="btn btn--ghost">Cancel</button>
             </div>
 
             <div class="group-label">Primary states</div>
             <div class="row">
               <div><button class="btn btn--primary">Rest</button><div class="stt">Rest</div></div>
-              <div><button class="btn btn--primary" style="background:var(--primary-press)">Hover</button><div class="stt">Hover · darken</div></div>
+              <div><button class="btn btn--primary" style="background:var(--accent-hover)">Hover</button><div class="stt">Hover · darken</div></div>
               <div><button class="btn btn--focus">Focus</button><div class="stt">Focus · ring</div></div>
               <div><button class="btn btn--disabled" disabled>Disabled</button><div class="stt">Disabled</div></div>
             </div>
@@ -476,13 +443,13 @@ const isLight = (h) => {
                 <div class="ctl">10,000</div>
               </div>
             </div>
-            <div class="why"><div class="why-lbl">Ghost vs accent, which do I pick</div><p>Use <b>indigo primary</b> for the main path forward. Use <b>lime accent</b> only for the final affirmative action (confirm, send), the moment the user wins. Everything else is <b>ghost</b>. One lime button per screen, at most.</p></div>
+            <div class="why"><div class="why-lbl">One green action per screen</div><p>The single green button names the next valuable action (start, confirm, send). Everything else is <b>ghost</b>. If two buttons compete for green, neither feels decisive, so there is only ever one.</p></div>
           </section>
 
           <section class="doc-sec" id="status">
             <div class="lbl">09 · Status &amp; feedback</div>
             <h2>One dot says <em>live</em></h2>
-            <p class="intro">Status uses color plus a label, never color alone. Lime means live or positive, indigo means selected or best, amber means attention.</p>
+            <p class="intro">Status uses color plus a label, never color alone. Green means live, best or positive; amber means attention.</p>
             <div class="statusrow">
               <span class="pill pill--live"><span class="d"></span>Live</span>
               <span class="pill pill--best"><span class="d"></span>Best rate</span>
@@ -509,15 +476,15 @@ const isLight = (h) => {
             <p class="intro">The tokens above only matter if they are applied the same way every time. These are the habits that keep FlexiWires feeling like one engineered product.</p>
             <div class="dd">
               <div class="ddc do"><h4>Do</h4><ul>
-                <li>Ration indigo and lime; let neutrals carry the page</li>
+                <li>Ration green; let neutrals carry the page</li>
                 <li>Use mono for every number and label</li>
                 <li>Separate surfaces with border first, shadow second</li>
                 <li>Pair status color with a word</li>
                 <li>Step spacing and radius from the scale</li>
               </ul></div>
               <div class="ddc dont"><h4>Avoid</h4><ul>
-                <li>White text on lime, or ink on indigo</li>
-                <li>A second accent color competing with lime</li>
+                <li>Green text on white, or white text on green</li>
+                <li>A second accent color competing with green</li>
                 <li>Heavy drop-shadows or lift-on-hover</li>
                 <li>Serif anywhere but the one accent line</li>
                 <li>Color as the only signal of meaning</li>
