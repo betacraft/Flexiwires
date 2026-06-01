@@ -637,5 +637,27 @@ import '../styles/landing.css';
         attributeFilter: ['data-theme'],
       });
     </script>
+
+    <!-- CTA text-roll (Monex-style): on hover, the button label + arrow roll up
+         to a duplicate copy. Built from existing markup so colours/fonts/sizes
+         are untouched. -->
+    <script is:inline>
+      (() => {
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach((btn) => {
+          if (btn.querySelector('.btn__roll')) return; // idempotent
+          const track = document.createElement('span');
+          track.className = 'btn__roll';
+          const a = document.createElement('span');
+          // move current children into the first layer
+          while (btn.firstChild) a.appendChild(btn.firstChild);
+          const b = a.cloneNode(true); // second identical layer
+          b.setAttribute('aria-hidden', 'true');
+          track.appendChild(a);
+          track.appendChild(b);
+          btn.appendChild(track);
+        });
+      })();
+    </script>
   </body>
 </html>
