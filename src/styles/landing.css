@@ -4955,3 +4955,48 @@ html[data-theme="mytheme"] .logos--rail .marquee__cell:hover {
   border-color: #3fe864;
 }
 /* ===== END ACTIVE CORRIDORS RAIL ===== */
+
+/* ===== TRUST BAND -> highlighted cards (My Theme, added) ===== */
+html[data-theme="mytheme"] .trust-band { padding: 8px 0 24px !important; }
+html[data-theme="mytheme"] .trust-band__grid {
+  gap: 18px !important;
+  max-width: 1200px !important;
+}
+html[data-theme="mytheme"] .trust-pill {
+  flex-direction: column;
+  gap: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px 22px;
+  font-size: 14px;
+  line-height: 1.55;
+  box-shadow: 0 1px 2px rgba(10,10,10,0.04);
+  transition: transform 0.2s var(--ease-out-cubic), box-shadow 0.2s var(--ease-out-cubic), border-color 0.2s;
+}
+html[data-theme="mytheme"] .trust-pill:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -18px rgba(10,10,10,0.22);
+  border-color: var(--edge-strong, #d4cdc1);
+}
+html[data-theme="mytheme"] .trust-pill__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(63,232,100,0.12);
+  border: 1px solid rgba(63,232,100,0.3);
+  color: #0a0a0a;
+}
+html[data-theme="mytheme"] .trust-pill__icon svg { width: 22px; height: 22px; stroke-width: 1.7; }
+html[data-theme="mytheme"] .trust-pill strong {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--foreground);
+  margin-bottom: 6px;
+}
+@media (max-width: 880px) {
+  html[data-theme="mytheme"] .trust-pill { padding: 20px 18px; }
+}
+/* ===== END TRUST BAND CARDS ===== */

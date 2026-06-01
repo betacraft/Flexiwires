@@ -1,42 +1,38 @@
 ---
 // FlexiWires - Brand Guidelines & Design System
-// Single self-contained page (client-shareable). Tokens mirror the live
-// My Theme landing page in src/styles/landing.css.
+// Docs-style layout (sticky sidebar + scrollspy), modeled on Stripe / Polaris / Vercel.
+// Self-contained, client-shareable, em-dash free. Tokens mirror src/styles/landing.css.
 const updated = 'June 2026';
 
-const colors = {
-  brand: [
-    { name: 'Signature Green', hex: '#3FE864', token: '--accent', use: 'Primary actions, highlights, status dots' },
-    { name: 'Green Hover', hex: '#2BD650', token: 'accent-hover', use: 'CTA hover state' },
-    { name: 'Ink', hex: '#0A0A0A', token: '--foreground', use: 'Primary text, accent-foreground on green' },
-    { name: 'Hero Black', hex: '#111214', token: '--mytheme-hero-bg', use: 'Dark panels (hero, rail, app-CTA)' },
-  ],
-  neutrals: [
-    { name: 'Cream', hex: '#FAF8F4', token: '--background', use: 'Page background' },
-    { name: 'Surface', hex: '#F5F3EF', token: '--surface-2', use: 'Tinted bands / cards' },
-    { name: 'White', hex: '#FFFFFF', token: '--surface-1', use: 'Cards on cream' },
-    { name: 'Border', hex: '#E8E4DC', token: '--border', use: 'Dividers, outlines' },
-    { name: 'Muted', hex: '#6B6B6B', token: '--muted-foreground', use: 'Secondary text, eyebrows' },
-  ],
-  mint: [
-    { name: 'Mint 1', hex: '#EAF7EE', token: 'n/a', use: 'App-CTA panel gradient (top)' },
-    { name: 'Mint 2', hex: '#DFF3E6', token: 'n/a', use: 'App-CTA panel gradient (bottom)' },
-  ],
-};
-
-const type = [
-  { role: 'Display / Accent', font: 'Instrument Serif', italic: true, sample: 'all from your phone', note: 'Italic serif for expressive accent lines inside headings.' },
-  { role: 'Headings & UI', font: 'Inter', italic: false, sample: 'Compare rails, lock the rate', note: 'Weights 300–700. Tight tracking on large sizes.' },
-  { role: 'Mono / Data', font: 'JetBrains Mono', italic: false, sample: 'USD → MXN · 17.4521', note: 'Eyebrows, figures, corridor labels. Uppercase + wide tracking for labels.' },
+const nav = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'logo', label: 'Logo' },
+  { id: 'color', label: 'Color' },
+  { id: 'type', label: 'Typography' },
+  { id: 'icons', label: 'Iconography' },
+  { id: 'imagery', label: 'Imagery' },
+  { id: 'components', label: 'Components' },
+  { id: 'motion', label: 'Motion & layout' },
 ];
 
-const scale = [
-  { name: 'Hero H1', size: 'clamp(2.5rem, 5vw, 4rem)', font: 'Inter 600 / Instrument Serif italic' },
-  { name: 'Section H2', size: 'clamp(36px, 4vw, 56px)', font: 'Instrument Serif / Inter' },
-  { name: 'Lede', size: '17px', font: 'Inter 400' },
-  { name: 'Body', size: '16px', font: 'Inter 400' },
-  { name: 'Eyebrow', size: '11px · 0.18em tracking · uppercase', font: 'JetBrains Mono' },
+const brandColors = [
+  { name: 'Signature Green', hex: '#3FE864', token: '--accent', use: 'Primary actions, highlights, status dots' },
+  { name: 'Green Hover', hex: '#2BD650', token: 'accent-hover', use: 'CTA hover state' },
+  { name: 'Ink', hex: '#0A0A0A', token: '--foreground', use: 'Primary text, label on green' },
+  { name: 'Hero Black', hex: '#111214', token: '--mytheme-hero-bg', use: 'Dark panels (hero, rail, app)' },
 ];
+const neutralColors = [
+  { name: 'Cream', hex: '#FAF8F4', token: '--background', use: 'Page background' },
+  { name: 'Surface', hex: '#F5F3EF', token: '--surface-2', use: 'Tinted bands' },
+  { name: 'White', hex: '#FFFFFF', token: '--surface-1', use: 'Cards on cream' },
+  { name: 'Border', hex: '#E8E4DC', token: '--border', use: 'Dividers, outlines' },
+  { name: 'Muted', hex: '#6B6B6B', token: '--muted-foreground', use: 'Secondary text, eyebrows' },
+];
+const mintColors = [
+  { name: 'Mint 1', hex: '#EAF7EE', token: 'n/a', use: 'App panel gradient (top)' },
+  { name: 'Mint 2', hex: '#DFF3E6', token: 'n/a', use: 'App panel gradient (bottom)' },
+];
+const isLight = (h) => ['#FAF8F4','#F5F3EF','#FFFFFF','#E8E4DC','#EAF7EE','#DFF3E6'].includes(h);
 ---
 
 <!doctype html>
@@ -44,445 +40,321 @@ const scale = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FlexiWires - Brand Guidelines & Design System</title>
-    <meta name="description" content="The FlexiWires brand guideline and design system: logo, color, type, components and interaction patterns." />
+    <title>FlexiWires - Brand & Design System</title>
+    <meta name="description" content="FlexiWires brand guidelines and design system: logo, color, typography, iconography, imagery, components and motion." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --green: #3fe864; --green-hover: #2bd650;
-        --ink: #0a0a0a; --black: #111214;
-        --cream: #faf8f4; --surface: #f5f3ef; --white: #fff;
-        --border: #e8e4dc; --muted: #6b6b6b;
-        --sans: 'Inter', system-ui, sans-serif;
-        --serif: 'Instrument Serif', Georgia, serif;
-        --mono: 'JetBrains Mono', ui-monospace, monospace;
-        --radius: 20px; --gutter: 20px;
+        --green:#3fe864; --green-hover:#2bd650; --ink:#0a0a0a; --black:#111214;
+        --cream:#faf8f4; --surface:#f5f3ef; --white:#fff; --border:#e8e4dc; --muted:#6b6b6b;
+        --sans:'Inter',system-ui,sans-serif; --serif:'Instrument Serif',Georgia,serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+        --sidebar:264px;
       }
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1.5; }
-      .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-      a { color: inherit; }
+      * { box-sizing:border-box; margin:0; padding:0; }
+      html { scroll-behavior:smooth; }
+      body { font-family:var(--sans); background:var(--cream); color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.55; }
+      a { color:inherit; text-decoration:none; }
 
-      /* header */
-      .bg-hero { background: var(--black); color: #fff; border-radius: 0 0 var(--radius) var(--radius); padding: 64px 0 56px; }
-      .brandmark { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 40px; }
-      .brandmark img { height: 34px; }
-      .bg-hero h1 { font-family: var(--sans); font-weight: 600; font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -0.03em; line-height: 1.05; }
-      .bg-hero h1 em { font-family: var(--serif); font-style: italic; color: var(--green); }
-      .bg-hero p { color: rgba(255,255,255,0.6); margin-top: 16px; max-width: 56ch; font-size: 17px; }
-      .meta { margin-top: 28px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+      .layout { display:grid; grid-template-columns:var(--sidebar) 1fr; align-items:start; }
 
-      /* section scaffold */
-      section { padding: 64px 0; border-bottom: 1px solid var(--border); }
-      .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-      h2 { font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 8px; }
-      .lede { color: var(--muted); max-width: 60ch; margin-bottom: 36px; font-size: 16px; }
+      .sidebar { position:sticky; top:0; height:100vh; border-right:1px solid var(--border); padding:32px 24px; display:flex; flex-direction:column; background:var(--cream); }
+      .sidebar__brand { display:inline-flex; align-items:center; margin-bottom:6px; }
+      .sidebar__brand .pill { background:var(--ink); border-radius:999px; padding:8px 12px; display:inline-flex; }
+      .sidebar__brand img { height:24px; display:block; }
+      .sidebar__sub { font-family:var(--mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin:14px 0 24px; }
+      .nav { display:flex; flex-direction:column; gap:2px; }
+      .nav a { font-size:14px; color:var(--muted); padding:8px 12px; border-radius:8px; transition:all .15s; display:flex; align-items:center; gap:10px; }
+      .nav a .dot { width:5px; height:5px; border-radius:50%; background:transparent; transition:background .15s; }
+      .nav a:hover { color:var(--ink); background:rgba(0,0,0,0.03); }
+      .nav a.active { color:var(--ink); font-weight:600; background:rgba(63,232,100,0.12); }
+      .nav a.active .dot { background:var(--green); }
+      .sidebar__foot { margin-top:auto; font-size:11px; color:var(--muted); padding-top:24px; }
+      .sidebar__foot a { color:var(--ink); border-bottom:1px solid var(--border); }
 
-      /* color grid */
-      .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-      .swatch { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; background: var(--white); }
-      .swatch__chip { height: 96px; }
-      .swatch__body { padding: 14px 16px; }
-      .swatch__name { font-weight: 600; font-size: 14px; }
-      .swatch__hex { font-family: var(--mono); font-size: 12px; color: var(--ink); margin-top: 4px; text-transform: uppercase; }
-      .swatch__use { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.45; }
-      .group-title { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 28px 0 14px; }
+      .content { padding:0; min-width:0; }
+      .doc { max-width:860px; padding:0 48px; }
 
-      /* type */
-      .type-row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 24px 0; border-top: 1px solid var(--border); align-items: baseline; }
-      .type-row:first-child { border-top: 0; }
-      .type-meta .role { font-weight: 600; font-size: 14px; }
-      .type-meta .fam { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 4px; }
-      .type-meta .note { font-size: 12px; color: var(--muted); margin-top: 10px; line-height: 1.5; }
-      .type-sample { font-size: clamp(28px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.01em; }
-      .type-sample.serif { font-family: var(--serif); font-style: italic; }
-      .type-sample.mono { font-family: var(--mono); font-size: clamp(20px, 3vw, 30px); letter-spacing: 0; }
+      .top { background:var(--black); color:#fff; padding:72px 48px 60px; }
+      .top .kicker { font-family:var(--mono); font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--green); }
+      .top h1 { font-weight:600; font-size:clamp(2.4rem,4.5vw,3.6rem); letter-spacing:-0.03em; line-height:1.04; margin:16px 0 14px; max-width:18ch; }
+      .top h1 em { font-family:var(--serif); font-style:italic; color:var(--green); }
+      .top p { color:rgba(255,255,255,0.62); max-width:60ch; font-size:17px; }
+      .top .ver { margin-top:26px; font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4); }
 
-      table.scale { width: 100%; border-collapse: collapse; font-size: 14px; }
-      table.scale td, table.scale th { text-align: left; padding: 12px 8px; border-bottom: 1px solid var(--border); }
-      table.scale th { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
-      table.scale td:nth-child(2) { font-family: var(--mono); font-size: 12px; }
+      section.doc-sec { padding:64px 0; border-bottom:1px solid var(--border); scroll-margin-top:24px; }
+      .lbl { font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+      h2 { font-family:var(--serif); font-size:clamp(30px,3.6vw,46px); line-height:1.08; letter-spacing:-0.01em; margin-bottom:10px; }
+      .intro { color:#444; max-width:62ch; font-size:16px; margin-bottom:30px; }
+      h3 { font-size:17px; margin:28px 0 10px; }
+      .group-label { font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin:26px 0 12px; }
 
-      /* logo */
-      .logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-      .logo-box { border: 1px solid var(--border); border-radius: 14px; height: 160px; display: flex; align-items: center; justify-content: center; }
-      .logo-box img { height: 44px; }
-      .logo-box.on-dark { background: var(--black); }
-      .logo-box.on-cream { background: var(--cream); }
-      .logo-cap { font-size: 12px; color: var(--muted); margin-top: 8px; font-family: var(--mono); letter-spacing: 0.06em; }
+      .why { background:var(--white); border:1px solid var(--border); border-left:3px solid var(--green); border-radius:12px; padding:18px 20px; margin-top:18px; }
+      .why .why-lbl { font-family:var(--mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+      .why p { font-size:14px; line-height:1.6; color:#333; }
+      .why p + p { margin-top:8px; }
+      .why b { font-weight:600; color:var(--ink); }
 
-      /* components */
-      .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-weight: 600; font-size: 14px; padding: 13px 22px; border-radius: 999px; border: 0; cursor: pointer; }
-      .btn--primary { background: var(--green); color: var(--ink); }
-      .btn--primary:hover { background: var(--green-hover); }
-      .btn--ghost { background: transparent; color: var(--ink); border: 1px solid var(--border); }
-      .comp-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 28px; }
-      .chip { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; padding: 10px 18px; border-radius: 999px; }
-      .chip--light { background: var(--white); border: 1px solid var(--border); color: var(--ink); }
-      .chip--dark { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); color: #fff; }
-      .chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
-      .dark-card { background: var(--black); border-radius: var(--radius); padding: 28px; }
-      .card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 22px; }
-      .principles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-      .principles h3 { font-size: 16px; margin-bottom: 6px; }
-      .principles p { font-size: 13px; color: var(--muted); line-height: 1.5; }
-      .radii { display: flex; gap: 20px; flex-wrap: wrap; }
-      .radii .r { width: 100px; height: 100px; background: var(--black); }
-      .radii .cap { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 8px; }
+      .swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
+      .sw { border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--white); }
+      .sw__c { height:84px; }
+      .sw__b { padding:12px 14px; }
+      .sw__n { font-weight:600; font-size:13px; }
+      .sw__h { font-family:var(--mono); font-size:11px; margin-top:3px; text-transform:uppercase; }
+      .sw__t { font-family:var(--mono); font-size:10px; color:var(--muted); margin-top:6px; }
+      .sw__u { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.45; }
 
-      /* ===== design system · editorial spec sheet (v2) ===== */
-      .ds-intro { background: var(--ink); color: #fff; border-radius: var(--radius); margin: 56px 24px; padding: 56px 48px; }
-      .ds-intro .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); }
-      .ds-intro h2 { font-family: var(--sans); font-weight: 600; font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.02em; color: #fff; margin: 14px 0 12px; max-width: 20ch; }
-      .ds-intro h2 em { font-family: var(--serif); font-style: italic; color: var(--green); }
-      .ds-intro p { color: rgba(255,255,255,0.6); max-width: 62ch; font-size: 16px; }
+      .logos { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+      .logobox { border:1px solid var(--border); border-radius:12px; height:150px; display:flex; align-items:center; justify-content:center; }
+      .logobox img { height:42px; }
+      .logobox.dark { background:var(--black); }
+      .logocap { font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:8px; letter-spacing:0.06em; }
 
-      .spec { padding: 56px 0; border-top: 1px solid var(--border); }
-      .spec__grid { display: grid; grid-template-columns: 88px 1fr; gap: 32px; align-items: start; }
-      .spec__num { font-family: var(--mono); font-size: 13px; color: var(--green); letter-spacing: 0.1em; padding-top: 6px; }
-      .spec__num .of { color: var(--muted); }
-      .spec__head h3 { font-family: var(--serif); font-size: clamp(26px, 3.4vw, 38px); line-height: 1.08; letter-spacing: -0.01em; }
-      .spec__decision { font-size: 17px; line-height: 1.55; color: var(--ink); margin: 14px 0 28px; max-width: 64ch; }
-      .spec__decision b { font-weight: 600; }
+      .specimen { border:1px solid var(--border); border-radius:14px; padding:24px; background:var(--white); margin-bottom:8px; }
+      .specimen .big { font-size:clamp(28px,3.6vw,42px); line-height:1.06; letter-spacing:-0.01em; }
+      .specimen .big.serif { font-family:var(--serif); font-style:italic; }
+      .specimen .big.mono { font-family:var(--mono); font-size:clamp(20px,2.8vw,30px); letter-spacing:0; }
+      .specimen .m { font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:14px; }
+      table.scale { width:100%; border-collapse:collapse; font-size:13.5px; margin-top:18px; }
+      table.scale th, table.scale td { text-align:left; padding:11px 8px; border-bottom:1px solid var(--border); }
+      table.scale th { font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-weight:500; }
+      table.scale td:nth-child(2) { font-family:var(--mono); font-size:12px; }
 
-      .spec__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-      .spec__block { border-left: 2px solid var(--green); padding: 2px 0 2px 18px; }
-      .spec__block.alt { border-left-color: var(--ink); }
-      .spec__block .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-      .spec__block p { font-size: 14px; line-height: 1.6; color: #333; }
-      .spec__block p + p { margin-top: 8px; }
+      .icons { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:6px; }
+      .ic { width:54px; height:54px; border:1px solid var(--border); border-radius:13px; display:flex; align-items:center; justify-content:center; background:var(--white); }
+      .ic svg { width:22px; height:22px; fill:none; stroke:var(--ink); stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+      .tag { display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:4px 10px; margin:14px 6px 0 0; }
 
-      .spec__specimen { margin: 22px 0 6px; padding: 26px; border: 1px solid var(--border); border-radius: 16px; background: var(--white); }
-      .spec__specimen .big { font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -0.01em; }
-      .spec__specimen .big.serif { font-family: var(--serif); font-style: italic; }
-      .spec__specimen .big.mono { font-family: var(--mono); font-size: clamp(22px, 3vw, 32px); letter-spacing: 0; }
-      .spec__specimen .meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 14px; }
+      .dd { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+      .ddc { border:1px solid var(--border); border-radius:13px; padding:16px; }
+      .ddc h4 { font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px; }
+      .ddc.do h4 { color:#15803d; } .ddc.dont h4 { color:#b91c1c; }
+      .ddc ul { list-style:none; } .ddc li { font-size:13px; color:#444; margin-bottom:6px; padding-left:16px; position:relative; }
+      .ddc.do li::before { content:'+'; position:absolute; left:0; color:#15803d; }
+      .ddc.dont li::before { content:'\\00d7'; position:absolute; left:0; color:#b91c1c; }
 
-      .tag { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; margin: 12px 6px 0 0; }
-      .icon-row { display: flex; gap: 14px; flex-wrap: wrap; margin: 6px 0; }
-      .icon-demo { width: 54px; height: 54px; border: 1px solid var(--border); border-radius: 13px; display: flex; align-items: center; justify-content: center; background: var(--white); }
-      .icon-demo svg { width: 22px; height: 22px; fill: none; stroke: var(--ink); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-      .dd { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
-      .dd__col { border: 1px solid var(--border); border-radius: 13px; padding: 16px; }
-      .dd__col h4 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
-      .dd__col.do h4 { color: #15803d; } .dd__col.dont h4 { color: #b91c1c; }
-      .dd__col ul { list-style: none; } .dd__col li { font-size: 13px; color: #444; margin-bottom: 6px; padding-left: 16px; position: relative; }
-      .dd__col li::before { position: absolute; left: 0; }
-      .dd__col.do li::before { content: '+'; color: #15803d; }
-      .dd__col.dont li::before { content: '\00d7'; color: #b91c1c; }
+      .btn { display:inline-flex; align-items:center; gap:8px; font-family:var(--sans); font-weight:600; font-size:14px; padding:13px 22px; border-radius:999px; border:0; cursor:pointer; }
+      .btn--primary { background:var(--green); color:var(--ink); } .btn--primary:hover { background:var(--green-hover); }
+      .btn--ghost { background:transparent; color:var(--ink); border:1px solid var(--border); }
+      .row { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-bottom:20px; }
+      .chip { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; padding:10px 18px; border-radius:999px; }
+      .chip--l { background:var(--white); border:1px solid var(--border); color:var(--ink); }
+      .chip--d { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); color:#fff; }
+      .chip .dot { width:6px; height:6px; border-radius:50%; background:var(--green); }
+      .darkcard { background:var(--black); border-radius:16px; padding:24px; }
+      .cards3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+      .card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:20px; }
+      .card h4 { font-size:15px; margin-bottom:6px; } .card p { font-size:13px; color:var(--muted); line-height:1.5; }
+      .radii { display:flex; gap:18px; flex-wrap:wrap; margin-top:8px; }
+      .radii .r { width:88px; height:88px; background:var(--black); } .radii .cap { font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:8px; }
 
-      footer { padding: 40px 0 80px; color: var(--muted); font-size: 13px; }
-      footer a { color: var(--ink); }
-
-      @media (max-width: 720px) {
-        .rationale { grid-template-columns: 1fr; gap: 10px; }
-        .do-dont { grid-template-columns: 1fr; }
-      }
-
-      @media (max-width: 720px) {
-        .type-row { grid-template-columns: 1fr; gap: 10px; }
-        .logo-grid { grid-template-columns: 1fr; }
-      }
-      @media (max-width: 720px) {
-        .ds-intro { margin: 40px 0; border-radius: 0; padding: 40px 24px; }
-        .spec__grid { grid-template-columns: 1fr; gap: 14px; }
-        .spec__num { padding-top: 0; }
-        .spec__cols { grid-template-columns: 1fr; }
-        .dd { grid-template-columns: 1fr; }
+      @media (max-width:900px) {
+        .layout { grid-template-columns:1fr; }
+        .sidebar { position:static; height:auto; border-right:0; border-bottom:1px solid var(--border); flex-direction:row; align-items:center; gap:16px; overflow-x:auto; padding:14px 20px; }
+        .sidebar__sub, .sidebar__foot { display:none; }
+        .sidebar__brand { margin-bottom:0; }
+        .nav { flex-direction:row; gap:4px; }
+        .nav a .dot { display:none; }
+        .nav a { white-space:nowrap; padding:6px 10px; font-size:13px; }
+        .top { padding:48px 24px; } .doc { padding:0 24px; }
+        .cards3 { grid-template-columns:1fr; } .dd { grid-template-columns:1fr; } .logos { grid-template-columns:1fr; }
       }
     </style>
   </head>
-  <body data-theme="mytheme">
-    <header class="bg-hero">
-      <div class="wrap">
-        <span class="brandmark"><img src="./assets/Flexi-light.svg" alt="FlexiWires" /></span>
-        <h1>Brand Guidelines &amp; <em>Design System</em></h1>
-        <p>The visual language behind FlexiWires - cross-border money, routed. Use this as the single source of truth for color, type, logo and components across product and marketing.</p>
-        <div class="meta">FlexiWires · v1.0 · Updated {updated}</div>
-      </div>
-    </header>
-
-    <!-- Brand essence -->
-    <section>
-      <div class="wrap">
-        <div class="eyebrow">Brand essence</div>
-        <h2>Precise, fast, premium.</h2>
-        <p class="lede">FlexiWires compares every cross-border wire rail on one screen. The brand is engineered and calm with one decisive accent - a signature green that marks the moment of action.</p>
-        <div class="principles">
-          <div class="card"><h3>Engineered</h3><p>Monospace data, exact figures, clean grids. It should feel like a tool built by people who move money.</p></div>
-          <div class="card"><h3>Calm</h3><p>Generous space, muted neutrals, a cream canvas. Green is rationed so it always means something.</p></div>
-          <div class="card"><h3>Expressive</h3><p>An italic serif accent line cuts through the sans headings - a human note in an engineered system.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Logo -->
-    <section>
-      <div class="wrap">
-        <div class="eyebrow">Logo</div>
-        <h2>The wordmark</h2>
-        <p class="lede">The flexi wordmark with its green glyph. Use the light wordmark on dark surfaces and the dark wordmark on cream/white. Keep clear space of at least the glyph height around it; never recolor the wordmark outside these two variants.</p>
-        <div class="logo-grid">
-          <div>
-            <div class="logo-box on-dark"><img src="./assets/Flexi-light.svg" alt="FlexiWires light logo" /></div>
-            <div class="logo-cap">Light · on dark (#111214)</div>
-          </div>
-          <div>
-            <div class="logo-box on-cream"><img src="./assets/Flexi.svg" alt="FlexiWires dark logo" /></div>
-            <div class="logo-cap">Dark · on cream / white</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Color -->
-    <section>
-      <div class="wrap">
-        <div class="eyebrow">Color</div>
-        <h2>Color system</h2>
-        <p class="lede">A cream canvas, near-black ink, and one signature green. Dark panels (#111214) anchor the hero, the corridor rail and the app section.</p>
-
-        <div class="group-title">Brand</div>
-        <div class="swatches">
-          {colors.brand.map((c) => (
-            <div class="swatch">
-              <div class="swatch__chip" style={`background:${c.hex}`}></div>
-              <div class="swatch__body">
-                <div class="swatch__name">{c.name}</div>
-                <div class="swatch__hex">{c.hex}</div>
-                <div class="swatch__use">{c.use}</div>
-              </div>
-            </div>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <a class="sidebar__brand" href="./"><span class="pill"><img src="./assets/Flexi.svg" alt="FlexiWires" /></span></a>
+        <div class="sidebar__sub">Brand & Design System</div>
+        <nav class="nav" id="nav">
+          {nav.map((n) => (
+            <a href={`#${n.id}`} data-target={n.id}><span class="dot"></span>{n.label}</a>
           ))}
+        </nav>
+        <div class="sidebar__foot">v1.0 · {updated}<br /><a href="./">View live landing page</a></div>
+      </aside>
+
+      <main class="content">
+        <div class="top">
+          <div class="kicker">FlexiWires</div>
+          <h1>Brand &amp; <em>Design System</em></h1>
+          <p>The single source of truth for how FlexiWires looks, reads and behaves across product and marketing. Every rule includes the reasoning and the validation behind it.</p>
+          <div class="ver">Version 1.0 · Updated {updated}</div>
         </div>
 
-        <div class="group-title">Neutrals</div>
-        <div class="swatches">
-          {colors.neutrals.map((c) => (
-            <div class="swatch">
-              <div class="swatch__chip" style={`background:${c.hex}; ${c.hex === '#FFFFFF' || c.hex === '#FAF8F4' || c.hex === '#F5F3EF' || c.hex === '#E8E4DC' ? 'box-shadow: inset 0 0 0 1px #e8e4dc;' : ''}`}></div>
-              <div class="swatch__body">
-                <div class="swatch__name">{c.name}</div>
-                <div class="swatch__hex">{c.hex}</div>
-                <div class="swatch__use">{c.use}</div>
-              </div>
+        <div class="doc">
+          <section class="doc-sec" id="overview">
+            <div class="lbl">01 · Overview</div>
+            <h2>Precise, fast, premium</h2>
+            <p class="intro">FlexiWires compares every cross-border wire rail on one screen. The brand is engineered and calm with one decisive accent, a signature green that marks the moment of action. These three traits drive every decision in this document.</p>
+            <div class="cards3">
+              <div class="card"><h4>Engineered</h4><p>Monospace data, exact figures, clean grids. It should feel built by people who move money.</p></div>
+              <div class="card"><h4>Calm</h4><p>Generous space, muted neutrals, a cream canvas. Green is rationed so it always means something.</p></div>
+              <div class="card"><h4>Expressive</h4><p>An italic serif accent line cuts through the sans headings, a human note in an engineered system.</p></div>
             </div>
-          ))}
-        </div>
+          </section>
 
-        <div class="group-title">Mint (app-CTA panel)</div>
-        <div class="swatches">
-          {colors.mint.map((c) => (
-            <div class="swatch">
-              <div class="swatch__chip" style={`background:${c.hex}; box-shadow: inset 0 0 0 1px #e8e4dc;`}></div>
-              <div class="swatch__body">
-                <div class="swatch__name">{c.name}</div>
-                <div class="swatch__hex">{c.hex}</div>
-                <div class="swatch__use">{c.use}</div>
-              </div>
+          <section class="doc-sec" id="logo">
+            <div class="lbl">02 · Logo</div>
+            <h2>The wordmark</h2>
+            <p class="intro">The flexi wordmark with its green glyph. Use the light wordmark on dark surfaces and the dark wordmark on cream or white. Keep clear space of at least the glyph height around it; never recolor the wordmark outside these two variants.</p>
+            <div class="logos">
+              <div><div class="logobox dark"><img src="./assets/Flexi-light.svg" alt="FlexiWires light" /></div><div class="logocap">Light · on dark (#111214)</div></div>
+              <div><div class="logobox" style="background:var(--cream)"><img src="./assets/Flexi.svg" alt="FlexiWires dark" /></div><div class="logocap">Dark · on cream / white</div></div>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
+          </section>
 
-    <!-- Type -->
-    <section>
-      <div class="wrap">
-        <div class="eyebrow">Typography</div>
-        <h2>Three typefaces</h2>
-        <p class="lede">Inter carries the UI and headings, Instrument Serif (italic) provides the expressive accent, and JetBrains Mono handles labels and figures.</p>
-        {type.map((t) => (
-          <div class="type-row">
-            <div class="type-meta">
-              <div class="role">{t.role}</div>
-              <div class="fam">{t.font}</div>
-              <div class="note">{t.note}</div>
+          <section class="doc-sec" id="color">
+            <div class="lbl">03 · Color</div>
+            <h2>Color system</h2>
+            <p class="intro">A cream canvas, near-black ink and one signature green. Dark panels anchor the hero, the corridor rail and the app section.</p>
+
+            <div class="group-label">Brand</div>
+            <div class="swatches">
+              {brandColors.map((c) => (
+                <div class="sw">
+                  <div class="sw__c" style={`background:${c.hex}; ${isLight(c.hex) ? 'box-shadow:inset 0 0 0 1px #e8e4dc;' : ''}`}></div>
+                  <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__t">{c.token}</div><div class="sw__u">{c.use}</div></div>
+                </div>
+              ))}
             </div>
-            <div class={`type-sample ${t.font === 'Instrument Serif' ? 'serif' : ''} ${t.font === 'JetBrains Mono' ? 'mono' : ''}`}>{t.sample}</div>
+            <div class="group-label">Neutrals</div>
+            <div class="swatches">
+              {neutralColors.map((c) => (
+                <div class="sw">
+                  <div class="sw__c" style={`background:${c.hex}; ${isLight(c.hex) ? 'box-shadow:inset 0 0 0 1px #e8e4dc;' : ''}`}></div>
+                  <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__t">{c.token}</div><div class="sw__u">{c.use}</div></div>
+                </div>
+              ))}
+            </div>
+            <div class="group-label">Mint · app panel</div>
+            <div class="swatches">
+              {mintColors.map((c) => (
+                <div class="sw">
+                  <div class="sw__c" style={`background:${c.hex}; box-shadow:inset 0 0 0 1px #e8e4dc;`}></div>
+                  <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__u">{c.use}</div></div>
+                </div>
+              ))}
+            </div>
+
+            <div class="why">
+              <div class="why-lbl">Why this palette</div>
+              <p><b>Signature green (#3FE864)</b> is reserved for action and confirmation. Green reads as go, success, money saved, exactly the feeling at send. Rationing it to CTAs, status dots and the live indicator keeps every green pixel meaningful, and black-on-green stays AA legible.</p>
+              <p><b>Cream and ink</b> feel premium and editorial rather than clinical, and near-black softens harsh contrast for comfortable reading. <b>Hero black (#111214)</b> panels create rhythm and make the green pop hardest where it matters.</p>
+            </div>
+          </section>
+
+          <section class="doc-sec" id="type">
+            <div class="lbl">04 · Typography</div>
+            <h2>Three typefaces</h2>
+            <p class="intro">A neutral workhorse, an expressive accent, and a precise data face. Each role maps to a need a treasury product has: scanning, trust and emotion.</p>
+
+            <div class="specimen"><div class="big">Compare rails, lock the rate</div><div class="m">Inter · 300-700 · UI &amp; headings</div></div>
+            <div class="why"><div class="why-lbl">Why Inter</div><p>A screen-first neutral sans with a tall x-height, legible from 11px labels to 64px headlines. The same face works in marketing and in-app, so the landing page and product feel like one thing. Proven at interface scale across modern fintech and tools.</p></div>
+
+            <div class="specimen"><div class="big serif">all from your phone</div><div class="m">Instrument Serif · italic · accent only</div></div>
+            <div class="why"><div class="why-lbl">Why Instrument Serif</div><p>Pure sans reads efficient but impersonal. One italic-serif line per heading adds a human, premium note at the emotional moments. Used sparingly it adds character with no cost to legibility, and never for body text.</p></div>
+
+            <div class="specimen"><div class="big mono">USD &rarr; MXN &nbsp; 17.4521</div><div class="m">JetBrains Mono · tabular · data &amp; labels</div></div>
+            <div class="why"><div class="why-lbl">Why JetBrains Mono</div><p>Monospace makes numbers align and read as real data; tabular figures keep rates stable as they update. Mono-for-data is the convention across trading and fintech tools, and wide-tracked uppercase mono is an instantly readable label style.</p></div>
+
+            <div class="group-label">Type scale</div>
+            <table class="scale">
+              <thead><tr><th>Role</th><th>Size</th><th>Font</th></tr></thead>
+              <tbody>
+                <tr><td>Hero H1</td><td>clamp(2.5rem, 5vw, 4rem)</td><td>Inter 600 / Serif italic</td></tr>
+                <tr><td>Section H2</td><td>clamp(36px, 4vw, 56px)</td><td>Instrument Serif / Inter</td></tr>
+                <tr><td>Lede</td><td>17px</td><td>Inter 400</td></tr>
+                <tr><td>Body</td><td>16px</td><td>Inter 400</td></tr>
+                <tr><td>Eyebrow</td><td>11px · 0.18em · uppercase</td><td>JetBrains Mono</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="doc-sec" id="icons">
+            <div class="lbl">05 · Iconography</div>
+            <h2>Line icons, one weight</h2>
+            <p class="intro">Thin geometric line icons (Lucide family), a single 1.75 stroke, never filled, never multi-color.</p>
+            <div class="icons">
+              <span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+              <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+              <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+              <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 7v6c0 5 3.5 7.5 8 9 4.5-1.5 8-4 8-9V7z"/></svg></span>
+            </div>
+            <div class="why"><div class="why-lbl">Why outline icons</div><p>Outline icons match the engineered, lightweight feel of the type and keep the UI calm. A single stroke weight reads consistent at every size, and neutral color means icons never compete with the data. Lucide is open-source and pixel-consistent, so the product can grow across features without redrawing icons. Green is used only for status and checkmarks.</p></div>
+            <span class="tag">No fills</span><span class="tag">currentColor</span><span class="tag">1.75 stroke</span>
+          </section>
+
+          <section class="doc-sec" id="imagery">
+            <div class="lbl">06 · Imagery</div>
+            <h2>Real product, real hands</h2>
+            <p class="intro">The actual app on real devices in real hands, not abstract illustration or stock office photos.</p>
+            <div class="why"><div class="why-lbl">Why product-led photography</div><p>Showing the real FlexiWires screen on a phone proves the product exists and works. When you handle people's money, that proof is the difference between trust and doubt. Treatment: clean cut-outs, soft realistic shadows, neutral, mint or dark backdrops, and the device screen carries the only dense color.</p></div>
+            <div class="dd">
+              <div class="ddc do"><h4>Do</h4><ul><li>Use real app screens</li><li>Calm backgrounds (cream, mint, dark)</li><li>Soft realistic shadows</li><li>One focal device per panel</li></ul></div>
+              <div class="ddc dont"><h4>Avoid</h4><ul><li>Generic stock business people</li><li>Busy or colorful backdrops</li><li>Hard cut-outs with no shadow</li><li>Recoloring or distorting the app UI</li></ul></div>
+            </div>
+          </section>
+
+          <section class="doc-sec" id="components">
+            <div class="lbl">07 · Components</div>
+            <h2>Core UI</h2>
+            <p class="intro">Pill buttons, corridor chips and dark panels. Buttons use the signature green; on hover the label and arrow do a subtle 3D roll.</p>
+            <div class="group-label">Buttons</div>
+            <div class="row">
+              <button class="btn btn--primary">Get the app <span aria-hidden="true">&rarr;</span></button>
+              <button class="btn btn--primary">Start a transfer <span aria-hidden="true">&rarr;</span></button>
+              <button class="btn btn--ghost">Secondary</button>
+            </div>
+            <div class="group-label">Corridor chips</div>
+            <div class="row">
+              <span class="chip chip--l"><span class="dot"></span>USD &rarr; MXN</span>
+              <span class="chip chip--l"><span class="dot"></span>USD &rarr; BRL</span>
+            </div>
+            <div class="darkcard row" style="margin-bottom:0;">
+              <span class="chip chip--d"><span class="dot"></span>USD &rarr; COP</span>
+              <span class="chip chip--d"><span class="dot"></span>EUR &rarr; MXN</span>
+              <span class="chip chip--d"><span class="dot"></span>GBP &rarr; BRL</span>
+            </div>
+          </section>
+
+          <section class="doc-sec" id="motion" style="border-bottom:0;">
+            <div class="lbl">08 · Motion &amp; layout</div>
+            <h2>Restrained, purposeful</h2>
+            <p class="intro">Motion confirms the product is live and rewards interaction without distracting from the task. Layout breathes with large radii and generous rhythm.</p>
+            <div class="cards3">
+              <div class="card"><h4>Corridor rail</h4><p>An always-moving marquee of live corridors signals an active, real-time network.</p></div>
+              <div class="card"><h4>Button text-roll</h4><p>A small 3D roll on CTA hover that rewards interaction without pulling focus.</p></div>
+              <div class="card"><h4>Reveal on scroll</h4><p>Gentle fade and rise as sections enter. Respects prefers-reduced-motion.</p></div>
+            </div>
+            <div class="group-label">Radius</div>
+            <div class="radii">
+              <div><div class="r" style="border-radius:32px"></div><div class="cap">Panels · 32px</div></div>
+              <div><div class="r" style="border-radius:16px"></div><div class="cap">Cards · 16px</div></div>
+              <div><div class="r" style="border-radius:999px"></div><div class="cap">Pills · 999px</div></div>
+            </div>
+          </section>
+
+          <div style="padding:36px 0 80px; color:var(--muted); font-size:13px;">
+            FlexiWires Brand &amp; Design System · v1.0 · {updated} · <a href="./" style="color:var(--ink); border-bottom:1px solid var(--border);">View the live landing page</a>
           </div>
-        ))}
-
-        <div class="group-title">Type scale</div>
-        <table class="scale">
-          <thead><tr><th>Role</th><th>Size</th><th>Font</th></tr></thead>
-          <tbody>
-            {scale.map((s) => (<tr><td>{s.name}</td><td>{s.size}</td><td>{s.font}</td></tr>))}
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Components -->
-    <section>
-      <div class="wrap">
-        <div class="eyebrow">Components</div>
-        <h2>Core UI</h2>
-        <p class="lede">Pill buttons, corridor chips and dark panels. Buttons use the signature green; on hover the label and arrow do a subtle 3D roll.</p>
-
-        <div class="group-title">Buttons</div>
-        <div class="comp-row">
-          <button class="btn btn--primary">Get the app <span aria-hidden="true">↗</span></button>
-          <button class="btn btn--primary">Start a transfer <span aria-hidden="true">→</span></button>
-          <button class="btn btn--ghost">Secondary</button>
         </div>
-
-        <div class="group-title">Corridor chips</div>
-        <div class="comp-row">
-          <span class="chip chip--light"><span class="dot"></span>USD → MXN</span>
-          <span class="chip chip--light"><span class="dot"></span>USD → BRL</span>
-        </div>
-        <div class="dark-card comp-row" style="margin-bottom:0;">
-          <span class="chip chip--dark"><span class="dot"></span>USD → COP</span>
-          <span class="chip chip--dark"><span class="dot"></span>EUR → MXN</span>
-          <span class="chip chip--dark"><span class="dot"></span>GBP → BRL</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Shape & motion -->
-    <section>
-      <div class="wrap">
-        <div class="eyebrow">Shape &amp; motion</div>
-        <h2>Radius, spacing &amp; interaction</h2>
-        <p class="lede">Large soft radii on panels (32px) and pills (999px). Sections breathe with generous vertical rhythm. Motion is restrained: continuous corridor rail, 3D button text-roll, and gentle reveal-on-scroll.</p>
-        <div class="radii">
-          <div><div class="r" style="border-radius:32px"></div><div class="cap">Panels · 32px</div></div>
-          <div><div class="r" style="border-radius:18px"></div><div class="cap">Cards · 18px</div></div>
-          <div><div class="r" style="border-radius:999px"></div><div class="cap">Pills · 999px</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         DESIGN SYSTEM v2 - editorial spec sheet (em-dash free)
-         ============================================================ -->
-    <div class="ds-intro">
-      <div class="kicker">Design system</div>
-      <h2>The decisions, and <em>why they hold up</em></h2>
-      <p>A design system is only useful if every rule has a reason. Below: each choice as a decision, the thinking behind it, and the validation that it supports a precise, fast, trustworthy money product.</p>
+      </main>
     </div>
 
-    <!-- 01 Typography -->
-    <section class="spec">
-      <div class="wrap">
-        <div class="spec__grid">
-          <div class="spec__num">01<span class="of"> / 05</span></div>
-          <div class="spec__head">
-            <h3>Typography</h3>
-            <p class="spec__decision">Three roles, three faces: <b>Inter</b> for interface and headings, <b>Instrument Serif</b> (italic) for one expressive accent, <b>JetBrains Mono</b> for data and labels.</p>
-
-            <div class="spec__specimen"><div class="big">Compare rails, lock the rate</div><div class="meta">Inter &middot; 300-700 &middot; UI + headings</div></div>
-            <div class="spec__cols">
-              <div class="spec__block"><div class="lbl">Why</div><p>A treasury tool is read fast and often. Inter is a screen-first neutral sans with a tall x-height that stays legible from 11px labels to 64px headlines, so marketing and the in-app product feel like one system.</p></div>
-              <div class="spec__block alt"><div class="lbl">Validation</div><p>Proven at interface scale across modern fintech and tools (Stripe-era, GitHub, Figma). Its wide weight range covers every level of hierarchy without a second sans.</p></div>
-            </div>
-
-            <div class="spec__specimen"><div class="big serif">all from your phone</div><div class="meta">Instrument Serif &middot; italic &middot; accent only</div></div>
-            <div class="spec__cols">
-              <div class="spec__block"><div class="lbl">Why</div><p>Pure sans reads efficient but impersonal. One italic-serif line per heading adds a human, editorial, premium note at the emotional moments ("routed.", "your phone").</p></div>
-              <div class="spec__block alt"><div class="lbl">Validation</div><p>Sans-for-structure plus serif-for-emotion is a current premium-brand pattern. Used sparingly it adds character with no cost to legibility. Never used for body text.</p></div>
-            </div>
-
-            <div class="spec__specimen"><div class="big mono">USD &rarr; MXN &nbsp; 17.4521</div><div class="meta">JetBrains Mono &middot; tabular &middot; data + labels</div></div>
-            <div class="spec__cols">
-              <div class="spec__block"><div class="lbl">Why</div><p>Monospace makes numbers align and read as real data; tabular figures keep rates stable as they update. It signals engineered, exact, machine-accurate.</p></div>
-              <div class="spec__block alt"><div class="lbl">Validation</div><p>Mono-for-data is the convention across trading, dev and fintech tools. Wide-tracked uppercase mono is an instantly recognizable label style for eyebrows and corridors.</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 02 Color -->
-    <section class="spec">
-      <div class="wrap">
-        <div class="spec__grid">
-          <div class="spec__num">02<span class="of"> / 05</span></div>
-          <div class="spec__head">
-            <h3>Color</h3>
-            <p class="spec__decision">A restrained premium base, one decisive accent. <b>Cream</b> canvas, <b>near-black</b> ink, <b>signature green</b> for action, and <b>hero black</b> for focus panels.</p>
-            <div class="spec__cols">
-              <div class="spec__block"><div class="lbl">Signature green &middot; #3FE864</div><p>Reserved for action and confirmation. Green reads as "go / success / money saved", exactly the feeling at send. Rationing it to CTAs, status dots and the live indicator keeps every green pixel meaningful, and black text on green stays AA-legible.</p></div>
-              <div class="spec__block alt"><div class="lbl">Cream + ink &middot; #FAF8F4 / #0A0A0A</div><p>A warm off-white feels premium and editorial, not clinical; near-black softens harsh contrast for comfortable long reading. The calm canvas lets dense data and the single accent stand out.</p></div>
-              <div class="spec__block"><div class="lbl">Hero black &middot; #111214</div><p>Soft near-black panels (hero, corridor rail, app section) create rhythm, frame product shots, and make the green pop hardest where it matters.</p></div>
-              <div class="spec__block alt"><div class="lbl">Validation</div><p>One accent on a neutral base is the durable choice for data products: meaning over decoration, and it scales as the product grows without a rainbow of competing colors.</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 Iconography -->
-    <section class="spec">
-      <div class="wrap">
-        <div class="spec__grid">
-          <div class="spec__num">03<span class="of"> / 05</span></div>
-          <div class="spec__head">
-            <h3>Iconography</h3>
-            <p class="spec__decision">Thin geometric line icons (<b>Lucide</b>), a single 1.75 stroke, never filled, never multi-color.</p>
-            <div class="icon-row">
-              <span class="icon-demo"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
-              <span class="icon-demo"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
-              <span class="icon-demo"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-              <span class="icon-demo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
-            </div>
-            <div class="spec__cols">
-              <div class="spec__block"><div class="lbl">Why</div><p>Outline icons match the engineered, lightweight feel of the type and keep the UI calm. A single stroke weight reads consistent at every size, and color stays neutral so icons never compete with the data.</p></div>
-              <div class="spec__block alt"><div class="lbl">Validation</div><p>Lucide is open-source, exhaustive and pixel-consistent, so the product can grow across features (rails, compliance, alerts) without redrawing icons. Green is used only for status and checkmarks.</p></div>
-            </div>
-            <span class="tag">No fills</span><span class="tag">currentColor</span><span class="tag">1.75 stroke</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 Imagery -->
-    <section class="spec">
-      <div class="wrap">
-        <div class="spec__grid">
-          <div class="spec__num">04<span class="of"> / 05</span></div>
-          <div class="spec__head">
-            <h3>Imagery</h3>
-            <p class="spec__decision">The real app, on real devices, in real hands. Product-led photography, not abstract illustration or stock office shots.</p>
-            <div class="spec__cols">
-              <div class="spec__block"><div class="lbl">Why</div><p>Showing the actual FlexiWires screen on a phone proves the product exists and works. When you handle people's money, that proof is the difference between trust and doubt.</p></div>
-              <div class="spec__block alt"><div class="lbl">Treatment</div><p>Clean cut-outs, soft realistic shadows, neutral / mint or dark backdrops. The device screen carries the only dense color: the app UI itself.</p></div>
-            </div>
-            <div class="dd">
-              <div class="dd__col do"><h4>Do</h4><ul><li>Use real app screens</li><li>Keep backgrounds calm (cream, mint, dark)</li><li>Soft realistic shadows</li><li>One focal device per panel</li></ul></div>
-              <div class="dd__col dont"><h4>Avoid</h4><ul><li>Generic stock business people</li><li>Busy or colorful backdrops</li><li>Hard cut-outs with no shadow</li><li>Recoloring or distorting the app UI</li></ul></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 Motion & layout -->
-    <section class="spec">
-      <div class="wrap">
-        <div class="spec__grid">
-          <div class="spec__num">05<span class="of"> / 05</span></div>
-          <div class="spec__head">
-            <h3>Motion &amp; layout</h3>
-            <p class="spec__decision">Restrained and purposeful. Motion confirms the product is live and rewards interaction without ever distracting from the task.</p>
-            <div class="spec__cols">
-              <div class="spec__block"><div class="lbl">Continuous corridor rail</div><p>An always-moving marquee of live corridors signals an active, real-time network, reinforcing "12 partner rails, live".</p></div>
-              <div class="spec__block alt"><div class="lbl">3D button text-roll</div><p>A small premium flourish on CTAs that rewards the hover without pulling focus from the next step.</p></div>
-              <div class="spec__block"><div class="lbl">Reveal on scroll</div><p>Gentle fade and rise as sections enter, guiding attention and adding polish. Respects prefers-reduced-motion.</p></div>
-              <div class="spec__block alt"><div class="lbl">Radius &amp; spacing</div><p>Large soft radii (32px panels, 999px pills) and roomy vertical rhythm make a data-dense product feel calm and premium, not cramped.</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="wrap">
-        FlexiWires Brand Guidelines &amp; Design System · v1.0 · {updated} &nbsp;·&nbsp; <a href="./">View the live landing page →</a>
-      </div>
-    </footer>
+    <script is:inline>
+      (() => {
+        const links = Array.from(document.querySelectorAll('#nav a'));
+        const sections = links.map((a) => document.getElementById(a.dataset.target)).filter(Boolean);
+        const setActive = (id) => links.forEach((a) => a.classList.toggle('active', a.dataset.target === id));
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
+        }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+        sections.forEach((s) => obs.observe(s));
+        if (sections[0]) setActive(sections[0].id);
+      })();
+    </script>
   </body>
 </html>
