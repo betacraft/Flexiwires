@@ -1027,52 +1027,75 @@
       <!-- CUSTOMER CASE · illustrative until real one signs off -->
       <section class="section reveal">
         <div class="container">
-          <div class="case-profile">
-            <div>
+          <div class="case-profile profile-builder" id="profileBuilder">
+            <!-- LEFT: interactive controls -->
+            <div class="pb__controls">
               <div class="case-profile__tag">
-                <span lang="en">Illustrative customer profile</span>
-                <span lang="es">Perfil ilustrativo de cliente</span>
+                <span lang="en">Build a customer profile</span>
+                <span lang="es">Construye un perfil de cliente</span>
               </div>
               <h3 class="case-profile__title">
-                <span lang="en">A SaaS company paying contractors across LatAm</span>
-                <span lang="es">Una empresa SaaS pagando contratistas en LatAm</span>
+                <span lang="en">Model the savings for <em>your flow</em></span>
+                <span lang="es">Modela el ahorro para <em>tu flujo</em></span>
               </h3>
-              <p class="case-profile__lede">
-                <span lang="en">Moves <strong>$400K/month</strong> from USD into MXN, BRL and COP via 60 monthly wires.
-                  On Professional, the team switched from a single bank to four partner rails - Bank wire,
-                  SPEI, USDC and PIX - sorted live every Friday.</span>
-                <span lang="es">Mueve <strong>$400K/mes</strong> de USD a MXN, BRL y COP en 60 wires mensuales.
-                  En Professional, el equipo pasó de un solo banco a cuatro rieles aliados - Bank wire,
-                  SPEI, USDC y PIX - ordenados en vivo cada viernes.</span>
-              </p>
+              <p class="pb__summary" id="pbSummary" aria-live="polite"></p>
+
+              <div class="pb__field">
+                <div class="pb__field-head">
+                  <label for="pbVolume"><span lang="en">Monthly volume</span><span lang="es">Volumen mensual</span></label>
+                  <output class="pb__val" id="pbVolumeOut">$400K</output>
+                </div>
+                <input class="pb__range" type="range" id="pbVolume" min="50000" max="2000000" step="10000" value="400000" aria-label="Monthly volume in USD" />
+              </div>
+
+              <div class="pb__field">
+                <div class="pb__field-head">
+                  <label for="pbWires"><span lang="en">Wires per month</span><span lang="es">Wires por mes</span></label>
+                  <output class="pb__val" id="pbWiresOut">60</output>
+                </div>
+                <input class="pb__range" type="range" id="pbWires" min="10" max="200" step="5" value="60" aria-label="Wires per month" />
+              </div>
+
+              <div class="pb__field">
+                <div class="pb__field-head">
+                  <span class="pb__field-label"><span lang="en">Corridors</span><span lang="es">Corredores</span></span>
+                  <output class="pb__val" id="pbCorrOut">3 active</output>
+                </div>
+                <div class="pb__chips" id="pbChips" role="group" aria-label="Corridors">
+                  <button type="button" class="pb__chip is-on" data-code="MXN" data-bps="110">MXN</button>
+                  <button type="button" class="pb__chip is-on" data-code="BRL" data-bps="150">BRL</button>
+                  <button type="button" class="pb__chip is-on" data-code="COP" data-bps="180">COP</button>
+                  <button type="button" class="pb__chip" data-code="ARS" data-bps="250">ARS</button>
+                  <button type="button" class="pb__chip" data-code="CLP" data-bps="140">CLP</button>
+                  <button type="button" class="pb__chip" data-code="PEN" data-bps="170">PEN</button>
+                </div>
+              </div>
             </div>
-            <div class="case-profile__stats">
-              <div class="case-stat">
-                <div class="case-stat__num">$1,180</div>
-                <div class="case-stat__label">
-                  <span lang="en">avg saved · per wire</span>
-                  <span lang="es">prom. ahorrado · por wire</span>
-                </div>
+
+            <!-- RIGHT: live graph + computed stats -->
+            <div class="pb__readout">
+              <div class="pb__chart-head">
+                <span lang="en">Estimated monthly savings by corridor</span>
+                <span lang="es">Ahorro mensual estimado por corredor</span>
               </div>
-              <div class="case-stat">
-                <div class="case-stat__num">11h</div>
-                <div class="case-stat__label">
-                  <span lang="en">cut · monthly ops</span>
-                  <span lang="es">recortadas · ops mes</span>
+              <div class="pb__chart" id="pbChart" aria-hidden="true"></div>
+
+              <div class="case-profile__stats pb__stats">
+                <div class="case-stat">
+                  <div class="case-stat__num" id="pbPerWire">$98</div>
+                  <div class="case-stat__label"><span lang="en">avg saved · per wire</span><span lang="es">prom. ahorrado · wire</span></div>
                 </div>
-              </div>
-              <div class="case-stat">
-                <div class="case-stat__num">60</div>
-                <div class="case-stat__label">
-                  <span lang="en">wires · month</span>
-                  <span lang="es">wires · mes</span>
+                <div class="case-stat">
+                  <div class="case-stat__num" id="pbHours">11h</div>
+                  <div class="case-stat__label"><span lang="en">cut · monthly ops</span><span lang="es">recortadas · ops mes</span></div>
                 </div>
-              </div>
-              <div class="case-stat">
-                <div class="case-stat__num">2 days</div>
-                <div class="case-stat__label">
-                  <span lang="en">setup · KYC complete</span>
-                  <span lang="es">setup · KYC listo</span>
+                <div class="case-stat">
+                  <div class="case-stat__num" id="pbMonthly">$5.9K</div>
+                  <div class="case-stat__label"><span lang="en">est saved · per month</span><span lang="es">est. ahorro · por mes</span></div>
+                </div>
+                <div class="case-stat">
+                  <div class="case-stat__num">2 days</div>
+                  <div class="case-stat__label"><span lang="en">setup · KYC complete</span><span lang="es">setup · KYC listo</span></div>
                 </div>
               </div>
             </div>
@@ -2051,5 +2074,111 @@
         <div class="footer__watermark" aria-hidden="true">flexiwires</div>
       </div>
     </footer>
+
+    <!-- Interactive customer-profile builder · live savings estimate + chart -->
+    <script>
+      (() => {
+        const root = document.getElementById('profileBuilder');
+        if (!root) return;
+
+        const volIn = document.getElementById('pbVolume');
+        const wireIn = document.getElementById('pbWires');
+        const chips = Array.from(root.querySelectorAll('.pb__chip'));
+        const chart = document.getElementById('pbChart');
+
+        const out = {
+          vol: document.getElementById('pbVolumeOut'),
+          wires: document.getElementById('pbWiresOut'),
+          corr: document.getElementById('pbCorrOut'),
+          perWire: document.getElementById('pbPerWire'),
+          hours: document.getElementById('pbHours'),
+          monthly: document.getElementById('pbMonthly'),
+          summary: document.getElementById('pbSummary'),
+        };
+
+        const MIN_PER_WIRE = 11; // ops minutes saved per wire (60 wires -> 11h)
+
+        const money = (n) => {
+          if (n >= 1e6) return '$' + (n / 1e6).toFixed(n >= 1e7 ? 0 : 1) + 'M';
+          if (n >= 1e3) return '$' + (n / 1e3).toFixed(n >= 1e5 ? 0 : 1) + 'K';
+          return '$' + Math.round(n).toLocaleString();
+        };
+        const dollars = (n) => '$' + Math.round(n).toLocaleString();
+
+        // Build the bar chart once; update heights/labels on render.
+        let barEls = [];
+        const buildChart = (active) => {
+          chart.innerHTML = '';
+          barEls = active.map((c) => {
+            const bar = document.createElement('div');
+            bar.className = 'pb__bar';
+            bar.innerHTML =
+              '<span class="pb__bar-val"></span>' +
+              '<span class="pb__bar-fill"></span>' +
+              '<span class="pb__bar-code">' + c.code + '</span>';
+            chart.appendChild(bar);
+            return { wrap: bar, val: bar.querySelector('.pb__bar-val'), fill: bar.querySelector('.pb__bar-fill') };
+          });
+        };
+
+        let lastKey = '';
+        const render = () => {
+          const volume = +volIn.value;
+          const wires = +wireIn.value;
+          const active = chips
+            .filter((c) => c.classList.contains('is-on'))
+            .map((c) => ({ code: c.dataset.code, bps: +c.dataset.bps }));
+
+          // Guard: always keep at least one corridor on.
+          if (!active.length) {
+            chips[0].classList.add('is-on');
+            return render();
+          }
+
+          out.vol.textContent = money(volume);
+          out.wires.textContent = wires;
+          out.corr.textContent = active.length + ' active';
+
+          // Per-corridor monthly savings = even volume split x corridor bps.
+          const perCorridorVol = volume / active.length;
+          const perCorridor = active.map((c) => ({ code: c.code, saved: perCorridorVol * (c.bps / 10000) }));
+          const monthly = perCorridor.reduce((s, c) => s + c.saved, 0);
+          const perWire = wires ? monthly / wires : 0;
+          const hours = Math.round((wires * MIN_PER_WIRE) / 60);
+
+          out.perWire.textContent = dollars(perWire);
+          out.hours.textContent = hours + 'h';
+          out.monthly.textContent = money(monthly);
+
+          const codes = active.map((c) => c.code);
+          const corrList = codes.length > 1 ? codes.slice(0, -1).join(', ') + ' and ' + codes.slice(-1) : codes[0];
+          out.summary.textContent =
+            'Moves ' + money(volume) + '/month from USD into ' + corrList + ' across ' + wires + ' wires.';
+
+          // Rebuild bars only when the set of corridors changes.
+          const key = codes.join('|');
+          if (key !== lastKey) { buildChart(perCorridor); lastKey = key; }
+
+          const max = Math.max(...perCorridor.map((c) => c.saved), 1);
+          const avail = Math.max(60, chart.clientHeight - 46);
+          perCorridor.forEach((c, i) => {
+            const el = barEls[i];
+            if (!el) return;
+            el.fill.style.height = Math.max(8, (c.saved / max) * avail) + 'px';
+            el.val.textContent = money(c.saved);
+          });
+        };
+
+        volIn.addEventListener('input', render);
+        wireIn.addEventListener('input', render);
+        chips.forEach((c) =>
+          c.addEventListener('click', () => {
+            c.classList.toggle('is-on');
+            render();
+          })
+        );
+        render();
+      })();
+    </script>
 
     <!-- Smooth scroll + scroll-driven animations · Lenis + GSAP + ScrollTrigger -->
