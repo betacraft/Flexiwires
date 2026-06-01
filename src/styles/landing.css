@@ -4966,7 +4966,7 @@ html[data-theme="mytheme"] .logos--rail .marquee__cell:hover {
 /* ===== TRUST BAND -> inline divider row (no boxes) =====
    Four items in one clean row, separated by thin vertical hairlines.
    Green icon chip on top, bold title, then description. Airy + minimal. */
-html[data-theme="mytheme"] .trust-band { padding: 16px 0 40px !important; }
+html[data-theme="mytheme"] .trust-band { padding: 72px 0 40px !important; }
 html[data-theme="mytheme"] .trust-band__grid {
   grid-template-columns: repeat(4, 1fr);
   gap: 0 !important;
