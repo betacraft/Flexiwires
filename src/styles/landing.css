@@ -2468,9 +2468,9 @@
         --background: #ffffff;
         --foreground: #0a0a0a;
         --muted-foreground: #6b6b6b;
-        --surface-1: #f4f5f7;
-        --surface-2: #eceef1;
-        --border: #e6e8ec;
+        --surface-1: #f5f5f5;
+        --surface-2: #ededed;
+        --border: #e6e6e6;
         --accent: #3fe864;
         --accent-foreground: #0a0a0a;
         --mytheme-hero-bg: #111214;
@@ -4989,7 +4989,7 @@ html[data-theme="mytheme"] .logos--rail .marquee__cell {
   opacity: 1 !important;
   color: #0a0a0a !important;
   background: linear-gradient(180deg, #fcfcfd 0%, #f0f2f5 100%);
-  border: 1px solid #e6e8ec;
+  border: 1px solid #e6e6e6;
   border-radius: 999px;
   padding: 10px 18px;
   font-size: 12px;
@@ -5122,7 +5122,7 @@ html[data-theme="mytheme"] .persona,
 html[data-theme="mytheme"] .case-profile,
 html[data-theme="mytheme"] .mytheme-trust__card {
   background: linear-gradient(180deg, #fcfcfd 0%, #f0f2f5 100%);
-  border: 1px solid #e6e8ec;
+  border: 1px solid #e6e6e6;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 30px -18px rgba(16, 24, 40, 0.14);
 }
 html[data-theme="mytheme"] .comparison-card:hover,
@@ -5261,7 +5261,7 @@ html[data-theme="mytheme"] .pricing__grid {
 }
 html[data-theme="mytheme"] .price-card {
   background: #ffffff;
-  border: 1px solid #e6e8ec;
+  border: 1px solid #e6e6e6;
   border-radius: 22px;
   padding: 32px 30px;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 14px 34px -20px rgba(16, 24, 40, 0.16);
@@ -5278,7 +5278,7 @@ html[data-theme="mytheme"] .price-card__icon {
   flex-shrink: 0;
   border-radius: 50%;
   background: #f1f3f6;
-  border: 1px solid #e6e8ec;
+  border: 1px solid #e6e6e6;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -5318,7 +5318,7 @@ html[data-theme="mytheme"] .price-card .btn--primary:hover {
 }
 /* divider between the CTA and the feature checklist */
 html[data-theme="mytheme"] .price-card__features {
-  border-top: 1px solid #e6e8ec;
+  border-top: 1px solid #e6e6e6;
   padding-top: 20px;
   margin-top: 4px;
   gap: 14px;

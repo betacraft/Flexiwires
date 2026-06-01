@@ -1,6 +1,6 @@
 ---
 // FlexiWires - Design System (v2)
-// Single signature green (the landing's accent) on a cool neutral ramp. No blue.
+// Single signature green (the landing's accent) on a neutral grey ramp. No blue.
 // Typography inherited from the landing (Inter / Instrument Serif / JetBrains Mono).
 // Docs-style layout with sticky sidebar + scrollspy. Em-dash free.
 const updated = 'June 2026';
@@ -28,15 +28,15 @@ const green = [
 const neutrals = [
   { name: 'Ink', hex: '#0A0A0A', token: '--foreground', use: 'Primary text, headings, label on green' },
   { name: 'Slate', hex: '#6B6B6B', token: '--muted-foreground', use: 'Secondary text, sub-labels, eyebrows' },
-  { name: 'Border', hex: '#E6E8EC', token: '--border', use: 'Dividers, card + input borders' },
-  { name: 'Surface', hex: '#F4F5F7', token: '--surface-1', use: 'Cards, soft bands' },
-  { name: 'Mist', hex: '#ECEEF1', token: '--surface-2', use: 'Deeper bands, table headers' },
+  { name: 'Border', hex: '#E6E6E6', token: '--border', use: 'Dividers, card + input borders' },
+  { name: 'Surface', hex: '#F5F5F5', token: '--surface-1', use: 'Cards, soft bands' },
+  { name: 'Mist', hex: '#EDEDED', token: '--surface-2', use: 'Deeper bands, table headers' },
   { name: 'White', hex: '#FFFFFF', token: '--background', use: 'Page background, sheets, inputs' },
 ];
 const contrast = [
   { fg: 'Ink', bg: 'White', fghex: '#0A0A0A', bghex: '#FFFFFF', ratio: '19.9:1', level: 'AAA' },
   { fg: 'Ink', bg: 'Green', fghex: '#0A0A0A', bghex: '#3FE864', ratio: '15.3:1', level: 'AAA' },
-  { fg: 'Ink', bg: 'Surface', fghex: '#0A0A0A', bghex: '#F4F5F7', ratio: '18.2:1', level: 'AAA' },
+  { fg: 'Ink', bg: 'Surface', fghex: '#0A0A0A', bghex: '#F5F5F5', ratio: '18.3:1', level: 'AAA' },
   { fg: 'White', bg: 'Ink', fghex: '#FFFFFF', bghex: '#0A0A0A', ratio: '19.9:1', level: 'AAA' },
   { fg: 'Slate', bg: 'White', fghex: '#6B6B6B', bghex: '#FFFFFF', ratio: '5.0:1', level: 'AA' },
 ];
@@ -76,14 +76,14 @@ const isLight = (h) => {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FlexiWires - Design System</title>
-    <meta name="description" content="FlexiWires design system: one signature green on a cool neutral ramp, landing-page typography, spacing, elevation, iconography, components, status and motion." />
+    <meta name="description" content="FlexiWires design system: one signature green on a neutral grey ramp, landing-page typography, spacing, elevation, iconography, components, status and motion." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --ink:#0a0a0a; --text-2:#3c3c44; --muted:#6b6b6b;
-        --canvas:#f3f4f7; --surface:#fff; --border:#e6e8ec; --surface-2:#eceef1;
+        --ink:#0a0a0a; --text-2:#3a3a3a; --muted:#6b6b6b;
+        --canvas:#f4f4f4; --surface:#fff; --border:#e6e6e6; --surface-2:#ededed;
         --accent:#3fe864; --accent-hover:#2bd650; --accent-tint:#e7fbec; --accent-deep:#1c8f3e;
         --sans:'Inter',system-ui,sans-serif; --serif:'Instrument Serif',Georgia,serif; --mono:'JetBrains Mono',ui-monospace,monospace;
         --sidebar:268px;
@@ -255,7 +255,7 @@ const isLight = (h) => {
         <div class="top">
           <div class="kicker">FlexiWires</div>
           <h1>The <em>design system</em></h1>
-          <p>One source of truth for how FlexiWires looks, reads and behaves. One signature green, shared with the landing page, and a cool neutral ramp underneath it. Type is shared with the landing too. Every token is built to scale into the full website, and each rule carries its reasoning.</p>
+          <p>One source of truth for how FlexiWires looks, reads and behaves. One signature green, shared with the landing page, and a neutral grey ramp underneath it. Type is shared with the landing too. Every token is built to scale into the full website, and each rule carries its reasoning.</p>
           <div class="ver">Version 2.0 · Updated {updated}</div>
         </div>
 
@@ -266,19 +266,19 @@ const isLight = (h) => {
             <p class="intro">FlexiWires compares every cross-border rail on one screen. The system is precise and quiet, with one decisive color: a signature green that marks both the next action and the win. These three traits drive every decision below.</p>
             <div class="cards3">
               <div class="card"><h4>Engineered</h4><p>Monospace data, exact figures, tight grids. Built by people who move money.</p></div>
-              <div class="card"><h4>Calm</h4><p>A cool neutral canvas and generous space. Green is rationed so it always means something.</p></div>
+              <div class="card"><h4>Calm</h4><p>A neutral canvas and generous space. Green is rationed so it always means something.</p></div>
               <div class="card"><h4>Confident</h4><p>One green for action and outcome. Where it appears, something matters.</p></div>
             </div>
             <div class="why">
               <div class="why-lbl">One color, shared</div>
-              <p>The system uses the <b>same signature green and the same type</b> as the live landing page, so marketing and product read as one product. Green is the only chromatic color; everything else is a cool neutral. There is no second brand color.</p>
+              <p>The system uses the <b>same signature green and the same type</b> as the live landing page, so marketing and product read as one product. Green is the only chromatic color; everything else is a neutral grey. There is no second brand color.</p>
             </div>
           </section>
 
           <section class="doc-sec" id="color">
             <div class="lbl">02 · Color</div>
             <h2>One signature <em>green</em></h2>
-            <p class="intro">Green leads and a cool neutral ramp holds it on a near-white canvas. Green is rationed to action, status and the positive outcome, so every green pixel stays meaningful. It is always a fill or a small accent paired with dark text, never a text color on white.</p>
+            <p class="intro">Green leads and a neutral grey ramp holds it on a near-white canvas. Green is rationed to action, status and the positive outcome, so every green pixel stays meaningful. It is always a fill or a small accent paired with dark text, never a text color on white.</p>
 
             <div class="group-label">Signature · Green</div>
             <div class="swatches">
@@ -290,7 +290,7 @@ const isLight = (h) => {
               ))}
             </div>
 
-            <div class="group-label">Neutrals · cool ramp</div>
+            <div class="group-label">Neutrals · grey ramp</div>
             <div class="swatches">
               {neutrals.map((c) => (
                 <div class="sw">
@@ -303,7 +303,7 @@ const isLight = (h) => {
             <div class="why">
               <div class="why-lbl">Why one green</div>
               <p><b>Signature green (#3FE864)</b> reads as go, success and money saved, exactly the feeling at send. Rationing it to CTAs, status dots and the live indicator keeps it meaningful, and black-on-green stays AAA legible.</p>
-              <p>Green is <b>light</b>, so it only ever carries dark text and never appears as text on a white background. When green needs to be a text or thin-line accent on light, use <b>Green Deep (#1C8F3E)</b>, which is verified for contrast. The <b>cool neutral ramp</b> on a near-white canvas keeps the UI calm and lets green do all the talking.</p>
+              <p>Green is <b>light</b>, so it only ever carries dark text and never appears as text on a white background. When green needs to be a text or thin-line accent on light, use <b>Green Deep (#1C8F3E)</b>, which is verified for contrast. The <b>neutral grey ramp</b> on a near-white canvas keeps the UI calm and lets green do all the talking.</p>
             </div>
           </section>
 
