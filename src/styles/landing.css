@@ -4884,28 +4884,29 @@ html[data-theme="mytheme"] .footer__legal strong {
 }
 .appcta__visual {
   position: relative;
-  background: linear-gradient(160deg, #1b1d22 0%, #0c0d10 100%);
+  background: #ffffff;
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: flex-start;   /* shift image toward the left */
   overflow: hidden;
 }
 .appcta__phone {
-  width: 86%;
-  max-width: 440px;
+  width: 118%;                    /* bigger hand, bleeds beyond the panel */
+  max-width: 600px;
   height: auto;
   display: block;
   margin-bottom: -2px;
-  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.45));
+  margin-left: -14%;             /* push it further left */
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.18));
 }
 @media (max-width: 880px) {
   .appcta__panel { grid-template-columns: 1fr; min-height: 0; }
   .appcta__copy { padding: 40px 24px 28px; }
-  .appcta__visual { padding-top: 8px; }
-  .appcta__phone { width: 72%; max-width: 320px; }
+  .appcta__visual { padding-top: 8px; justify-content: center; }
+  .appcta__phone { width: 92%; max-width: 420px; margin-left: 0; }
 }
 @media (max-width: 480px) {
   .appcta__copy { padding: 32px 20px 24px; }
   .appcta__proof-num { font-size: 24px; }
-  .appcta__phone { width: 78%; max-width: 280px; }
+  .appcta__phone { width: 96%; max-width: 360px; margin-left: 0; }
 }
