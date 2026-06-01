@@ -251,27 +251,43 @@
         transition: transform 0.2s var(--ease-out-cubic);
       }
 
-      /* ===== CTA TEXT ROLL (Monex-style) =====
-       * The label is duplicated into a vertically-clipped track; on hover the
-       * track rolls up one line so the second copy replaces the first.
-       * The arrow rolls the same way. Built by JS (wrapCtaRoll) so markup,
-       * colours, fonts and sizes stay exactly as authored. */
+      /* ===== CTA TEXT ROLL (Monex-style 3D flip) =====
+       * Two identical copies of the label+arrow stacked as the two faces of a
+       * cube; on hover the cube rotates on the X axis so the front face rolls
+       * away (downward) and the second face rolls up into place. Built by JS so
+       * markup, colours, fonts and sizes stay exactly as authored. */
+      .btn { perspective: 480px; }
       .btn__roll {
         position: relative;
         display: inline-flex;
-        flex-direction: column;
-        overflow: hidden;
         line-height: 1.15;
-        height: 1.15em;
-        transition: transform 0.34s var(--ease-out-expo);
+        transform-style: preserve-3d;
+        transition: transform 0.45s var(--ease-out-expo);
+        transform-origin: 50% 50%;
       }
-      .btn:hover .btn__roll { transform: translateY(-1.15em); }
+      .btn:hover .btn__roll { transform: rotateX(-90deg); }
       .btn__roll > span {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 8px;
-        height: 1.15em;
         white-space: nowrap;
+        backface-visibility: hidden;
+      }
+      /* front face */
+      .btn__roll > span:nth-child(1) {
+        position: relative;
+        transform: translateZ(0.575em);
+      }
+      /* second face — sits as the bottom of the cube, rolls to front on hover */
+      .btn__roll > span:nth-child(2) {
+        position: absolute;
+        inset: 0;
+        transform: rotateX(90deg) translateZ(0.575em);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .btn__roll { transition: none; }
+        .btn:hover .btn__roll { transform: none; }
       }
 
       /* =================================================================
