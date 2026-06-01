@@ -1,5 +1,5 @@
 ---
-// FlexiWires - Design System (v2)
+// FlexiWires - Brand Guidelines (v2)
 // Single signature green (the landing's accent) on a neutral grey ramp. No blue.
 // Typography inherited from the landing (Inter / Instrument Serif / JetBrains Mono).
 // Docs-style layout with sticky sidebar + scrollspy. Em-dash free.
@@ -75,8 +75,8 @@ const isLight = (h) => {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FlexiWires - Design System</title>
-    <meta name="description" content="FlexiWires design system: one signature green on a neutral grey ramp, landing-page typography, spacing, elevation, iconography, components, status and motion." />
+    <title>FlexiWires - Brand Guidelines</title>
+    <meta name="description" content="FlexiWires brand guidelines: one signature green on a neutral grey ramp, landing-page typography, spacing, elevation, iconography, components, status and motion." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -242,7 +242,7 @@ const isLight = (h) => {
     <div class="layout">
       <aside class="sidebar">
         <a class="sidebar__brand" href="./"><span class="pill"><img src="./assets/Flexi-light.svg" alt="FlexiWires" /></span></a>
-        <div class="sidebar__sub">Design System</div>
+        <div class="sidebar__sub">Brand Guidelines</div>
         <nav class="nav" id="nav">
           {nav.map((n) => (
             <a href={`#${n.id}`} data-target={n.id}><span class="dot"></span>{n.label}</a>
@@ -254,7 +254,7 @@ const isLight = (h) => {
       <main class="content">
         <div class="top">
           <div class="kicker">FlexiWires</div>
-          <h1>The <em>design system</em></h1>
+          <h1>The <em>brand guidelines</em></h1>
           <p>One source of truth for how FlexiWires looks, reads and behaves. One signature green, shared with the landing page, and a neutral grey ramp underneath it. Type is shared with the landing too. Every token is built to scale into the full website, and each rule carries its reasoning.</p>
           <div class="ver">Version 2.0 · Updated {updated}</div>
         </div>
@@ -493,7 +493,7 @@ const isLight = (h) => {
           </section>
 
           <div style="padding:36px 0 80px; color:var(--muted); font-size:13px;">
-            FlexiWires Design System · v2.0 · {updated} · <a href="./" style="color:var(--ink); border-bottom:1px solid var(--border);">View the live landing page</a>
+            FlexiWires Brand Guidelines · v2.0 · {updated} · <a href="./" style="color:var(--ink); border-bottom:1px solid var(--border);">View the live landing page</a>
           </div>
         </div>
       </main>
