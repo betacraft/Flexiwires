@@ -5076,7 +5076,6 @@ html[data-theme="mytheme"] .trust-pill strong {
    vertical gradient + gentle diffuse shadow (airy, minimal). Applies only to
    self-contained bordered cards; does NOT touch card size, fonts, or the
    dark hero phone visual. */
-html[data-theme="mytheme"] .how-step,
 html[data-theme="mytheme"] .comparison-card,
 html[data-theme="mytheme"] .persona,
 html[data-theme="mytheme"] .case-profile,
@@ -5085,7 +5084,6 @@ html[data-theme="mytheme"] .mytheme-trust__card {
   border: 1px solid #e6e8ec;
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 12px 30px -18px rgba(16, 24, 40, 0.14);
 }
-html[data-theme="mytheme"] .how-step:hover,
 html[data-theme="mytheme"] .comparison-card:hover,
 html[data-theme="mytheme"] .persona:hover,
 html[data-theme="mytheme"] .case-profile:hover,
@@ -5113,6 +5111,51 @@ html[data-theme="mytheme"] .stats {
 html[data-theme="mytheme"] .corridors { padding-bottom: 40px; }
 html[data-theme="mytheme"] .personas { padding: 80px 0; }
 /* ===== END SECTION SEPARATION ===== */
+
+/* ===== HOW IT WORKS · dark section, cards flip to green on hover =====
+   Dark band with three cards (icon + subheading + body, no CTA). On hover each
+   card fills with the signature green and its content flips to ink. */
+html[data-theme="mytheme"] .how {
+  background: #0c0c0e;
+  border-radius: 28px;
+  margin: 8px 20px;
+  padding: 84px 0;
+}
+@media (max-width: 720px) {
+  html[data-theme="mytheme"] .how { margin: 8px 12px; padding: 56px 0; border-radius: 22px; }
+}
+html[data-theme="mytheme"] .how .eyebrow { color: #3fe864; }
+html[data-theme="mytheme"] .how .h-section { color: #ffffff; }
+html[data-theme="mytheme"] .how .h-section em { color: #3fe864; }
+html[data-theme="mytheme"] .how .lede { color: rgba(255, 255, 255, 0.62); }
+
+/* the cards */
+html[data-theme="mytheme"] .how-step {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: none;
+  transition: background 0.22s var(--ease-out-cubic), border-color 0.22s var(--ease-out-cubic), transform 0.22s var(--ease-out-cubic);
+}
+html[data-theme="mytheme"] .how-step__num { color: rgba(255, 255, 255, 0.4); }
+html[data-theme="mytheme"] .how-step__icon { color: #3fe864; }
+html[data-theme="mytheme"] .how-step__title { color: #ffffff; }
+html[data-theme="mytheme"] .how-step__body { color: rgba(255, 255, 255, 0.6); }
+
+/* hover -> the whole card becomes primary green, content flips to ink */
+html[data-theme="mytheme"] .how-step:hover {
+  background: #3fe864;
+  border-color: #3fe864;
+  transform: translateY(-4px);
+}
+html[data-theme="mytheme"] .how-step:hover .how-step__num,
+html[data-theme="mytheme"] .how-step:hover .how-step__icon,
+html[data-theme="mytheme"] .how-step:hover .how-step__title,
+html[data-theme="mytheme"] .how-step:hover .how-step__body {
+  color: #0a0a0a;
+}
+html[data-theme="mytheme"] .how-step:hover .how-step__num { color: rgba(10, 10, 10, 0.55); }
+/* ===== END HOW IT WORKS ===== */
 
 /* ===== MOBILE SECTION · checkmarks in solid black circles =====
    The thin green checks were low-contrast on the grey section; wrap each in a
