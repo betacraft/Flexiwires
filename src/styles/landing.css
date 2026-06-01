@@ -3656,7 +3656,11 @@
       }
       .corridor-grid table {
         width: 100%;
-        border-collapse: collapse;
+        /* separate (not collapse) so cell borders clip cleanly inside the
+           rounded, overflow-hidden container - collapsed borders leak past
+           the rounded corners in most browsers */
+        border-collapse: separate;
+        border-spacing: 0;
         font-family: var(--font-mono);
       }
       .corridor-grid th, .corridor-grid td {
@@ -5108,6 +5112,26 @@ html[data-theme="mytheme"] .stats {
 html[data-theme="mytheme"] .corridors { padding-bottom: 40px; }
 html[data-theme="mytheme"] .personas { padding: 80px 0; }
 /* ===== END SECTION SEPARATION ===== */
+
+/* ===== MOBILE SECTION · checkmarks in solid black circles =====
+   The thin green checks were low-contrast on the grey section; wrap each in a
+   filled black circle with a white tick so they read clearly. */
+html[data-theme="mytheme"] .mobile__feature svg {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  max-width: 24px !important;
+  flex: 0 0 24px !important;
+  padding: 5px;
+  box-sizing: border-box;
+  background: #0a0a0a;
+  border-radius: 50%;
+  color: #ffffff;
+  stroke: #ffffff;
+  stroke-width: 2.6;
+}
+html[data-theme="mytheme"] .mobile__feature { color: var(--foreground); align-items: center; }
+/* ===== END MOBILE CHECKMARKS ===== */
 
 /* ===== RATE WIDGET · make corridor/amount feel interactive =====
    appearance:none had stripped the dropdown arrow, so the fields read as static
