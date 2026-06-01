@@ -4805,9 +4805,11 @@
         html[data-theme="mytheme"] .header__nav { display: none !important; }
         html[data-theme="mytheme"] .mytheme-stats { position: static !important; left: auto !important; bottom: auto !important; margin-top: 28px !important; }
 
-        /* Hero phone + floating glass cards stay on-screen */
-        html[data-theme="mytheme"] .hero__visual { min-height: 420px !important; overflow: visible !important; }
-        html[data-theme="mytheme"] .hero-phone-wrap { right: auto !important; bottom: 0 !important; width: 100% !important; margin: 0 auto !important; }
+        /* Hero phone + floating glass cards stay on-screen.
+           Visual hugs the (landscape) image so the stone meets the card bottom -
+           no floating gap. Wrap is in-flow on mobile so the height is exact. */
+        html[data-theme="mytheme"] .hero__visual { min-height: 0 !important; overflow: visible !important; }
+        html[data-theme="mytheme"] .hero-phone-wrap { position: relative !important; right: auto !important; bottom: auto !important; left: auto !important; top: auto !important; width: 100% !important; margin: 0 auto !important; }
         html[data-theme="mytheme"] .hero-card--savings { left: 4% !important; top: 6% !important; transform: scale(.82) !important; transform-origin: top left; }
         html[data-theme="mytheme"] .hero-card--rate { right: 2% !important; bottom: 8% !important; left: auto !important; top: auto !important; transform: scale(.82) !important; transform-origin: bottom right; }
 
