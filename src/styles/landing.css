@@ -4708,10 +4708,16 @@
         overflow: hidden;
       }
       html[data-theme="mytheme"] .footer__watermark {
-        font-size: clamp(44px, 13.2vw, 188px) !important;
+        /* break out of the container so the wordmark spans the full footer width */
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        font-size: 17vw !important;        /* tuned so "flexiwires" fills the full width edge-to-edge */
         margin-top: 28px !important;
-        margin-bottom: calc(-0.22em + 10px) !important;   /* nudged up 10px from flush */
+        margin-bottom: -0.06em !important;  /* sit flush to the footer bottom */
         line-height: 0.8 !important;
+        text-align: center;
       }
       /* ===== END LIGHT FOOTER ===== */
 
@@ -4957,37 +4963,44 @@ html[data-theme="mytheme"] .logos--rail .marquee__cell:hover {
 /* ===== END ACTIVE CORRIDORS RAIL ===== */
 
 /* ===== TRUST BAND -> highlighted cards (My Theme, added) ===== */
-html[data-theme="mytheme"] .trust-band { padding: 8px 0 24px !important; }
+/* ===== TRUST BAND -> inline divider row (no boxes) =====
+   Four items in one clean row, separated by thin vertical hairlines.
+   Green icon chip on top, bold title, then description. Airy + minimal. */
+html[data-theme="mytheme"] .trust-band { padding: 16px 0 40px !important; }
 html[data-theme="mytheme"] .trust-band__grid {
-  gap: 18px !important;
-  max-width: 1200px !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 !important;
+  max-width: 1160px !important;
 }
 html[data-theme="mytheme"] .trust-pill {
   flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
-  background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 24px 22px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 6px 40px;
   font-size: 14px;
   line-height: 1.55;
-  box-shadow: 0 1px 2px rgba(10,10,10,0.04);
-  transition: transform 0.2s var(--ease-out-cubic), box-shadow 0.2s var(--ease-out-cubic), border-color 0.2s;
+  transition: none;
 }
-html[data-theme="mytheme"] .trust-pill:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 36px -18px rgba(10,10,10,0.22);
-  border-color: var(--edge-strong, #d4cdc1);
+/* thin vertical divider between items */
+html[data-theme="mytheme"] .trust-pill + .trust-pill {
+  border-left: 1px solid var(--border);
 }
+html[data-theme="mytheme"] .trust-pill:first-child { padding-left: 0; }
+html[data-theme="mytheme"] .trust-pill:last-child { padding-right: 0; }
+html[data-theme="mytheme"] .trust-pill:hover { transform: none; box-shadow: none; }
 html[data-theme="mytheme"] .trust-pill__icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background: rgba(63,232,100,0.12);
   border: 1px solid rgba(63,232,100,0.3);
   color: #0a0a0a;
 }
-html[data-theme="mytheme"] .trust-pill__icon svg { width: 22px; height: 22px; stroke-width: 1.7; }
+html[data-theme="mytheme"] .trust-pill__icon svg { width: 20px; height: 20px; stroke-width: 1.7; }
 html[data-theme="mytheme"] .trust-pill strong {
   font-family: var(--font-sans);
   font-size: 15px;
@@ -4996,10 +5009,22 @@ html[data-theme="mytheme"] .trust-pill strong {
   color: var(--foreground);
   margin-bottom: 6px;
 }
+/* Tablet: 2x2, swap vertical dividers for spacing */
 @media (max-width: 880px) {
-  html[data-theme="mytheme"] .trust-pill { padding: 20px 18px; }
+  html[data-theme="mytheme"] .trust-band__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 28px !important;
+  }
+  html[data-theme="mytheme"] .trust-pill,
+  html[data-theme="mytheme"] .trust-pill + .trust-pill {
+    border-left: 0;
+    padding: 0;
+  }
 }
-/* ===== END TRUST BAND CARDS ===== */
+@media (max-width: 480px) {
+  html[data-theme="mytheme"] .trust-band__grid { grid-template-columns: 1fr; gap: 28px !important; }
+}
+/* ===== END TRUST BAND INLINE ROW ===== */
 
 /* ===== FLOATING STICKY NAV (added) ===== */
 .floatnav {
@@ -5048,10 +5073,8 @@ html[data-theme="mytheme"] .trust-pill strong {
    dark hero phone visual. */
 html[data-theme="mytheme"] .how-step,
 html[data-theme="mytheme"] .comparison-card,
-html[data-theme="mytheme"] .price-card,
 html[data-theme="mytheme"] .persona,
 html[data-theme="mytheme"] .case-profile,
-html[data-theme="mytheme"] .trust-pill,
 html[data-theme="mytheme"] .mytheme-trust__card {
   background: linear-gradient(180deg, #fcfcfd 0%, #f0f2f5 100%);
   border: 1px solid #e6e8ec;
@@ -5059,7 +5082,6 @@ html[data-theme="mytheme"] .mytheme-trust__card {
 }
 html[data-theme="mytheme"] .how-step:hover,
 html[data-theme="mytheme"] .comparison-card:hover,
-html[data-theme="mytheme"] .price-card:hover,
 html[data-theme="mytheme"] .persona:hover,
 html[data-theme="mytheme"] .case-profile:hover,
 html[data-theme="mytheme"] .mytheme-trust__card:hover {
@@ -5086,3 +5108,139 @@ html[data-theme="mytheme"] .stats {
 html[data-theme="mytheme"] .corridors { padding-bottom: 40px; }
 html[data-theme="mytheme"] .personas { padding: 80px 0; }
 /* ===== END SECTION SEPARATION ===== */
+
+/* ===== RATE WIDGET · make corridor/amount feel interactive =====
+   appearance:none had stripped the dropdown arrow, so the fields read as static
+   labels. Add a chevron to the corridor select + clear hover/focus affordances. */
+html[data-theme="mytheme"] .rate-widget__field select,
+html[data-theme="mytheme"] .rate-widget__field input {
+  border: 1px solid #d7dae0;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+html[data-theme="mytheme"] .rate-widget__field input { cursor: text; }
+/* chevron on the corridor dropdown */
+html[data-theme="mytheme"] .rate-widget__field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+  padding-right: 38px;
+}
+html[data-theme="mytheme"] .rate-widget__field select:hover,
+html[data-theme="mytheme"] .rate-widget__field input:hover {
+  border-color: #b9bdc6;
+}
+html[data-theme="mytheme"] .rate-widget__field select:focus,
+html[data-theme="mytheme"] .rate-widget__field input:focus {
+  border-color: #3fe864;
+  box-shadow: 0 0 0 3px rgba(63, 232, 100, 0.18);
+}
+/* ===== END RATE WIDGET ===== */
+
+/* ===== PRICING · reference-style cards (theme + layout only; copy/fonts kept) =====
+   White cards, plan icon chip, full-width CTA above a divided checkmark list,
+   and an elevated featured card with a green "POPULAR" header band. */
+html[data-theme="mytheme"] .pricing__grid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+  padding-top: 24px;
+}
+html[data-theme="mytheme"] .price-card {
+  background: #ffffff;
+  border: 1px solid #e6e8ec;
+  border-radius: 22px;
+  padding: 32px 30px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 14px 34px -20px rgba(16, 24, 40, 0.16);
+  gap: 18px;
+}
+/* plan icon chip next to the tier label */
+html[data-theme="mytheme"] .price-card__tier {
+  gap: 12px;
+  justify-content: flex-start;
+}
+html[data-theme="mytheme"] .price-card__icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #f1f3f6;
+  border: 1px solid #e6e8ec;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a0a0a;
+}
+html[data-theme="mytheme"] .price-card--featured .price-card__icon {
+  background: rgba(63, 232, 100, 0.14);
+  border-color: rgba(63, 232, 100, 0.35);
+}
+html[data-theme="mytheme"] .price-card__icon svg {
+  width: 18px; height: 18px;
+  stroke: currentColor; stroke-width: 1.7; fill: none;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+/* full-width CTAs: black for standard plans, green for featured */
+html[data-theme="mytheme"] .price-card .btn {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 12px;
+}
+html[data-theme="mytheme"] .price-card .btn--ghost {
+  background: #0a0a0a;
+  color: #ffffff;
+  border: 0;
+}
+html[data-theme="mytheme"] .price-card .btn--ghost:hover {
+  background: #1d1d1f;
+  transform: translateY(-1px);
+}
+html[data-theme="mytheme"] .price-card .btn--primary {
+  background: #3fe864;
+  color: #0a0a0a;
+}
+html[data-theme="mytheme"] .price-card .btn--primary:hover {
+  background: #2bd650;
+  transform: translateY(-1px);
+}
+/* divider between the CTA and the feature checklist */
+html[data-theme="mytheme"] .price-card__features {
+  border-top: 1px solid #e6e8ec;
+  padding-top: 20px;
+  margin-top: 4px;
+  gap: 14px;
+}
+/* elevated featured card with a green header band */
+html[data-theme="mytheme"] .price-card--featured {
+  position: relative;
+  overflow: hidden;
+  border: 1.5px solid #3fe864;
+  padding-top: 56px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px -8px rgba(63, 232, 100, 0.28), 0 24px 50px -24px rgba(16, 24, 40, 0.22);
+}
+html[data-theme="mytheme"] .price-card--featured .price-card__badge {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3fe864;
+  color: #0a0a0a;
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+@media (min-width: 881px) {
+  html[data-theme="mytheme"] .price-card--featured {
+    transform: translateY(-14px);
+  }
+}
+@media (max-width: 880px) {
+  html[data-theme="mytheme"] .pricing__grid { grid-template-columns: 1fr; }
+}
+/* ===== END PRICING ===== */
