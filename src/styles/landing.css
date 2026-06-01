@@ -5068,6 +5068,11 @@ html[data-theme="mytheme"] .trust-pill strong {
     border-left: 0;
     padding: 0;
   }
+  /* Center each item on mobile / stacked layouts (desktop stays left-aligned) */
+  html[data-theme="mytheme"] .trust-pill {
+    align-items: center;
+    text-align: center;
+  }
 }
 @media (max-width: 480px) {
   html[data-theme="mytheme"] .trust-band__grid { grid-template-columns: 1fr; gap: 28px !important; }
