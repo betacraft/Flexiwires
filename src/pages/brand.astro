@@ -1,38 +1,81 @@
 ---
-// FlexiWires - Brand Guidelines & Design System
-// Docs-style layout (sticky sidebar + scrollspy), modeled on Stripe / Polaris / Vercel.
-// Self-contained, client-shareable, em-dash free. Tokens mirror src/styles/landing.css.
+// FlexiWires - Design System (v2)
+// Colors sampled from the product (the phone app UI): Indigo + Lime + Lavender on a
+// cool mist canvas. Typography inherited from the landing page (Inter / Instrument
+// Serif / JetBrains Mono). Docs-style layout with sticky sidebar + scrollspy.
+// Built to scale into the full product + marketing site. Em-dash free.
 const updated = 'June 2026';
 
 const nav = [
   { id: 'overview', label: 'Overview' },
-  { id: 'logo', label: 'Logo' },
   { id: 'color', label: 'Color' },
+  { id: 'contrast', label: 'Accessibility' },
   { id: 'type', label: 'Typography' },
+  { id: 'spacing', label: 'Spacing & layout' },
+  { id: 'radius', label: 'Radius & elevation' },
   { id: 'icons', label: 'Iconography' },
-  { id: 'imagery', label: 'Imagery' },
   { id: 'components', label: 'Components' },
-  { id: 'motion', label: 'Motion & layout' },
+  { id: 'status', label: 'Status & feedback' },
+  { id: 'motion', label: 'Motion' },
+  { id: 'principles', label: 'Principles' },
 ];
 
-const brandColors = [
-  { name: 'Signature Green', hex: '#3FE864', token: '--accent', use: 'Primary actions, highlights, status dots' },
-  { name: 'Green Hover', hex: '#2BD650', token: 'accent-hover', use: 'CTA hover state' },
-  { name: 'Ink', hex: '#0A0A0A', token: '--foreground', use: 'Primary text, label on green' },
-  { name: 'Hero Black', hex: '#111214', token: '--mytheme-hero-bg', use: 'Dark panels (hero, rail, app)' },
+const primary = [
+  { name: 'Indigo', hex: '#312ED1', token: '--primary', use: 'Primary actions, links, focus rings, chart strokes' },
+  { name: 'Indigo Deep', hex: '#211F9E', token: '--primary-press', use: 'Pressed / active button state' },
+  { name: 'Indigo Tint', hex: '#EDECFB', token: '--primary-tint', use: 'Selected rows, soft fills, badge backgrounds' },
 ];
-const neutralColors = [
-  { name: 'Cream', hex: '#FAF8F4', token: '--background', use: 'Page background' },
-  { name: 'Surface', hex: '#F5F3EF', token: '--surface-2', use: 'Tinted bands' },
-  { name: 'White', hex: '#FFFFFF', token: '--surface-1', use: 'Cards on cream' },
-  { name: 'Border', hex: '#E8E4DC', token: '--border', use: 'Dividers, outlines' },
-  { name: 'Muted', hex: '#6B6B6B', token: '--muted-foreground', use: 'Secondary text, eyebrows' },
+const accent = [
+  { name: 'Lime', hex: '#C6F86F', token: '--accent', use: 'Positive deltas, live dot, money-saved, highlights' },
+  { name: 'Lime Soft', hex: '#E6FBC0', token: '--accent-soft', use: 'Success backgrounds, subtle positive fills' },
 ];
-const mintColors = [
-  { name: 'Mint 1', hex: '#EAF7EE', token: 'n/a', use: 'App panel gradient (top)' },
-  { name: 'Mint 2', hex: '#DFF3E6', token: 'n/a', use: 'App panel gradient (bottom)' },
+const lavender = [
+  { name: 'Lavender', hex: '#ABA9D5', token: '--lavender', use: 'Secondary data series, avatars, chart fills' },
 ];
-const isLight = (h) => ['#FAF8F4','#F5F3EF','#FFFFFF','#E8E4DC','#EAF7EE','#DFF3E6'].includes(h);
+const neutrals = [
+  { name: 'Ink', hex: '#0A0A0A', token: '--ink', use: 'Primary text, headings, icons' },
+  { name: 'Slate', hex: '#646266', token: '--text-2', use: 'Secondary text, sub-labels, descriptions' },
+  { name: 'Mist', hex: '#908E93', token: '--muted', use: 'Captions, disabled, inactive nav' },
+  { name: 'Canvas', hex: '#EEEFF5', token: '--canvas', use: 'App + page background. Cool undertone' },
+  { name: 'White', hex: '#FFFFFF', token: '--surface', use: 'Cards, sheets, inputs, modals' },
+  { name: 'Border', hex: '#E2E2EC', token: '--border', use: 'Dividers, card + input borders' },
+];
+const contrast = [
+  { fg: 'Ink', bg: 'White', fghex: '#0A0A0A', bghex: '#FFFFFF', ratio: '19.9:1', level: 'AAA' },
+  { fg: 'White', bg: 'Indigo', fghex: '#FFFFFF', bghex: '#312ED1', ratio: '8.6:1', level: 'AAA' },
+  { fg: 'Ink', bg: 'Lime', fghex: '#0A0A0A', bghex: '#C6F86F', ratio: '16.1:1', level: 'AAA' },
+  { fg: 'Indigo', bg: 'White', fghex: '#312ED1', bghex: '#FFFFFF', ratio: '8.6:1', level: 'AAA' },
+  { fg: 'Slate', bg: 'White', fghex: '#646266', bghex: '#FFFFFF', ratio: '6.0:1', level: 'AA' },
+  { fg: 'Slate', bg: 'Canvas', fghex: '#646266', bghex: '#EEEFF5', ratio: '5.4:1', level: 'AA' },
+];
+const radii = [
+  { name: 'xs', val: '4px', use: 'Tags, dots' },
+  { name: 'sm', val: '6px', use: 'Inputs, chips' },
+  { name: 'md', val: '8px', use: 'Buttons, small cards' },
+  { name: 'lg', val: '12px', use: 'Cards' },
+  { name: 'xl', val: '16px', use: 'Panels' },
+  { name: '2xl', val: '24px', use: 'Hero / pricing' },
+  { name: 'full', val: '999px', use: 'Pills, avatars' },
+];
+const elevation = [
+  { name: 'sm', val: '0 1px 3px rgba(10,10,10,.06)', use: 'Resting cards' },
+  { name: 'md', val: '0 4px 12px -2px rgba(10,10,10,.06)', use: 'Hover, dropdowns' },
+  { name: 'lg', val: '0 24px 60px -20px rgba(10,10,10,.18)', use: 'Modals, lightbox' },
+];
+const spacing = [
+  { n: '1', v: '4px' }, { n: '2', v: '8px' }, { n: '3', v: '12px' }, { n: '4', v: '16px' },
+  { n: '6', v: '24px' }, { n: '8', v: '32px' }, { n: '12', v: '48px' }, { n: '16', v: '64px' }, { n: '24', v: '96px' },
+];
+const iconSizes = [
+  { px: '14px', stroke: '1.5', use: 'Inline with body / labels' },
+  { px: '18px', stroke: '1.6', use: 'Buttons, list rows' },
+  { px: '22px', stroke: '1.75', use: 'Feature + nav icons' },
+  { px: '28px', stroke: '1.75', use: 'Section / empty states' },
+];
+const isLight = (h) => {
+  const r = parseInt(h.slice(1, 3), 16), g = parseInt(h.slice(3, 5), 16), b = parseInt(h.slice(5, 7), 16);
+  return (0.299 * r + 0.587 * g + 0.114 * b) > 186;
+};
 ---
 
 <!doctype html>
@@ -40,242 +83,347 @@ const isLight = (h) => ['#FAF8F4','#F5F3EF','#FFFFFF','#E8E4DC','#EAF7EE','#DFF3
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FlexiWires - Brand & Design System</title>
-    <meta name="description" content="FlexiWires brand guidelines and design system: logo, color, typography, iconography, imagery, components and motion." />
+    <title>FlexiWires - Design System</title>
+    <meta name="description" content="FlexiWires design system: color sampled from the product UI, landing-page typography, spacing, elevation, iconography, components, status and motion." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --green:#3fe864; --green-hover:#2bd650; --ink:#0a0a0a; --black:#111214;
-        --cream:#faf8f4; --surface:#f5f3ef; --white:#fff; --border:#e8e4dc; --muted:#6b6b6b;
+        --ink:#0a0a0a; --text-2:#3c3c44; --muted:#6e6e77;
+        --canvas:#eef0f6; --surface:#fff; --border:#e2e2ec;
+        --primary:#312ed1; --primary-press:#211f9e; --primary-tint:#edecfb;
+        --accent:#c6f86f; --accent-soft:#e6fbc0; --lavender:#aba9d5;
         --sans:'Inter',system-ui,sans-serif; --serif:'Instrument Serif',Georgia,serif; --mono:'JetBrains Mono',ui-monospace,monospace;
-        --sidebar:264px;
+        --sidebar:268px;
       }
       * { box-sizing:border-box; margin:0; padding:0; }
       html { scroll-behavior:smooth; }
-      body { font-family:var(--sans); background:var(--cream); color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.55; }
+      body { font-family:var(--sans); background:var(--canvas); color:var(--ink); -webkit-font-smoothing:antialiased; line-height:1.55; }
       a { color:inherit; text-decoration:none; }
 
       .layout { display:grid; grid-template-columns:var(--sidebar) 1fr; align-items:start; }
 
-      .sidebar { position:sticky; top:0; height:100vh; border-right:1px solid var(--border); padding:32px 24px; display:flex; flex-direction:column; background:var(--cream); }
-      .sidebar__brand { display:inline-flex; align-items:center; margin-bottom:6px; }
+      .sidebar { position:sticky; top:0; height:100vh; border-right:1px solid var(--border); padding:30px 22px; display:flex; flex-direction:column; background:var(--surface); }
+      .sidebar__brand { display:inline-flex; align-items:center; }
       .sidebar__brand .pill { background:var(--ink); border-radius:999px; padding:8px 12px; display:inline-flex; }
-      .sidebar__brand img { height:24px; display:block; }
-      .sidebar__sub { font-family:var(--mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin:14px 0 24px; }
-      .nav { display:flex; flex-direction:column; gap:2px; }
-      .nav a { font-size:14px; color:var(--muted); padding:8px 12px; border-radius:8px; transition:all .15s; display:flex; align-items:center; gap:10px; }
-      .nav a .dot { width:5px; height:5px; border-radius:50%; background:transparent; transition:background .15s; }
-      .nav a:hover { color:var(--ink); background:rgba(0,0,0,0.03); }
-      .nav a.active { color:var(--ink); font-weight:600; background:rgba(63,232,100,0.12); }
-      .nav a.active .dot { background:var(--green); }
-      .sidebar__foot { margin-top:auto; font-size:11px; color:var(--muted); padding-top:24px; }
+      .sidebar__brand img { height:22px; display:block; }
+      .sidebar__sub { font-family:var(--mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); margin:14px 0 22px; }
+      .nav { display:flex; flex-direction:column; gap:1px; overflow-y:auto; }
+      .nav a { font-size:13.5px; color:var(--muted); padding:7px 12px; border-radius:8px; transition:all .15s; display:flex; align-items:center; gap:10px; }
+      .nav a .dot { width:5px; height:5px; border-radius:50%; background:transparent; transition:background .15s; flex-shrink:0; }
+      .nav a:hover { color:var(--ink); background:rgba(49,46,209,0.05); }
+      .nav a.active { color:var(--primary); font-weight:600; background:var(--primary-tint); }
+      .nav a.active .dot { background:var(--primary); }
+      .sidebar__foot { margin-top:auto; font-size:11px; color:var(--muted); padding-top:22px; }
       .sidebar__foot a { color:var(--ink); border-bottom:1px solid var(--border); }
 
-      .content { padding:0; min-width:0; }
-      .doc { max-width:860px; padding:0 48px; }
+      .content { min-width:0; }
+      .doc { max-width:880px; padding:0 48px; }
 
-      .top { background:var(--black); color:#fff; padding:72px 48px 60px; }
-      .top .kicker { font-family:var(--mono); font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--green); }
-      .top h1 { font-weight:600; font-size:clamp(2.4rem,4.5vw,3.6rem); letter-spacing:-0.03em; line-height:1.04; margin:16px 0 14px; max-width:18ch; }
-      .top h1 em { font-family:var(--serif); font-style:italic; color:var(--green); }
-      .top p { color:rgba(255,255,255,0.62); max-width:60ch; font-size:17px; }
-      .top .ver { margin-top:26px; font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4); }
+      .top { background:#0c0c16; color:#fff; padding:74px 48px 60px; position:relative; overflow:hidden; }
+      .top::after { content:''; position:absolute; right:-120px; top:-120px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle, rgba(49,46,209,0.55), transparent 70%); }
+      .top .kicker { font-family:var(--mono); font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent); position:relative; }
+      .top h1 { font-weight:600; font-size:clamp(2.4rem,4.5vw,3.6rem); letter-spacing:-0.03em; line-height:1.04; margin:16px 0 14px; max-width:20ch; position:relative; }
+      .top h1 em { font-family:var(--serif); font-style:italic; color:var(--accent); }
+      .top p { color:rgba(255,255,255,0.64); max-width:60ch; font-size:17px; position:relative; }
+      .top .ver { margin-top:26px; font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.42); position:relative; }
 
-      section.doc-sec { padding:64px 0; border-bottom:1px solid var(--border); scroll-margin-top:24px; }
+      section.doc-sec { padding:60px 0; border-bottom:1px solid var(--border); scroll-margin-top:24px; }
       .lbl { font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
       h2 { font-family:var(--serif); font-size:clamp(30px,3.6vw,46px); line-height:1.08; letter-spacing:-0.01em; margin-bottom:10px; }
-      .intro { color:#444; max-width:62ch; font-size:16px; margin-bottom:30px; }
-      h3 { font-size:17px; margin:28px 0 10px; }
-      .group-label { font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin:26px 0 12px; }
+      h2 em { font-style:italic; color:var(--primary); }
+      .intro { color:var(--text-2); max-width:64ch; font-size:16px; margin-bottom:28px; }
+      .group-label { font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin:28px 0 12px; }
 
-      .why { background:var(--white); border:1px solid var(--border); border-left:3px solid var(--green); border-radius:12px; padding:18px 20px; margin-top:18px; }
+      .why { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--primary); border-radius:12px; padding:18px 20px; margin-top:18px; }
       .why .why-lbl { font-family:var(--mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
-      .why p { font-size:14px; line-height:1.6; color:#333; }
+      .why p { font-size:14px; line-height:1.6; color:var(--text-2); }
       .why p + p { margin-top:8px; }
       .why b { font-weight:600; color:var(--ink); }
 
-      .swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:14px; }
-      .sw { border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--white); }
-      .sw__c { height:84px; }
+      .swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:14px; }
+      .sw { border:1px solid var(--border); border-radius:12px; overflow:hidden; background:var(--surface); }
+      .sw__c { height:80px; }
       .sw__b { padding:12px 14px; }
       .sw__n { font-weight:600; font-size:13px; }
-      .sw__h { font-family:var(--mono); font-size:11px; margin-top:3px; text-transform:uppercase; }
-      .sw__t { font-family:var(--mono); font-size:10px; color:var(--muted); margin-top:6px; }
+      .sw__h { font-family:var(--mono); font-size:11px; margin-top:3px; text-transform:uppercase; color:var(--text-2); }
+      .sw__t { font-family:var(--mono); font-size:10px; color:var(--primary); margin-top:6px; }
       .sw__u { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.45; }
 
-      .logos { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-      .logobox { border:1px solid var(--border); border-radius:12px; height:150px; display:flex; align-items:center; justify-content:center; }
-      .logobox img { height:42px; }
-      .logobox.dark { background:var(--black); }
-      .logocap { font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:8px; letter-spacing:0.06em; }
+      .cpairs { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+      .cpair { border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+      .cpair__demo { padding:20px 16px; font-weight:600; font-size:15px; }
+      .cpair__meta { display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--surface); font-size:12px; }
+      .cpair__meta .ratio { font-family:var(--mono); }
+      .badge-aa { font-family:var(--mono); font-size:10px; letter-spacing:0.1em; padding:3px 8px; border-radius:999px; background:var(--accent-soft); color:#2f5d00; }
 
-      .specimen { border:1px solid var(--border); border-radius:14px; padding:24px; background:var(--white); margin-bottom:8px; }
+      .specimen { border:1px solid var(--border); border-radius:14px; padding:24px; background:var(--surface); margin-bottom:8px; }
       .specimen .big { font-size:clamp(28px,3.6vw,42px); line-height:1.06; letter-spacing:-0.01em; }
-      .specimen .big.serif { font-family:var(--serif); font-style:italic; }
+      .specimen .big.serif { font-family:var(--serif); font-style:italic; color:var(--primary); }
       .specimen .big.mono { font-family:var(--mono); font-size:clamp(20px,2.8vw,30px); letter-spacing:0; }
       .specimen .m { font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:14px; }
       table.scale { width:100%; border-collapse:collapse; font-size:13.5px; margin-top:18px; }
       table.scale th, table.scale td { text-align:left; padding:11px 8px; border-bottom:1px solid var(--border); }
       table.scale th { font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); font-weight:500; }
-      table.scale td:nth-child(2) { font-family:var(--mono); font-size:12px; }
+      table.scale td:nth-child(2) { font-family:var(--mono); font-size:12px; color:var(--text-2); }
+
+      .spacing { display:flex; flex-direction:column; gap:8px; }
+      .sp { display:flex; align-items:center; gap:16px; }
+      .sp__bar { height:18px; background:var(--primary); border-radius:3px; }
+      .sp__lbl { font-family:var(--mono); font-size:12px; color:var(--text-2); width:120px; }
+
+      .radii { display:flex; gap:18px; flex-wrap:wrap; margin-top:8px; }
+      .radii .r { width:84px; height:84px; background:#0c0c16; border:1px solid var(--border); }
+      .radii .cap { font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:8px; }
+      .radii .cap b { color:var(--ink); }
+
+      .elev { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:8px; }
+      .elevc { background:var(--surface); border-radius:14px; padding:20px; }
+      .elevc h4 { font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; }
+      .elevc p { font-size:12px; color:var(--muted); }
 
       .icons { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:6px; }
-      .ic { width:54px; height:54px; border:1px solid var(--border); border-radius:13px; display:flex; align-items:center; justify-content:center; background:var(--white); }
+      .ic { width:52px; height:52px; border:1px solid var(--border); border-radius:13px; display:flex; align-items:center; justify-content:center; background:var(--surface); }
       .ic svg { width:22px; height:22px; fill:none; stroke:var(--ink); stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
-      .tag { display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:4px 10px; margin:14px 6px 0 0; }
+      .iladder { display:flex; align-items:flex-end; gap:26px; margin-top:8px; flex-wrap:wrap; }
+      .iladder .il { text-align:center; }
+      .iladder svg { fill:none; stroke:var(--ink); stroke-linecap:round; stroke-linejoin:round; }
+      .iladder .cap { font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:8px; }
+      .tag { display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-2); border:1px solid var(--border); border-radius:999px; padding:4px 10px; margin:14px 6px 0 0; }
+
+      .row { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-bottom:18px; }
+      .btn { display:inline-flex; align-items:center; gap:8px; font-family:var(--sans); font-weight:600; font-size:14px; padding:12px 22px; border-radius:10px; border:0; cursor:pointer; transition:all .16s; }
+      .btn--primary { background:var(--primary); color:#fff; }
+      .btn--primary:hover { background:var(--primary-press); transform:translateY(-1px); }
+      .btn--accent { background:var(--accent); color:var(--ink); }
+      .btn--accent:hover { filter:brightness(0.96); transform:translateY(-1px); }
+      .btn--ghost { background:var(--surface); color:var(--ink); border:1px solid var(--border); }
+      .btn--ghost:hover { border-color:var(--primary); color:var(--primary); }
+      .btn--focus { background:var(--primary); color:#fff; box-shadow:0 0 0 3px rgba(49,46,209,0.28); }
+      .btn--disabled { background:#d9d9e2; color:#9a9aa4; cursor:not-allowed; }
+      .stt { font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-top:6px; }
+
+      .field { max-width:300px; }
+      .field label { font-family:var(--mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px; }
+      .field .ctl { width:100%; font-family:var(--mono); font-size:14px; padding:11px 14px; border:1px solid #d7dae0; border-radius:8px; background:#fff; color:var(--ink); display:flex; align-items:center; justify-content:space-between; }
+      .field .ctl svg { width:14px; height:14px; stroke:var(--ink); stroke-width:2.2; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+
+      .chip { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; letter-spacing:0.12em; text-transform:uppercase; padding:9px 16px; border-radius:999px; background:var(--surface); border:1px solid var(--border); color:var(--ink); }
+      .chip .dot { width:6px; height:6px; border-radius:50%; background:var(--primary); }
+
+      .statusrow { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+      .pill { display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600; padding:6px 12px; border-radius:999px; }
+      .pill .d { width:7px; height:7px; border-radius:50%; }
+      .pill--live { background:#0c0c16; color:#fff; }
+      .pill--live .d { background:var(--accent); box-shadow:0 0 0 3px rgba(198,248,111,0.25); }
+      .pill--best { background:var(--primary-tint); color:var(--primary); }
+      .pill--best .d { background:var(--primary); }
+      .pill--ok { background:var(--accent-soft); color:#2f5d00; }
+      .pill--ok .d { background:#7bbf2a; }
+      .pill--warn { background:#fff3d6; color:#7a5200; }
+      .pill--warn .d { background:#e0a106; }
+
+      .cards3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+      .card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px; }
+      .card h4 { font-size:15px; margin-bottom:6px; }
+      .card p { font-size:13px; color:var(--muted); line-height:1.5; }
 
       .dd { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
-      .ddc { border:1px solid var(--border); border-radius:13px; padding:16px; }
+      .ddc { border:1px solid var(--border); border-radius:13px; padding:16px; background:var(--surface); }
       .ddc h4 { font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px; }
-      .ddc.do h4 { color:#15803d; } .ddc.dont h4 { color:#b91c1c; }
-      .ddc ul { list-style:none; } .ddc li { font-size:13px; color:#444; margin-bottom:6px; padding-left:16px; position:relative; }
-      .ddc.do li::before { content:'+'; position:absolute; left:0; color:#15803d; }
+      .ddc.do h4 { color:#2f7d32; } .ddc.dont h4 { color:#b91c1c; }
+      .ddc ul { list-style:none; } .ddc li { font-size:13px; color:var(--text-2); margin-bottom:6px; padding-left:16px; position:relative; }
+      .ddc.do li::before { content:'+'; position:absolute; left:0; color:#2f7d32; }
       .ddc.dont li::before { content:'\\00d7'; position:absolute; left:0; color:#b91c1c; }
-
-      .btn { display:inline-flex; align-items:center; gap:8px; font-family:var(--sans); font-weight:600; font-size:14px; padding:13px 22px; border-radius:999px; border:0; cursor:pointer; }
-      .btn--primary { background:var(--green); color:var(--ink); } .btn--primary:hover { background:var(--green-hover); }
-      .btn--ghost { background:transparent; color:var(--ink); border:1px solid var(--border); }
-      .row { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-bottom:20px; }
-      .chip { display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; padding:10px 18px; border-radius:999px; }
-      .chip--l { background:var(--white); border:1px solid var(--border); color:var(--ink); }
-      .chip--d { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); color:#fff; }
-      .chip .dot { width:6px; height:6px; border-radius:50%; background:var(--green); }
-      .darkcard { background:var(--black); border-radius:16px; padding:24px; }
-      .cards3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-      .card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:20px; }
-      .card h4 { font-size:15px; margin-bottom:6px; } .card p { font-size:13px; color:var(--muted); line-height:1.5; }
-      .radii { display:flex; gap:18px; flex-wrap:wrap; margin-top:8px; }
-      .radii .r { width:88px; height:88px; background:var(--black); } .radii .cap { font-family:var(--mono); font-size:11px; color:var(--muted); margin-top:8px; }
 
       @media (max-width:900px) {
         .layout { grid-template-columns:1fr; }
         .sidebar { position:static; height:auto; border-right:0; border-bottom:1px solid var(--border); flex-direction:row; align-items:center; gap:16px; overflow-x:auto; padding:14px 20px; }
         .sidebar__sub, .sidebar__foot { display:none; }
-        .sidebar__brand { margin-bottom:0; }
         .nav { flex-direction:row; gap:4px; }
         .nav a .dot { display:none; }
         .nav a { white-space:nowrap; padding:6px 10px; font-size:13px; }
         .top { padding:48px 24px; } .doc { padding:0 24px; }
-        .cards3 { grid-template-columns:1fr; } .dd { grid-template-columns:1fr; } .logos { grid-template-columns:1fr; }
+        .cards3 { grid-template-columns:1fr; } .dd { grid-template-columns:1fr; } .elev { grid-template-columns:1fr; }
       }
     </style>
   </head>
   <body>
     <div class="layout">
       <aside class="sidebar">
-        <a class="sidebar__brand" href="./"><span class="pill"><img src="./assets/Flexi.svg" alt="FlexiWires" /></span></a>
-        <div class="sidebar__sub">Brand & Design System</div>
+        <a class="sidebar__brand" href="./"><span class="pill"><img src="./assets/Flexi-light.svg" alt="FlexiWires" /></span></a>
+        <div class="sidebar__sub">Design System</div>
         <nav class="nav" id="nav">
           {nav.map((n) => (
             <a href={`#${n.id}`} data-target={n.id}><span class="dot"></span>{n.label}</a>
           ))}
         </nav>
-        <div class="sidebar__foot">v1.0 · {updated}<br /><a href="./">View live landing page</a></div>
+        <div class="sidebar__foot">v2.0 · {updated}<br /><a href="./">View live landing page</a></div>
       </aside>
 
       <main class="content">
         <div class="top">
           <div class="kicker">FlexiWires</div>
-          <h1>Brand &amp; <em>Design System</em></h1>
-          <p>The single source of truth for how FlexiWires looks, reads and behaves across product and marketing. Every rule includes the reasoning and the validation behind it.</p>
-          <div class="ver">Version 1.0 · Updated {updated}</div>
+          <h1>The <em>design system</em></h1>
+          <p>One source of truth for how FlexiWires looks, reads and behaves. Color is sampled straight from the product UI, type is shared with the landing page, and every token is built to scale into the full website. Each rule carries its reasoning.</p>
+          <div class="ver">Version 2.0 · Updated {updated}</div>
         </div>
 
         <div class="doc">
           <section class="doc-sec" id="overview">
             <div class="lbl">01 · Overview</div>
-            <h2>Precise, fast, premium</h2>
-            <p class="intro">FlexiWires compares every cross-border wire rail on one screen. The brand is engineered and calm with one decisive accent, a signature green that marks the moment of action. These three traits drive every decision in this document.</p>
+            <h2>Engineered, calm, <em>confident</em></h2>
+            <p class="intro">FlexiWires compares every cross-border rail on one screen. The system is precise and quiet, with two decisive colors: an indigo that drives action and a lime that marks the win. These three traits drive every decision below.</p>
             <div class="cards3">
-              <div class="card"><h4>Engineered</h4><p>Monospace data, exact figures, clean grids. It should feel built by people who move money.</p></div>
-              <div class="card"><h4>Calm</h4><p>Generous space, muted neutrals, a cream canvas. Green is rationed so it always means something.</p></div>
-              <div class="card"><h4>Expressive</h4><p>An italic serif accent line cuts through the sans headings, a human note in an engineered system.</p></div>
+              <div class="card"><h4>Engineered</h4><p>Monospace data, exact figures, tight grids. Built by people who move money.</p></div>
+              <div class="card"><h4>Calm</h4><p>A cool mist canvas and generous space. Color is rationed so it always means something.</p></div>
+              <div class="card"><h4>Confident</h4><p>Indigo for the next action, lime for the result. Two signals, never noise.</p></div>
             </div>
-          </section>
-
-          <section class="doc-sec" id="logo">
-            <div class="lbl">02 · Logo</div>
-            <h2>The wordmark</h2>
-            <p class="intro">The flexi wordmark with its green glyph. Use the light wordmark on dark surfaces and the dark wordmark on cream or white. Keep clear space of at least the glyph height around it; never recolor the wordmark outside these two variants.</p>
-            <div class="logos">
-              <div><div class="logobox dark"><img src="./assets/Flexi-light.svg" alt="FlexiWires light" /></div><div class="logocap">Light · on dark (#111214)</div></div>
-              <div><div class="logobox" style="background:var(--cream)"><img src="./assets/Flexi.svg" alt="FlexiWires dark" /></div><div class="logocap">Dark · on cream / white</div></div>
+            <div class="why">
+              <div class="why-lbl">Where this comes from</div>
+              <p>The palette is <b>sampled directly from the product</b>, the app screens shown on the phone, so marketing and product read as one product, not two brands. Typography is <b>inherited from the landing page</b> (Inter, Instrument Serif, JetBrains Mono) for the same reason.</p>
             </div>
           </section>
 
           <section class="doc-sec" id="color">
-            <div class="lbl">03 · Color</div>
-            <h2>Color system</h2>
-            <p class="intro">A cream canvas, near-black ink and one signature green. Dark panels anchor the hero, the corridor rail and the app section.</p>
+            <div class="lbl">02 · Color</div>
+            <h2>Sampled from the <em>product</em></h2>
+            <p class="intro">Indigo leads, lime confirms, lavender carries secondary data, and a cool neutral ramp holds it all on a mist canvas. Indigo and lime are rationed to action and outcome so each stays meaningful.</p>
 
-            <div class="group-label">Brand</div>
+            <div class="group-label">Primary · Indigo</div>
             <div class="swatches">
-              {brandColors.map((c) => (
+              {primary.map((c) => (
                 <div class="sw">
-                  <div class="sw__c" style={`background:${c.hex}; ${isLight(c.hex) ? 'box-shadow:inset 0 0 0 1px #e8e4dc;' : ''}`}></div>
+                  <div class="sw__c" style={`background:${c.hex}; ${isLight(c.hex) ? 'box-shadow:inset 0 0 0 1px #e2e2ec;' : ''}`}></div>
                   <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__t">{c.token}</div><div class="sw__u">{c.use}</div></div>
                 </div>
               ))}
             </div>
-            <div class="group-label">Neutrals</div>
+
+            <div class="group-label">Accent · Lime</div>
             <div class="swatches">
-              {neutralColors.map((c) => (
+              {accent.map((c) => (
                 <div class="sw">
-                  <div class="sw__c" style={`background:${c.hex}; ${isLight(c.hex) ? 'box-shadow:inset 0 0 0 1px #e8e4dc;' : ''}`}></div>
+                  <div class="sw__c" style={`background:${c.hex}; box-shadow:inset 0 0 0 1px #e2e2ec;`}></div>
                   <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__t">{c.token}</div><div class="sw__u">{c.use}</div></div>
                 </div>
               ))}
             </div>
-            <div class="group-label">Mint · app panel</div>
+
+            <div class="group-label">Lavender · secondary data</div>
             <div class="swatches">
-              {mintColors.map((c) => (
+              {lavender.map((c) => (
                 <div class="sw">
-                  <div class="sw__c" style={`background:${c.hex}; box-shadow:inset 0 0 0 1px #e8e4dc;`}></div>
-                  <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__u">{c.use}</div></div>
+                  <div class="sw__c" style={`background:${c.hex}; box-shadow:inset 0 0 0 1px #e2e2ec;`}></div>
+                  <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__t">{c.token}</div><div class="sw__u">{c.use}</div></div>
+                </div>
+              ))}
+            </div>
+
+            <div class="group-label">Neutrals · cool ramp</div>
+            <div class="swatches">
+              {neutrals.map((c) => (
+                <div class="sw">
+                  <div class="sw__c" style={`background:${c.hex}; ${isLight(c.hex) ? 'box-shadow:inset 0 0 0 1px #e2e2ec;' : ''}`}></div>
+                  <div class="sw__b"><div class="sw__n">{c.name}</div><div class="sw__h">{c.hex}</div><div class="sw__t">{c.token}</div><div class="sw__u">{c.use}</div></div>
                 </div>
               ))}
             </div>
 
             <div class="why">
               <div class="why-lbl">Why this palette</div>
-              <p><b>Signature green (#3FE864)</b> is reserved for action and confirmation. Green reads as go, success, money saved, exactly the feeling at send. Rationing it to CTAs, status dots and the live indicator keeps every green pixel meaningful, and black-on-green stays AA legible.</p>
-              <p><b>Cream and ink</b> feel premium and editorial rather than clinical, and near-black softens harsh contrast for comfortable reading. <b>Hero black (#111214)</b> panels create rhythm and make the green pop hardest where it matters.</p>
+              <p><b>Indigo (#312ED1)</b> is the product's action color, primary buttons, links, focus and chart strokes. It is deep enough to carry white text at AAA, so it works as a fill anywhere.</p>
+              <p><b>Lime (#C6F86F)</b> is the outcome color, the live dot, positive deltas, money saved. It is light, so it only ever pairs with dark text and never carries white. <b>Lavender</b> stays a quiet second data series so charts never need a third loud color.</p>
+              <p>The <b>cool neutral ramp</b> on a mist canvas keeps the UI calm and lets indigo and lime do all the talking.</p>
+            </div>
+          </section>
+
+          <section class="doc-sec" id="contrast">
+            <div class="lbl">03 · Accessibility</div>
+            <h2>Contrast, <em>validated</em></h2>
+            <p class="intro">Every text and surface pairing is checked against WCAG. Indigo carries white, lime and the neutrals carry ink. These are the approved combinations.</p>
+            <div class="cpairs">
+              {contrast.map((p) => (
+                <div class="cpair">
+                  <div class="cpair__demo" style={`background:${p.bghex}; color:${p.fghex}; ${isLight(p.bghex) ? 'box-shadow:inset 0 0 0 1px #e2e2ec;' : ''}`}>{p.fg} on {p.bg}</div>
+                  <div class="cpair__meta"><span class="ratio">{p.ratio}</span><span class="badge-aa">{p.level}</span></div>
+                </div>
+              ))}
+            </div>
+            <div class="why">
+              <div class="why-lbl">The rule</div>
+              <p>Body text needs <b>4.5:1</b> (AA); large text and UI <b>3:1</b>. <b>Never put white on lime</b> or ink on indigo, both fail. Lime and indigo are background-or-accent colors, paired only with the text color that has been verified above.</p>
             </div>
           </section>
 
           <section class="doc-sec" id="type">
             <div class="lbl">04 · Typography</div>
-            <h2>Three typefaces</h2>
-            <p class="intro">A neutral workhorse, an expressive accent, and a precise data face. Each role maps to a need a treasury product has: scanning, trust and emotion.</p>
+            <h2>Three typefaces, <em>one scale</em></h2>
+            <p class="intro">Shared with the landing page. A neutral workhorse for everything, an expressive serif for one accent line, and a precise mono for data. Each role maps to a need a treasury product has: scanning, trust and emotion.</p>
 
             <div class="specimen"><div class="big">Compare rails, lock the rate</div><div class="m">Inter · 300-700 · UI &amp; headings</div></div>
-            <div class="why"><div class="why-lbl">Why Inter</div><p>A screen-first neutral sans with a tall x-height, legible from 11px labels to 64px headlines. The same face works in marketing and in-app, so the landing page and product feel like one thing. Proven at interface scale across modern fintech and tools.</p></div>
+            <div class="why"><div class="why-lbl">Why Inter</div><p>A screen-first neutral sans with a tall x-height, legible from 11px labels to 64px headlines. The same face runs marketing and product, so the site and app feel like one thing.</p></div>
 
             <div class="specimen"><div class="big serif">all from your phone</div><div class="m">Instrument Serif · italic · accent only</div></div>
-            <div class="why"><div class="why-lbl">Why Instrument Serif</div><p>Pure sans reads efficient but impersonal. One italic-serif line per heading adds a human, premium note at the emotional moments. Used sparingly it adds character with no cost to legibility, and never for body text.</p></div>
+            <div class="why"><div class="why-lbl">Why Instrument Serif</div><p>Pure sans reads efficient but impersonal. One italic-serif line per heading adds a human, premium note at the emotional moments. Used sparingly, never for body.</p></div>
 
             <div class="specimen"><div class="big mono">USD &rarr; MXN &nbsp; 17.4521</div><div class="m">JetBrains Mono · tabular · data &amp; labels</div></div>
-            <div class="why"><div class="why-lbl">Why JetBrains Mono</div><p>Monospace makes numbers align and read as real data; tabular figures keep rates stable as they update. Mono-for-data is the convention across trading and fintech tools, and wide-tracked uppercase mono is an instantly readable label style.</p></div>
+            <div class="why"><div class="why-lbl">Why JetBrains Mono</div><p>Monospace makes numbers align and read as real data; tabular figures keep rates stable as they update. Wide-tracked uppercase mono is our instantly readable label style.</p></div>
 
             <div class="group-label">Type scale</div>
             <table class="scale">
               <thead><tr><th>Role</th><th>Size</th><th>Font</th></tr></thead>
               <tbody>
                 <tr><td>Hero H1</td><td>clamp(2.5rem, 5vw, 4rem)</td><td>Inter 600 / Serif italic</td></tr>
-                <tr><td>Section H2</td><td>clamp(36px, 4vw, 56px)</td><td>Instrument Serif / Inter</td></tr>
+                <tr><td>Section H2</td><td>clamp(30px, 3.6vw, 46px)</td><td>Instrument Serif</td></tr>
                 <tr><td>Lede</td><td>17px</td><td>Inter 400</td></tr>
                 <tr><td>Body</td><td>16px</td><td>Inter 400</td></tr>
-                <tr><td>Eyebrow</td><td>11px · 0.18em · uppercase</td><td>JetBrains Mono</td></tr>
+                <tr><td>Small / caption</td><td>13px</td><td>Inter 400</td></tr>
+                <tr><td>Eyebrow / label</td><td>11px · 0.18em · uppercase</td><td>JetBrains Mono</td></tr>
+                <tr><td>Data / rate</td><td>14-30px · tabular</td><td>JetBrains Mono</td></tr>
               </tbody>
             </table>
           </section>
 
+          <section class="doc-sec" id="spacing">
+            <div class="lbl">05 · Spacing &amp; layout</div>
+            <h2>A 4px <em>rhythm</em></h2>
+            <p class="intro">All spacing steps from a 4px base. Most layout uses 16 / 24 / 32; sections breathe at 64 / 96. Sticking to the scale keeps vertical rhythm consistent across product and marketing.</p>
+            <div class="spacing">
+              {spacing.map((s) => (
+                <div class="sp">
+                  <span class="sp__lbl">space-{s.n} · {s.v}</span>
+                  <span class="sp__bar" style={`width:${s.v}`}></span>
+                </div>
+              ))}
+            </div>
+            <div class="why"><div class="why-lbl">Why a single scale</div><p>One ramp means any two components placed together already agree on spacing. It removes per-screen guesswork and keeps density even as the product grows.</p></div>
+          </section>
+
+          <section class="doc-sec" id="radius">
+            <div class="lbl">06 · Radius &amp; elevation</div>
+            <h2>Soft corners, <em>soft light</em></h2>
+            <p class="intro">A radius ramp from tags to hero panels, and three elevation levels. We separate surfaces with radius and a hairline border first, shadow second, so the UI stays flat and calm.</p>
+            <div class="group-label">Radius</div>
+            <div class="radii">
+              {radii.map((r) => (
+                <div><div class="r" style={`border-radius:${r.val}`}></div><div class="cap"><b>{r.name}</b> · {r.val}<br />{r.use}</div></div>
+              ))}
+            </div>
+            <div class="group-label">Elevation</div>
+            <div class="elev">
+              {elevation.map((e) => (
+                <div class="elevc" style={`box-shadow:${e.val}`}><h4>shadow-{e.name}</h4><p>{e.use}</p></div>
+              ))}
+            </div>
+            <div class="why"><div class="why-lbl">Border-darken, never shadow-lift</div><p>On hover, cards darken their border rather than floating up on a big shadow. It reads as precise and engineered, not bouncy, and avoids the heavy drop-shadows that make a finance UI feel cheap.</p></div>
+          </section>
+
           <section class="doc-sec" id="icons">
-            <div class="lbl">05 · Iconography</div>
-            <h2>Line icons, one weight</h2>
-            <p class="intro">Thin geometric line icons (Lucide family), a single 1.75 stroke, never filled, never multi-color.</p>
+            <div class="lbl">07 · Iconography</div>
+            <h2>Line icons, <em>one weight</em></h2>
+            <p class="intro">Thin geometric line icons (Lucide family), never filled, never multi-color. Stroke width scales gently with size so icons read consistent everywhere.</p>
             <div class="icons">
               <span class="ic"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
               <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
@@ -283,62 +431,102 @@ const isLight = (h) => ['#FAF8F4','#F5F3EF','#FFFFFF','#E8E4DC','#EAF7EE','#DFF3
               <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
               <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 7v6c0 5 3.5 7.5 8 9 4.5-1.5 8-4 8-9V7z"/></svg></span>
             </div>
-            <div class="why"><div class="why-lbl">Why outline icons</div><p>Outline icons match the engineered, lightweight feel of the type and keep the UI calm. A single stroke weight reads consistent at every size, and neutral color means icons never compete with the data. Lucide is open-source and pixel-consistent, so the product can grow across features without redrawing icons. Green is used only for status and checkmarks.</p></div>
-            <span class="tag">No fills</span><span class="tag">currentColor</span><span class="tag">1.75 stroke</span>
-          </section>
-
-          <section class="doc-sec" id="imagery">
-            <div class="lbl">06 · Imagery</div>
-            <h2>Real product, real hands</h2>
-            <p class="intro">The actual app on real devices in real hands, not abstract illustration or stock office photos.</p>
-            <div class="why"><div class="why-lbl">Why product-led photography</div><p>Showing the real FlexiWires screen on a phone proves the product exists and works. When you handle people's money, that proof is the difference between trust and doubt. Treatment: clean cut-outs, soft realistic shadows, neutral, mint or dark backdrops, and the device screen carries the only dense color.</p></div>
-            <div class="dd">
-              <div class="ddc do"><h4>Do</h4><ul><li>Use real app screens</li><li>Calm backgrounds (cream, mint, dark)</li><li>Soft realistic shadows</li><li>One focal device per panel</li></ul></div>
-              <div class="ddc dont"><h4>Avoid</h4><ul><li>Generic stock business people</li><li>Busy or colorful backdrops</li><li>Hard cut-outs with no shadow</li><li>Recoloring or distorting the app UI</li></ul></div>
+            <div class="group-label">Size + stroke ladder</div>
+            <div class="iladder">
+              {iconSizes.map((s) => (
+                <div class="il">
+                  <svg viewBox="0 0 24 24" width={s.px} height={s.px} stroke-width={s.stroke}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  <div class="cap">{s.px} · {s.stroke}<br />{s.use}</div>
+                </div>
+              ))}
             </div>
+            <span class="tag">No fills</span><span class="tag">currentColor</span><span class="tag">Lucide</span>
+            <div class="why"><div class="why-lbl">Why outline icons</div><p>Outline icons match the engineered, lightweight type and stay neutral so they never compete with data. Color on an icon means status only, lime for positive, indigo for selected.</p></div>
           </section>
 
           <section class="doc-sec" id="components">
-            <div class="lbl">07 · Components</div>
-            <h2>Core UI</h2>
-            <p class="intro">Pill buttons, corridor chips and dark panels. Buttons use the signature green; on hover the label and arrow do a subtle 3D roll.</p>
-            <div class="group-label">Buttons</div>
+            <div class="lbl">08 · Components</div>
+            <h2>Buttons, chips, <em>inputs</em></h2>
+            <p class="intro">Indigo is the primary action; lime is reserved for the affirmative outcome action; ghost is the quiet secondary. Inputs always signal that they are editable.</p>
+
+            <div class="group-label">Button variants</div>
             <div class="row">
-              <button class="btn btn--primary">Get the app <span aria-hidden="true">&rarr;</span></button>
-              <button class="btn btn--primary">Start a transfer <span aria-hidden="true">&rarr;</span></button>
-              <button class="btn btn--ghost">Secondary</button>
+              <button class="btn btn--primary">Start a transfer</button>
+              <button class="btn btn--accent">Confirm send</button>
+              <button class="btn btn--ghost">Cancel</button>
             </div>
-            <div class="group-label">Corridor chips</div>
+
+            <div class="group-label">Primary states</div>
             <div class="row">
-              <span class="chip chip--l"><span class="dot"></span>USD &rarr; MXN</span>
-              <span class="chip chip--l"><span class="dot"></span>USD &rarr; BRL</span>
+              <div><button class="btn btn--primary">Rest</button><div class="stt">Rest</div></div>
+              <div><button class="btn btn--primary" style="background:var(--primary-press)">Hover</button><div class="stt">Hover · darken</div></div>
+              <div><button class="btn btn--focus">Focus</button><div class="stt">Focus · ring</div></div>
+              <div><button class="btn btn--disabled" disabled>Disabled</button><div class="stt">Disabled</div></div>
             </div>
-            <div class="darkcard row" style="margin-bottom:0;">
-              <span class="chip chip--d"><span class="dot"></span>USD &rarr; COP</span>
-              <span class="chip chip--d"><span class="dot"></span>EUR &rarr; MXN</span>
-              <span class="chip chip--d"><span class="dot"></span>GBP &rarr; BRL</span>
+
+            <div class="group-label">Corridor chip &amp; inputs</div>
+            <div class="row">
+              <span class="chip"><span class="dot"></span>USD &rarr; MXN</span>
+              <div class="field">
+                <label>Corridor</label>
+                <div class="ctl">USD &rarr; MXN <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+              </div>
+              <div class="field">
+                <label>Amount · USD</label>
+                <div class="ctl">10,000</div>
+              </div>
+            </div>
+            <div class="why"><div class="why-lbl">Ghost vs accent, which do I pick</div><p>Use <b>indigo primary</b> for the main path forward. Use <b>lime accent</b> only for the final affirmative action (confirm, send), the moment the user wins. Everything else is <b>ghost</b>. One lime button per screen, at most.</p></div>
+          </section>
+
+          <section class="doc-sec" id="status">
+            <div class="lbl">09 · Status &amp; feedback</div>
+            <h2>One dot says <em>live</em></h2>
+            <p class="intro">Status uses color plus a label, never color alone. Lime means live or positive, indigo means selected or best, amber means attention.</p>
+            <div class="statusrow">
+              <span class="pill pill--live"><span class="d"></span>Live</span>
+              <span class="pill pill--best"><span class="d"></span>Best rate</span>
+              <span class="pill pill--ok"><span class="d"></span>Settled</span>
+              <span class="pill pill--warn"><span class="d"></span>Pending</span>
+            </div>
+            <div class="why"><div class="why-lbl">Why color plus label</div><p>Roughly 1 in 12 men cannot reliably separate red and green. A word next to the dot keeps every status legible to everyone, and keeps meaning intact in screenshots and print.</p></div>
+          </section>
+
+          <section class="doc-sec" id="motion">
+            <div class="lbl">10 · Motion</div>
+            <h2>Restrained, <em>purposeful</em></h2>
+            <p class="intro">Motion confirms the product is live and rewards interaction without pulling focus from the task. It always respects prefers-reduced-motion.</p>
+            <div class="cards3">
+              <div class="card"><h4>Live corridor rail</h4><p>An always-moving marquee of corridors signals an active, real-time network.</p></div>
+              <div class="card"><h4>Reveal on scroll</h4><p>A gentle fade and rise as sections enter. Subtle, never a slide-show.</p></div>
+              <div class="card"><h4>Border on hover</h4><p>Cards shift their border color instead of leaping on a shadow. Precise, not bouncy.</p></div>
             </div>
           </section>
 
-          <section class="doc-sec" id="motion" style="border-bottom:0;">
-            <div class="lbl">08 · Motion &amp; layout</div>
-            <h2>Restrained, purposeful</h2>
-            <p class="intro">Motion confirms the product is live and rewards interaction without distracting from the task. Layout breathes with large radii and generous rhythm.</p>
-            <div class="cards3">
-              <div class="card"><h4>Corridor rail</h4><p>An always-moving marquee of live corridors signals an active, real-time network.</p></div>
-              <div class="card"><h4>Button text-roll</h4><p>A small 3D roll on CTA hover that rewards interaction without pulling focus.</p></div>
-              <div class="card"><h4>Reveal on scroll</h4><p>Gentle fade and rise as sections enter. Respects prefers-reduced-motion.</p></div>
-            </div>
-            <div class="group-label">Radius</div>
-            <div class="radii">
-              <div><div class="r" style="border-radius:32px"></div><div class="cap">Panels · 32px</div></div>
-              <div><div class="r" style="border-radius:16px"></div><div class="cap">Cards · 16px</div></div>
-              <div><div class="r" style="border-radius:999px"></div><div class="cap">Pills · 999px</div></div>
+          <section class="doc-sec" id="principles" style="border-bottom:0;">
+            <div class="lbl">11 · Principles</div>
+            <h2>How it all <em>composes</em></h2>
+            <p class="intro">The tokens above only matter if they are applied the same way every time. These are the habits that keep FlexiWires feeling like one engineered product.</p>
+            <div class="dd">
+              <div class="ddc do"><h4>Do</h4><ul>
+                <li>Ration indigo and lime; let neutrals carry the page</li>
+                <li>Use mono for every number and label</li>
+                <li>Separate surfaces with border first, shadow second</li>
+                <li>Pair status color with a word</li>
+                <li>Step spacing and radius from the scale</li>
+              </ul></div>
+              <div class="ddc dont"><h4>Avoid</h4><ul>
+                <li>White text on lime, or ink on indigo</li>
+                <li>A second accent color competing with lime</li>
+                <li>Heavy drop-shadows or lift-on-hover</li>
+                <li>Serif anywhere but the one accent line</li>
+                <li>Color as the only signal of meaning</li>
+              </ul></div>
             </div>
           </section>
 
           <div style="padding:36px 0 80px; color:var(--muted); font-size:13px;">
-            FlexiWires Brand &amp; Design System · v1.0 · {updated} · <a href="./" style="color:var(--ink); border-bottom:1px solid var(--border);">View the live landing page</a>
+            FlexiWires Design System · v2.0 · {updated} · <a href="./" style="color:var(--ink); border-bottom:1px solid var(--border);">View the live landing page</a>
           </div>
         </div>
       </main>
