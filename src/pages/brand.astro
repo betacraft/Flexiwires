@@ -132,8 +132,43 @@ const scale = [
       .radii .r { width: 100px; height: 100px; background: var(--black); }
       .radii .cap { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 8px; }
 
+      /* design system divider banner */
+      .ds-banner { background: var(--black); color: #fff; padding: 56px 0; border-bottom: 1px solid var(--border); }
+      .ds-banner .eyebrow { color: rgba(255,255,255,0.5); }
+      .ds-banner h2 { font-family: var(--serif); color: #fff; }
+      .ds-banner h2 em { font-style: italic; color: var(--green); }
+      .ds-banner p { color: rgba(255,255,255,0.6); max-width: 60ch; margin-top: 10px; }
+
+      /* rationale rows */
+      .rationale { display: grid; grid-template-columns: 220px 1fr; gap: 28px; padding: 28px 0; border-top: 1px solid var(--border); }
+      .rationale:first-of-type { border-top: 0; }
+      .rationale__k { font-weight: 600; font-size: 15px; }
+      .rationale__k .sub { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; font-weight: 400; }
+      .rationale__v p { font-size: 14.5px; line-height: 1.6; color: #333; margin-bottom: 10px; }
+      .rationale__v p:last-child { margin-bottom: 0; }
+      .rationale__v strong { color: var(--ink); font-weight: 600; }
+      .why { list-style: none; margin-top: 6px; }
+      .why li { position: relative; padding-left: 22px; font-size: 14px; color: #333; line-height: 1.55; margin-bottom: 8px; }
+      .why li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+      .tag { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; margin: 0 6px 6px 0; }
+
+      .icon-row { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0 6px; }
+      .icon-demo { width: 56px; height: 56px; border: 1px solid var(--border); border-radius: 14px; display: flex; align-items: center; justify-content: center; background: var(--white); }
+      .icon-demo svg { width: 24px; height: 24px; fill: none; stroke: var(--ink); stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+      .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 10px; }
+      .dd { border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; font-size: 13.5px; line-height: 1.55; }
+      .dd h4 { font-size: 12px; font-family: var(--mono); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+      .dd--do h4 { color: #15803d; }
+      .dd--dont h4 { color: #b91c1c; }
+      .dd ul { list-style: none; } .dd li { margin-bottom: 6px; color: #444; }
+
       footer { padding: 40px 0 80px; color: var(--muted); font-size: 13px; }
       footer a { color: var(--ink); }
+
+      @media (max-width: 720px) {
+        .rationale { grid-template-columns: 1fr; gap: 10px; }
+        .do-dont { grid-template-columns: 1fr; }
+      }
 
       @media (max-width: 720px) {
         .type-row { grid-template-columns: 1fr; gap: 10px; }
@@ -303,9 +338,195 @@ const scale = [
       </div>
     </section>
 
+    <!-- ============================================================
+         DESIGN SYSTEM · the reasoning behind every decision
+         ============================================================ -->
+    <div class="ds-banner">
+      <div class="wrap">
+        <div class="eyebrow">Design system</div>
+        <h2>The reasoning, <em>not just the rules</em></h2>
+        <p>Every choice below is tied back to one goal: make a cross-border money tool feel precise, fast and trustworthy. Here is what we picked, why we picked it, and how it supports the FlexiWires product.</p>
+      </div>
+    </div>
+
+    <!-- Typography rationale -->
+    <section>
+      <div class="wrap">
+        <div class="eyebrow">Typography · rationale</div>
+        <h2>Why these three typefaces</h2>
+        <p class="lede">A treasury product lives on numbers, scanning and trust. The type system is built around that: a neutral workhorse, a precise data face, and one expressive accent so it never feels cold.</p>
+
+        <div class="rationale">
+          <div class="rationale__k">Inter<span class="sub">UI &amp; Headings · Sans</span></div>
+          <div class="rationale__v">
+            <p>Inter is a screen-first neutral sans with a tall x-height and excellent legibility at small sizes — designed specifically for interfaces.</p>
+            <ul class="why">
+              <li><strong>Why:</strong> a fintech dashboard is read fast and often; Inter stays clear from 12px labels to 64px hero headlines.</li>
+              <li><strong>Supports the product:</strong> the same face works in marketing and in-app, so the landing page and the real product feel like one thing.</li>
+              <li><strong>Validation:</strong> proven at interface scale by Stripe-era fintech, GitHub, Figma; huge weight range (300–700) covers every hierarchy need.</li>
+            </ul>
+            <span class="tag">Weights 300–700</span><span class="tag">Tight tracking ≥ 32px</span><span class="tag">x-height: tall</span>
+          </div>
+        </div>
+
+        <div class="rationale">
+          <div class="rationale__k">Instrument Serif<span class="sub">Accent · Italic serif</span></div>
+          <div class="rationale__v">
+            <p>A high-contrast italic serif used only for the accent line inside a heading — e.g. <em style="font-family:var(--serif);font-style:italic">“all from your phone.”</em></p>
+            <ul class="why">
+              <li><strong>Why:</strong> pure sans reads efficient but impersonal. One italic serif line adds a human, editorial, premium note — the “routed.” / “your phone” moments.</li>
+              <li><strong>Supports the product:</strong> money is emotional; the serif signals craft and confidence, separating FlexiWires from generic SaaS templates.</li>
+              <li><strong>Validation:</strong> the sans-for-structure + serif-for-emotion pairing is a current premium-brand pattern; used sparingly it adds character without hurting legibility.</li>
+            </ul>
+            <span class="tag">Italic only</span><span class="tag">Accent lines &amp; emphasis</span><span class="tag">Never for body</span>
+          </div>
+        </div>
+
+        <div class="rationale">
+          <div class="rationale__k">JetBrains Mono<span class="sub">Data &amp; Labels · Mono</span></div>
+          <div class="rationale__v">
+            <p>A monospace face for figures, rates, corridor labels and eyebrows — anything that is data or a system label.</p>
+            <ul class="why">
+              <li><strong>Why:</strong> monospace makes numbers line up and read as “real data,” and tabular figures keep rates like <span style="font-family:var(--mono)">17.4521</span> stable as they update.</li>
+              <li><strong>Supports the product:</strong> FX is all about comparing numbers; mono visually says “engineered, exact, machine-accurate.”</li>
+              <li><strong>Validation:</strong> mono-for-data is the convention across trading, dev and fintech tools; wide-tracked uppercase mono is an instantly-readable label style.</li>
+            </ul>
+            <span class="tag">Tabular nums</span><span class="tag">Eyebrows · uppercase 0.18em</span><span class="tag">Rates &amp; corridors</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Color rationale -->
+    <section>
+      <div class="wrap">
+        <div class="eyebrow">Color · rationale</div>
+        <h2>Why this palette</h2>
+        <p class="lede">A restrained, premium base with a single decisive accent — so color always carries meaning instead of decoration.</p>
+
+        <div class="rationale">
+          <div class="rationale__k">Signature Green<span class="sub">#3FE864 · Accent</span></div>
+          <div class="rationale__v">
+            <p>One bright, optimistic green reserved for action and confirmation.</p>
+            <ul class="why">
+              <li><strong>Why:</strong> green reads as “go / success / money saved” — exactly the feeling at the moment of sending. Rationing it to CTAs, status dots and the live indicator makes every green pixel meaningful.</li>
+              <li><strong>Supports the product:</strong> users instantly learn “green = the next step / a positive outcome,” which speeds the core flow (quote → lock → send).</li>
+              <li><strong>Validation:</strong> against the near-black ink and cream the green hits a strong, lively contrast while pairing with black text on the button for AA legibility.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rationale">
+          <div class="rationale__k">Cream + Ink<span class="sub">#FAF8F4 / #0A0A0A</span></div>
+          <div class="rationale__v">
+            <p>Warm off-white canvas with near-black text instead of pure white/black.</p>
+            <ul class="why">
+              <li><strong>Why:</strong> cream feels premium and editorial (less clinical than #FFF); near-black softens harsh pure-black contrast for comfortable long reading.</li>
+              <li><strong>Supports the product:</strong> a calm canvas lets the data and the single green accent stand out — critical when the screen is full of rates and numbers.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rationale">
+          <div class="rationale__k">Hero Black<span class="sub">#111214 · Dark panels</span></div>
+          <div class="rationale__v">
+            <p>A soft near-black for the hero card, the corridor rail and the app section.</p>
+            <ul class="why">
+              <li><strong>Why:</strong> dark inset panels create rhythm and focus, framing the product shots and making the green pop hardest where it matters.</li>
+              <li><strong>Supports the product:</strong> alternating cream and dark sections guide the eye down the page and spotlight key moments (hero, live corridors, get-the-app).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Iconography -->
+    <section>
+      <div class="wrap">
+        <div class="eyebrow">Iconography</div>
+        <h2>Line icons, one weight</h2>
+        <p class="lede">Icons are thin, geometric line icons (Lucide family) — never filled, never multi-color.</p>
+        <div class="rationale">
+          <div class="rationale__k">Style<span class="sub">Outline · 1.75 stroke</span></div>
+          <div class="rationale__v">
+            <div class="icon-row">
+              <span class="icon-demo"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+              <span class="icon-demo"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+              <span class="icon-demo"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+              <span class="icon-demo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+            </div>
+            <ul class="why">
+              <li><strong>Why:</strong> outline icons match the engineered, lightweight feel of the type and keep the UI calm; a single 1.75px stroke reads consistent at every size.</li>
+              <li><strong>Supports the product:</strong> a clean, neutral icon set scales across product features (rails, compliance, alerts) without visual noise competing with the data.</li>
+              <li><strong>Validation:</strong> Lucide is open-source, exhaustive and pixel-consistent — safe to grow the product on without redrawing icons.</li>
+            </ul>
+            <span class="tag">No fills</span><span class="tag">currentColor</span><span class="tag">Accent green only for status/checks</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Imagery -->
+    <section>
+      <div class="wrap">
+        <div class="eyebrow">Imagery</div>
+        <h2>Real product, real hands</h2>
+        <p class="lede">Imagery is the actual app on real devices in real hands — not abstract illustration or stock office photos.</p>
+        <div class="rationale">
+          <div class="rationale__k">Direction<span class="sub">Product-led photography</span></div>
+          <div class="rationale__v">
+            <ul class="why">
+              <li><strong>Why:</strong> showing the real FlexiWires screen on a phone proves the product exists and works — trust is everything when you handle people’s money.</li>
+              <li><strong>Supports the product:</strong> hero (phone on a stone pedestal) and the app section (phone in hand) both put the live interface front-and-center, so visitors see exactly what they’ll use.</li>
+              <li><strong>Treatment:</strong> clean cut-outs, soft drop-shadows, neutral/mint or dark backdrops; the device screen carries the only dense color (the app UI).</li>
+            </ul>
+            <div class="do-dont">
+              <div class="dd dd--do">
+                <h4>Do</h4>
+                <ul>
+                  <li>Use real app screens</li>
+                  <li>Keep backgrounds calm (cream, mint, dark)</li>
+                  <li>Soft realistic shadows</li>
+                  <li>One focal device per panel</li>
+                </ul>
+              </div>
+              <div class="dd dd--dont">
+                <h4>Don't</h4>
+                <ul>
+                  <li>Generic stock “business people”</li>
+                  <li>Busy or colorful backdrops</li>
+                  <li>Hard cut-outs with no shadow</li>
+                  <li>Recolor or distort the app UI</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Motion & layout principles -->
+    <section>
+      <div class="wrap">
+        <div class="eyebrow">Motion &amp; layout · rationale</div>
+        <h2>Restrained, purposeful motion</h2>
+        <div class="rationale">
+          <div class="rationale__k">Principles<span class="sub">Why it moves</span></div>
+          <div class="rationale__v">
+            <ul class="why">
+              <li><strong>Continuous corridor rail:</strong> a always-moving marquee of live corridors signals an active, real-time network — reinforcing “12 partner rails, live.”</li>
+              <li><strong>3D button text-roll:</strong> a small premium flourish on CTAs that rewards interaction without distracting from the task.</li>
+              <li><strong>Reveal-on-scroll:</strong> gentle fade/translate as sections enter — guides attention and adds polish; respects <span style="font-family:var(--mono)">prefers-reduced-motion</span>.</li>
+              <li><strong>Generous radius &amp; spacing:</strong> 32px panels and roomy vertical rhythm make a data-dense product feel calm and premium, not cramped.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer>
       <div class="wrap">
-        FlexiWires Brand Guidelines · v1.0 · {updated} &nbsp;·&nbsp; <a href="./">View the live landing page →</a>
+        FlexiWires Brand Guidelines &amp; Design System · v1.0 · {updated} &nbsp;·&nbsp; <a href="./">View the live landing page →</a>
       </div>
     </footer>
   </body>
