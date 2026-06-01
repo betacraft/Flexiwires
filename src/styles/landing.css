@@ -1,5 +1,5 @@
 /* =================================================================
-       * LUMEN RAILS TOKENS — matches /src/styles/tokens.css when shipped
+       * LUMEN RAILS TOKENS - matches /src/styles/tokens.css when shipped
        * ================================================================= */
       :root {
         --background: #faf8f4;
@@ -96,7 +96,7 @@
         color: var(--muted-foreground);
       }
 
-      /* Language toggle — display: none for inactive lang */
+      /* Language toggle - display: none for inactive lang */
       html[data-lang='en'] [lang='es'] {
         display: none !important;
       }
@@ -279,7 +279,7 @@
         position: relative;
         transform: translateZ(0.575em);
       }
-      /* second face — sits as the bottom of the cube, rolls to front on hover */
+      /* second face - sits as the bottom of the cube, rolls to front on hover */
       .btn__roll > span:nth-child(2) {
         position: absolute;
         inset: 0;
@@ -495,7 +495,7 @@
         font-weight: 500;
       }
 
-      /* Rating badge — Vaulta-style social proof above the headline */
+      /* Rating badge - Vaulta-style social proof above the headline */
       .rating-badge {
         display: inline-flex;
         align-items: center;
@@ -551,7 +551,7 @@
         }
       }
 
-      /* Hero phone-in-hand image — wraps the photo + floating accents */
+      /* Hero phone-in-hand image - wraps the photo + floating accents */
       .hero-phone-wrap {
         position: relative;
         width: 100%;
@@ -1157,7 +1157,7 @@
 .feature__illust{width:100%;display:block;color:currentColor}
 
 /* ============================================================
-   Card 1 — Multi-rail (ilmr-)
+   Card 1 - Multi-rail (ilmr-)
    ============================================================ */
 .ilmr-svg{width:100%;height:auto;display:block;color:currentColor;overflow:visible}
 
@@ -1187,7 +1187,7 @@
   animation:ilmr-flag 3.6s ease-in-out infinite;
 }
 
-/* numeric tickers — quick flicker swap to suggest live quotes */
+/* numeric tickers - quick flicker swap to suggest live quotes */
 .ilmr-num{animation:ilmr-tick 3.6s steps(1,end) infinite}
 .ilmr-n1{animation-delay:0s}
 .ilmr-n2{animation-delay:.2s}
@@ -1233,7 +1233,7 @@
 }
 
 /* ============================================================
-   Card 2 — Bulk (ilbk-)
+   Card 2 - Bulk (ilbk-)
    ============================================================ */
 .ilbk-svg{width:100%;height:100%;display:block;color:currentColor}
 
@@ -1308,7 +1308,7 @@
 }
 
 /* ============================================================
-   Card 3 — Compliance (ilcp-)
+   Card 3 - Compliance (ilcp-)
    ============================================================ */
 .ilcp-svg{width:100%;height:100%;display:block;color:currentColor}
 .ilcp-beam{transform:translateY(10px);animation:ilcp-sweep 3.8s cubic-bezier(.6,.05,.4,.95) infinite}
@@ -1354,7 +1354,7 @@
 }
 
 /* ============================================================
-   Card 4 — API (ilap-)
+   Card 4 - API (ilap-)
    ============================================================ */
 .ilap-svg{width:100%;height:100%;display:block;color:currentColor}
 .ilap-pulse{transform-origin:18px 35px;animation:ilap-pulse 3.6s ease-out infinite;opacity:0}
@@ -1369,10 +1369,10 @@
 @keyframes ilap-check{0%,72%{stroke-dashoffset:18}82%{stroke-dashoffset:0}96%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:.7}}
 
 /* ============================================================
-   Combined reduced-motion overrides — pin to stable final frames
+   Combined reduced-motion overrides - pin to stable final frames
    ============================================================ */
 @media (prefers-reduced-motion: reduce){
-  /* Card 1 — Multi-rail */
+  /* Card 1 - Multi-rail */
   .ilmr-c1,.ilmr-c2,.ilmr-c4,.ilmr-winner,.ilmr-accent-rect,.ilmr-flag,.ilmr-num{
     animation:none
   }
@@ -1381,7 +1381,7 @@
   .ilmr-flag{opacity:1;transform:translateY(0)}
   .ilmr-c1,.ilmr-c2,.ilmr-c4{opacity:.55}
 
-  /* Card 2 — Bulk */
+  /* Card 2 - Bulk */
   .ilbk-pkt,
   .ilbk-pulse,
   .ilbk-dispatch{
@@ -1393,12 +1393,12 @@
   .ilbk-pkt-4{transform:translate(60px,53px);opacity:1}
   .ilbk-pulse{opacity:.6}
 
-  /* Card 3 — Compliance */
+  /* Card 3 - Compliance */
   .ilcp-beam,.ilcp-glow{animation:none;transform:translateY(50px);opacity:0}
   .ilcp-tick{stroke-dashoffset:0;animation:none}
   .ilcp-ring{animation:none;opacity:.85}
 
-  /* Card 4 — API */
+  /* Card 4 - API */
   .ilap-pulse{animation:none;opacity:0}
   .ilap-pkt-a{animation:none;transform:translate(40px,35px);opacity:1}
   .ilap-pkt-b{animation:none;transform:translate(100px,35px);opacity:1}
@@ -2045,7 +2045,7 @@
         opacity: 0;
       }
 
-      /* SplitText fallback — wraps headline words in inline-blocks */
+      /* SplitText fallback - wraps headline words in inline-blocks */
       .split-line {
         display: inline-block;
         will-change: transform, opacity, filter;
@@ -2269,7 +2269,7 @@
         }
       }
 
-      /* Magnetic button — JS sets --x, --y based on cursor */
+      /* Magnetic button - JS sets --x, --y based on cursor */
       .btn--magnet {
         transform: translate(var(--x, 0px), var(--y, 0px));
         transition: transform 0.25s var(--ease-out-cubic), background 0.18s var(--ease-out-cubic);
@@ -2461,7 +2461,7 @@
       /* ============================================================
        * THEME · MY THEME (mytheme)
        * Section coverage so far: NAVIGATION + HERO ONLY.
-       * Reference: AI Ally-style — light page chrome, centered nav,
+       * Reference: AI Ally-style - light page chrome, centered nav,
        * dark inset rounded hero card with phone anchored bottom-right.
        * ============================================================ */
       html[data-theme="mytheme"] {
@@ -2479,7 +2479,7 @@
       }
 
       /* ====== NAVIGATION ====== */
-      /* My Theme: global header is hidden — nav lives INSIDE the dark hero card */
+      /* My Theme: global header is hidden - nav lives INSIDE the dark hero card */
       html[data-theme="mytheme"] .header {
         display: none;
       }
@@ -2647,7 +2647,7 @@
         align-items: center;
         gap: 14px;
       }
-      /* Hide secondary chrome — keep only the green pill CTA on the right */
+      /* Hide secondary chrome - keep only the green pill CTA on the right */
       html[data-theme="mytheme"] .lang-toggle,
       html[data-theme="mytheme"] .header__login {
         display: none;
@@ -2701,7 +2701,7 @@
       html[data-theme="mytheme"] .hero__prism {
         display: none;
       }
-      /* ShaderGradient background — hidden in all themes by default */
+      /* ShaderGradient background - hidden in all themes by default */
       .mytheme-shader-mount { display: none; }
       html[data-theme="mytheme"] .mytheme-shader-mount {
         display: block;
@@ -2746,7 +2746,7 @@
         padding-left: 64px;
         padding-right: 0;
       }
-      /* Restyle rating badge for the dark surface (NOT hidden — keep Lumen content) */
+      /* Restyle rating badge for the dark surface (NOT hidden - keep Lumen content) */
       html[data-theme="mytheme"] .hero .rating-badge {
         background: rgba(255, 255, 255, 0.06);
         border: 1px solid rgba(255, 255, 255, 0.12);
@@ -2864,7 +2864,7 @@
         height: auto;
         filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.55));
       }
-      /* Kill the global hover lift for My Theme — phone stays put on hover */
+      /* Kill the global hover lift for My Theme - phone stays put on hover */
       html[data-theme="mytheme"] .hero-phone-wrap:hover .hero-phone__img {
         transform: none;
       }
@@ -2884,8 +2884,8 @@
         }
       }
 
-      /* Floating cards — re-shown for My Theme with dark-glass styling.
-       * Positioned ON the phone (over the device screen edges) — savings at
+      /* Floating cards - re-shown for My Theme with dark-glass styling.
+       * Positioned ON the phone (over the device screen edges) - savings at
        * top-left of phone, rates at bottom-right of phone. */
       html[data-theme="mytheme"] .hero-card {
         display: block;
@@ -2969,7 +2969,7 @@
         margin-top: 24px;
       }
 
-      /* ====== Theme-toggle pill (preview chrome) — My Theme variant ====== */
+      /* ====== Theme-toggle pill (preview chrome) - My Theme variant ====== */
       html[data-theme="mytheme"] .theme-preview__group {
         background: rgba(255, 255, 255, 0.94);
         border: 1px solid #e5e5e5;
@@ -3276,7 +3276,7 @@
 
       /* ============================================================
        * PREVIEW THEME TOGGLE (floating, bottom-right)
-       * Click to switch between Lumen and Obsidian — choice persists in localStorage.
+       * Click to switch between Lumen and Obsidian - choice persists in localStorage.
        * REMOVE before shipping.
        * ============================================================ */
       .theme-preview {
@@ -3351,7 +3351,7 @@
         .theme-preview__group button { padding: 5px 10px; font-size: 10px; }
       }
 
-      /* Trust band — disclosure of regulator posture, partner-bank model */
+      /* Trust band - disclosure of regulator posture, partner-bank model */
       .trust-band {
         background: var(--surface-2);
         border-top: 1px solid var(--border);
@@ -3847,7 +3847,7 @@
       }
     
       /* ===== MOBILE-FIRST ILLUSTRATION (added) ===== */
-      /* Bespoke, self-contained FlexiWires app phone — replaces the .phone-photo Unsplash mockup. */
+      /* Bespoke, self-contained FlexiWires app phone - replaces the .phone-photo Unsplash mockup. */
       /* (Legacy .phone-photo rules above are left in place but unused/harmless.) */
       .fw-phone {
         position: relative;
@@ -4337,7 +4337,7 @@
       }
 
       /* =========================================================
-       * IN-HERO NAV (.mytheme-hero-nav) — brand + CTA on one row
+       * IN-HERO NAV (.mytheme-hero-nav) - brand + CTA on one row
        * ========================================================= */
       html[data-theme="mytheme"] .mytheme-hero-nav {
         display: flex !important;
@@ -4436,7 +4436,7 @@
       }
 
       /* =========================================================
-       * "WHY THIS EXISTS" rate-widget — collapse fixed columns
+       * "WHY THIS EXISTS" rate-widget - collapse fixed columns
        * (200px 1fr 120px 120px overflowed the viewport)
        * ========================================================= */
       .why__inner {
@@ -4586,7 +4586,7 @@
       }
       .corridor-grid th:last-child, .corridor-grid td:last-child { border-right: 0 !important; }
 
-      /* (4) STATS: uniform single column — a divider under every cell, no boxes. */
+      /* (4) STATS: uniform single column - a divider under every cell, no boxes. */
       .stats__grid {
         display: grid !important;
         grid-template-columns: 1fr !important;
@@ -4601,7 +4601,7 @@
       }
       .stat:last-child { border-bottom: 0 !important; }
 
-      /* (5) MOBILE-FIRST checkmarks were huge and broke the rows — pin them small. */
+      /* (5) MOBILE-FIRST checkmarks were huge and broke the rows - pin them small. */
       .mobile__feature { align-items: flex-start !important; }
       .mobile__feature svg {
         width: 18px !important; height: 18px !important;
@@ -4615,7 +4615,7 @@
 
 
       /* ============================================================
-       * CUSTOM OVERRIDES (added) — phone straighten, smooth marquee,
+       * CUSTOM OVERRIDES (added) - phone straighten, smooth marquee,
        * hide theme switcher, mobile responsive.
        * ============================================================ */
 
@@ -4922,7 +4922,7 @@ html[data-theme="mytheme"] .logos--rail .container {
 }
 html[data-theme="mytheme"] .logos--rail .logos__label { margin-bottom: 18px; }
 html[data-theme="mytheme"] .logos--rail .eyebrow { color: rgba(255, 255, 255, 0.55); }
-/* never pause — keep the rail continuously moving, smooth/linear */
+/* never pause - keep the rail continuously moving, smooth/linear */
 html[data-theme="mytheme"] .marquee:hover .marquee__track,
 html[data-theme="mytheme"] .marquee__track:hover {
   animation-play-state: running !important;
@@ -4932,7 +4932,7 @@ html[data-theme="mytheme"] .marquee__track {
   animation-timing-function: linear !important;
   gap: 16px !important;
 }
-/* corridors become chips — light on the dark band */
+/* corridors become chips - light on the dark band */
 html[data-theme="mytheme"] .logos--rail .marquee__cell {
   opacity: 1 !important;
   color: #ffffff !important;
