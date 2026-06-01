@@ -4887,16 +4887,17 @@ html[data-theme="mytheme"] .footer__legal strong {
   /* soft grey-green tint from the design system (mint surface) */
   background: linear-gradient(160deg, #eaf7ee 0%, #dff3e6 100%);
   display: flex;
-  align-items: center;          /* center vertically */
-  justify-content: center;      /* center horizontally */
+  align-items: flex-end;        /* anchor the hand to the BOTTOM (no floating) */
+  justify-content: center;
   overflow: hidden;
 }
 .appcta__phone {
-  width: 78%;                    /* smaller, fully contained — no crop */
-  max-width: 380px;
+  width: 90%;                    /* fully visible, not cropped */
+  max-width: 460px;
   height: auto;
   display: block;
   object-fit: contain;
+  margin-bottom: 0;             /* wrist meets the bottom edge */
   filter: drop-shadow(0 24px 50px rgba(10, 40, 20, 0.16));
 }
 @media (max-width: 880px) {
