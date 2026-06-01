@@ -4887,16 +4887,16 @@ html[data-theme="mytheme"] .footer__legal strong {
   background: #ffffff;
   display: flex;
   align-items: flex-end;
-  justify-content: flex-start;   /* image hugs the left edge (the black panel) */
-  overflow: visible;             /* allow it to cross into the black part */
+  justify-content: flex-start;   /* image hugs the left edge of the white panel */
+  overflow: hidden;             /* clip: hand only shows inside the white part */
 }
 .appcta__phone {
-  width: 86%;                    /* back to original size */
+  width: 86%;                    /* original size */
   max-width: 440px;
   height: auto;
   display: block;
   margin-bottom: -2px;
-  margin-left: -16%;             /* push left so the phone touches the black panel */
+  margin-left: 0;               /* sit at the white panel's left edge, no overlap */
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.18));
 }
 @media (max-width: 880px) {
