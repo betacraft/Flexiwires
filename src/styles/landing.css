@@ -4884,31 +4884,32 @@ html[data-theme="mytheme"] .footer__legal strong {
 }
 .appcta__visual {
   position: relative;
-  background: #ffffff;
+  /* soft grey-green tint from the design system (mint surface) */
+  background: linear-gradient(160deg, #eaf7ee 0%, #dff3e6 100%);
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;   /* image hugs the left edge of the white panel */
-  overflow: hidden;             /* clip: hand only shows inside the white part */
+  align-items: center;          /* center the phone vertically */
+  justify-content: center;      /* center horizontally */
+  overflow: hidden;             /* clip the zoom */
 }
 .appcta__phone {
-  width: 86%;                    /* original size */
-  max-width: 440px;
+  width: 128%;                   /* zoomed in, focused on the phone */
+  max-width: none;
   height: auto;
   display: block;
-  margin-bottom: -2px;
-  margin-left: 0;               /* sit at the white panel's left edge, no overlap */
-  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.18));
+  object-fit: cover;
+  filter: drop-shadow(0 30px 60px rgba(10, 40, 20, 0.18));
 }
 @media (max-width: 880px) {
   .appcta__panel { grid-template-columns: 1fr; min-height: 0; }
   .appcta__copy { padding: 40px 24px 28px; }
-  .appcta__visual { padding-top: 8px; justify-content: center; }
-  .appcta__phone { width: 92%; max-width: 420px; margin-left: 0; }
+  .appcta__visual { min-height: 360px; }
+  .appcta__phone { width: 96%; max-width: 460px; }
 }
 @media (max-width: 480px) {
   .appcta__copy { padding: 32px 20px 24px; }
   .appcta__proof-num { font-size: 24px; }
-  .appcta__phone { width: 96%; max-width: 360px; margin-left: 0; }
+  .appcta__visual { min-height: 300px; }
+  .appcta__phone { width: 110%; max-width: none; }
 }
 
 /* ===== ACTIVE CORRIDORS · moving rail (added) ===== */
